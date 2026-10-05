@@ -1,10 +1,12 @@
 from __future__ import annotations
 
+import asyncio
 import getpass
 import hashlib
 import hmac
 import secrets
 import threading
+import uuid
 from concurrent.futures import ThreadPoolExecutor
 from contextlib import asynccontextmanager
 from dataclasses import asdict
@@ -24,6 +26,7 @@ from .files import MAX_FILES, CatalogError, FileCatalog
 from .model import analyze
 from .reports import write_reports
 from .store import Store
+from .uploads import receive_upload
 
 WEB = Path(__file__).parent / "web"
 
@@ -39,7 +42,8 @@ class JobRequest(BaseModel):
 
 def create_app(settings: Settings, analyzer=analyze) -> FastAPI:
     settings.validate()
-    catalog = FileCatalog(settings.root)
+    catalog = FileCatalog(settings.root) if settings.mode == "local" else None
+    catalogs: dict[str, FileCatalog] = {}
     store = Store(settings.data_dir)
     session_token = secrets.token_urlsafe(32)
     catalog_lock = threading.Lock()
@@ -47,6 +51,7 @@ def create_app(settings: Settings, analyzer=analyze) -> FastAPI:
     cancellation_lock = threading.Lock()
     cancellations: dict[str, threading.Event] = {}
     pool = ThreadPoolExecutor(max_workers=1, thread_name_prefix="office-agent")
+    upload_gate = asyncio.Semaphore(4)
 
     @asynccontextmanager
     async def lifespan(app):
@@ -57,30 +62,68 @@ def create_app(settings: Settings, analyzer=analyze) -> FastAPI:
         pool.shutdown(wait=True, cancel_futures=True)
         store.close()
 
-    app = FastAPI(title="Glocal Agent 本机试点", lifespan=lifespan, docs_url=None, redoc_url=None)
+    app = FastAPI(title="Glocal Agent 工作台", lifespan=lifespan, docs_url=None, redoc_url=None)
     app.state.session_token = session_token
     app.state.store = store
-    app.add_middleware(
-        TrustedHostMiddleware, allowed_hosts=["127.0.0.1", "localhost", "[::1]", "testserver"]
-    )
+    hosts = ["127.0.0.1", "localhost", "[::1]", "testserver"]
+    if settings.mode == "server":
+        hosts = [urlsplit(settings.public_url).hostname, "127.0.0.1", "localhost"]
+    app.add_middleware(TrustedHostMiddleware, allowed_hosts=hosts)
+
+    def actor(request: Request) -> str:
+        return request.state.actor if settings.mode == "server" else getpass.getuser()
+
+    def owner(request: Request) -> str | None:
+        return actor(request) if settings.mode == "server" else None
+
+    def user_catalog(request: Request) -> FileCatalog:
+        if catalog is not None:
+            return catalog
+        identifier = hashlib.sha256(actor(request).encode()).hexdigest()
+        with catalog_lock:
+            if identifier not in catalogs:
+                directory = settings.root / identifier
+                directory.mkdir(mode=0o700, exist_ok=True)
+                catalogs[identifier] = FileCatalog(directory)
+            return catalogs[identifier]
+
+    def owned_task(request: Request, job_id: str):
+        task = store.get(job_id, actor=owner(request))
+        if task is None:
+            raise HTTPException(404, "任务不存在。")
+        return task
 
     @app.middleware("http")
     async def protect_local_session(request: Request, call_next):
+        if settings.mode == "server" and request.url.path != "/healthz":
+            supplied = request.headers.get("x-agent-proxy-key", "")
+            if not hmac.compare_digest(supplied.encode(), settings.proxy_key.encode()):
+                return JSONResponse({"detail": "需要受信的公司登录会话。"}, status_code=403)
+            try:
+                request.state.actor = str(uuid.UUID(request.headers.get("x-agent-subject", "")))
+            except ValueError:
+                return JSONResponse({"detail": "登录身份无效，请重新登录。"}, status_code=403)
         if request.url.path.startswith("/api/"):
             token = request.headers.get("x-agent-session", "")
-            if not hmac.compare_digest(token, session_token):
-                return JSONResponse({"detail": "请从本机工作台访问。"}, status_code=403)
+            if not hmac.compare_digest(token.encode(), session_token.encode()):
+                return JSONResponse({"detail": "请从工作台访问或刷新页面。"}, status_code=403)
             origin = request.headers.get("origin")
             if origin:
                 parsed = urlsplit(origin)
-                if parsed.hostname not in {"127.0.0.1", "localhost", "::1"}:
+                if settings.mode == "server" and origin != settings.public_url:
+                    return JSONResponse({"detail": "不允许跨站请求。"}, status_code=403)
+                if settings.mode == "local" and parsed.hostname not in {
+                    "127.0.0.1", "localhost", "::1"
+                }:
                     return JSONResponse({"detail": "不允许跨站请求。"}, status_code=403)
                 if parsed.netloc != request.headers.get("host"):
                     return JSONResponse({"detail": "不允许跨站请求。"}, status_code=403)
-            if request.method == "POST" and not request.headers.get(
-                "content-type", ""
-            ).startswith("application/json"):
-                return JSONResponse({"detail": "请求必须为 JSON。"}, status_code=415)
+            expected = ("application/octet-stream" if request.url.path == "/api/uploads"
+                        and settings.mode == "server" else "application/json")
+            if request.method == "POST" and not request.headers.get("content-type", "").startswith(
+                expected
+            ):
+                return JSONResponse({"detail": "请求格式不受支持。"}, status_code=415)
         response = await call_next(request)
         response.headers["Cache-Control"] = "no-store"
         response.headers["X-Content-Type-Options"] = "nosniff"
@@ -90,6 +133,10 @@ def create_app(settings: Settings, analyzer=analyze) -> FastAPI:
             "base-uri 'none'; form-action 'self'"
         )
         return response
+
+    @app.get("/healthz")
+    def health():
+        return {"status": "ok", "mode": settings.mode}
 
     @app.exception_handler(CatalogError)
     async def handle_catalog_error(request, exc):
@@ -108,13 +155,25 @@ def create_app(settings: Settings, analyzer=analyze) -> FastAPI:
         return settings.public()
 
     @app.post("/api/scan")
-    def scan(body: ScanRequest):
+    def scan(body: ScanRequest, request: Request):
+        scoped_catalog = user_catalog(request)
         with catalog_lock:
-            return catalog.scan(recursive=body.recursive)
+            return scoped_catalog.scan(recursive=body.recursive)
 
-    def read_source(file_id: str):
+    @app.post("/api/uploads", status_code=201)
+    async def upload(request: Request, name: str):
+        if settings.mode != "server":
+            raise HTTPException(404, "本机模式请扫描授权目录。")
+        scoped_catalog = user_catalog(request)
+        async with upload_gate:
+            await receive_upload(request, scoped_catalog.root, name, catalog_lock)
         with catalog_lock:
-            metadata, content = catalog.read(file_id)
+            return scoped_catalog.scan()
+
+    def read_source(request: Request, file_id: str):
+        scoped_catalog = user_catalog(request)
+        with catalog_lock:
+            metadata, content = scoped_catalog.read(file_id)
         parsed = extract(metadata["name"], content)
         return {
             "file": metadata,
@@ -123,8 +182,8 @@ def create_app(settings: Settings, analyzer=analyze) -> FastAPI:
         }
 
     @app.get("/api/files/{file_id}/preview")
-    def preview(file_id: str):
-        return read_source(file_id)
+    def preview(file_id: str, request: Request):
+        return read_source(request, file_id)
 
     def execute(job_id: str, snapshot: FileCatalog, ids: list[str], cancelled: threading.Event):
         try:
@@ -152,9 +211,9 @@ def create_app(settings: Settings, analyzer=analyze) -> FastAPI:
             job_gate.release()
 
     @app.post("/api/jobs", status_code=202)
-    def create_job(body: JobRequest):
+    def create_job(body: JobRequest, request: Request):
         if not settings.configured:
-            raise HTTPException(409, "模型后端尚未配置，请先在本机运行 configure。")
+            raise HTTPException(409, "模型后端尚未配置，请联系操作员配置模型连接。")
         if not body.instruction.strip():
             raise HTTPException(422, "请填写分析任务。")
         if len(set(body.file_ids)) != len(body.file_ids):
@@ -162,12 +221,13 @@ def create_app(settings: Settings, analyzer=analyze) -> FastAPI:
         if not job_gate.acquire(blocking=False):
             raise HTTPException(409, "已有分析任务正在运行，请等待它结束。")
         try:
+            scoped_catalog = user_catalog(request)
             with catalog_lock:
-                snapshot = catalog.freeze(body.file_ids)
+                snapshot = scoped_catalog.freeze(body.file_ids)
             references = [snapshot.get(file_id) for file_id in body.file_ids]
             if not any(item["supported"] for item in references):
                 raise HTTPException(422, "所选文件没有可处理的格式；凭据文件默认禁止读取。")
-            job_id = store.create(body.instruction, getpass.getuser(), references)
+            job_id = store.create(body.instruction, actor(request), references)
             cancelled = threading.Event()
             with cancellation_lock:
                 cancellations[job_id] = cancelled
@@ -178,7 +238,8 @@ def create_app(settings: Settings, analyzer=analyze) -> FastAPI:
             raise
 
     @app.post("/api/jobs/{job_id}/cancel", status_code=202)
-    def cancel_job(job_id: str):
+    def cancel_job(job_id: str, request: Request):
+        owned_task(request, job_id)
         with cancellation_lock:
             cancelled = cancellations.get(job_id)
             if cancelled is None:
@@ -189,19 +250,16 @@ def create_app(settings: Settings, analyzer=analyze) -> FastAPI:
         return {"id": job_id, "message": "已请求停止，当前模型调用结束后保留已有结果。"}
 
     @app.get("/api/jobs")
-    def jobs():
-        return {"jobs": store.list()}
+    def jobs(request: Request):
+        return {"jobs": store.list(actor=owner(request))}
 
     @app.get("/api/jobs/{job_id}")
-    def job(job_id: str):
-        task = store.get(job_id)
-        if task is None:
-            raise HTTPException(404, "任务不存在。")
-        return task
+    def job(job_id: str, request: Request):
+        return owned_task(request, job_id)
 
     @app.get("/api/jobs/{job_id}/artifacts/{name}")
-    def artifact(job_id: str, name: str):
-        task = store.get(job_id)
+    def artifact(job_id: str, name: str, request: Request):
+        task = owned_task(request, job_id)
         if task is None or task["status"] not in {"completed", "partial", "cancelled"}:
             raise HTTPException(404, "报告尚未生成。")
         if name not in {item["name"] for item in task["artifacts"]}:

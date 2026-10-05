@@ -24,7 +24,8 @@
 其 CLI 是隔离的文本推理后端，不能直接作为具有文件/业务权限的 agent 执行器。
 本试点复用这种分工：模型后端提供结构化推理，工具层独立检查路径、来源和权限。
 
-当前没有接入 Aimail/OA 的 API，不会以自报身份头或直连生产库取得权限。
+服务器工作台与 OA/Mail 共用 Authentik 登录，但持有独立 host-only 会话与代理密钥。
+当前没有接入 Aimail/OA 的业务 API，不会以自报身份头或直连生产库取得权限。
 企业接入需沿用 OA `INVARIANTS.md` I6 与 Aimail 的受信身份、邮箱授权、业务确认合同。
 
 ## 首期实现
@@ -74,3 +75,14 @@ API 线路是直接 HTTP 请求。已有 `ssh spark` 可转发 Spark loopback Ol
 
 本次开发没有访问用户 M5 Downloads、Spark、真实 CLI 登录或生产 OA。
 真实 OCR、Office 排版保真、模型任务成功率、多用户并发与业务授权仍需后续实机验收。
+
+## 2026-10-05 独立服务器入口
+
+`agent.glocalstorage.cn` 的 Caddy 清除浏览器身份头，向 agent 专属 OAuth2 proxy 校验
+会话后，以稳定员工 UUID 与独立代理密钥转给应用。OIDC provider 要求 active 且属于
+管理员确认的 `GlocalStorage Approved`，不会因为注册即取得工作台权限。
+应用不接收任意根目录，所有文件操作限于该 UUID 的上传空间；任务列表、读取、取消与
+报告下载再逐项校验归属。进程共用一个模型执行槽，以限制 Spark 并发。CSRF 令牌和
+明确来源限制保留；服务端运行仅通过 Caddy 的内部网络暴露，数据卷独立。
+
+服务器模式仍是文件分析流程。它不具备本机文件连接器、自主工具循环、业务写入或 OCR。

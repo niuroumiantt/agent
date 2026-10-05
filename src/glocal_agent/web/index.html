@@ -18,8 +18,13 @@
       </a>
       <div class="workspace-label">个人工作空间 <span class="pilot-tag">试点</span></div>
       <nav aria-label="工作空间">
-        <button class="nav-item active" id="nav-files" type="button" aria-current="page"><span aria-hidden="true">▤</span> Downloads <span class="nav-count" id="file-count">0</span></button>
+        <button class="nav-item active" id="nav-files" type="button" aria-current="page"><span aria-hidden="true">▤</span> <span id="file-nav-label">Downloads</span> <span class="nav-count" id="file-count">0</span></button>
         <button class="nav-item" id="nav-jobs" type="button"><span aria-hidden="true">◷</span> 任务记录 <span class="nav-count" id="job-count">0</span></button>
+      </nav>
+      <nav id="office-apps" class="hidden" aria-label="公司应用">
+        <a class="nav-item" href="https://oa.glocalstorage.cn/">OA 办公</a>
+        <a class="nav-item" href="https://mail.glocalstorage.cn/">Mail 邮件</a>
+        <a class="nav-item" href="/oauth2/sign_out">退出工作台</a>
       </nav>
       <div class="sidebar-note">
         <div class="eyebrow">从一份材料开始</div>
@@ -45,6 +50,8 @@
           <span class="folder-icon" aria-hidden="true">▱</span>
           <div class="folder-info"><strong>已授权的文件目录</strong><code id="root-path">等待本机服务配置</code></div>
           <button class="button button-secondary" id="scan-button" type="button">扫描文件</button>
+          <button class="button button-primary hidden" id="upload-button" type="button">上传文件</button>
+          <input id="upload-files" type="file" multiple hidden accept=".pdf,.docx,.xlsx,.xlsm,.pptx,.txt,.md,.csv,.tsv,.sh,.html,.htm">
         </div>
         <div class="notice hidden" id="scan-warnings" role="status"></div>
         <div class="list-toolbar"><span id="list-description">尚未扫描</span><label class="scan-option"><input type="checkbox" id="recursive-scan"> 包含子文件夹</label></div>

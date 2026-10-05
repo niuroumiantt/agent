@@ -77,9 +77,14 @@ class Store:
                 ),
             )
 
-    def get(self, job_id: str, include_payload: bool = False):
+    def get(self, job_id: str, include_payload: bool = False, actor: str | None = None):
         with self.connect() as db:
-            row = db.execute("SELECT * FROM jobs WHERE id=?", (job_id,)).fetchone()
+            query = "SELECT * FROM jobs WHERE id=?"
+            args = [job_id]
+            if actor is not None:
+                query += " AND actor=?"
+                args.append(actor)
+            row = db.execute(query, args).fetchone()
         if row is None:
             return None
         item = dict(row)
@@ -92,7 +97,12 @@ class Store:
             item.pop("payload")
         return item
 
-    def list(self):
+    def list(self, actor: str | None = None):
         with self.connect() as db:
-            ids = db.execute("SELECT id FROM jobs ORDER BY created_at DESC LIMIT 100").fetchall()
-        return [self.get(row["id"]) for row in ids]
+            query = "SELECT id FROM jobs"
+            args = []
+            if actor is not None:
+                query += " WHERE actor=?"
+                args.append(actor)
+            ids = db.execute(query + " ORDER BY created_at DESC LIMIT 100", args).fetchall()
+        return [self.get(row["id"], actor=actor) for row in ids]

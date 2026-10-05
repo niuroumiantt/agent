@@ -2,8 +2,9 @@
 
 Glocal AI 原生办公体系的任务工作台与跨应用协调层。目标入口是
 `oa.glocalstorage.com`；OA 管办公单据与流程，Aimail 管邮件，agent 连接各应用，
-在授予的权限内阅读、分析、规划和调用工具。当前版本是独立的**本机文件只读试点**，
-尚未部署到 OA，也没有跨应用业务写入。
+在授予的权限内阅读、分析、规划和调用工具。当前支持本机文件试点与独立的**服务器文件工作台**。服务器入口为
+`agent.glocalstorage.cn`，与 OA、Mail 并列；接入统一公司登录，用户上传材料后分析。
+代码提供上线能力，实际运行状态以部署回执为准；当前没有跨应用业务写入。
 
 ## 当前可用范围
 
@@ -114,3 +115,18 @@ uv run pytest
 测试使用合成材料、模拟 API 和假 CLI，不发送真实文件，也不能证明 M5、Spark、
 真实 CLI 或 OA 生产环境已经连通。界面通过 localhost 提供，不能直接公网部署。
 有关跨应用边界和下一阶段，见 [架构](docs/architecture.md)。
+
+## 服务器工作台
+
+服务器模式使用 `AGENT_MODE=server`、明确的 `AGENT_PUBLIC_URL` 和独立
+`AGENT_PROXY_KEY`。只有可信登录代理验证的员工 UUID 能访问工作台；本机模式仍仅监听
+loopback。每人的文件、任务、停止操作和报告下载均按稳定 UUID 隔离。服务器不会扫描
+M5 Downloads；用户通过浏览器上传资料，每份最多 15 MiB、个人空间最多 512 MiB。
+服务总体上传额度 2 GiB，保留同名原件而不覆盖。上传、任务与报告数据存于 `/srv/agent-data`，
+不挂载 OA、Mail 数据或宿主机目录。服务器后端使用操作员配置的 Spark/兼容 API。
+
+`Dockerfile` 提供非 root、单进程工作台；CI 测试后在主干固定提交发布镜像资产。
+部署、DNS、TLS、Authentik 客户端与回退由 infra 管理，见
+[域名上线交接](https://github.com/niuroumiantt/infra/blob/main/docs/handoff/agent-domain-2026-10-05.md)。
+首次安装需专用模型配置；上线脚本在切换入口前以合成资料验证模型连接和结构化输出。
+实际员工登录、文件上传到报告下载的浏览器验收仍须在生产完成；本地测试不能替代它。

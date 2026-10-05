@@ -1,0 +1,46 @@
+name: Release
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: agent-release-${{ github.sha }}
+  cancel-in-progress: false
+jobs:
+  image:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with:
+          python-version: '3.12'
+      - run: uv sync --locked --group dev && uv run ruff check src tests && uv run pytest
+      - name: Build immutable release archive
+        run: |
+          docker build --label org.opencontainers.image.revision="$GITHUB_SHA" -t "agent:agent-$GITHUB_SHA" .
+          docker save "agent:agent-$GITHUB_SHA" | gzip -n > agent-image.tar.gz
+          sha256sum agent-image.tar.gz > agent-image.tar.gz.sha256
+          python3 - <<'PY'
+          import json, os
+          from pathlib import Path
+          Path('release.json').write_text(json.dumps({'source_sha': os.environ['GITHUB_SHA'], 'image': 'agent:agent-' + os.environ['GITHUB_SHA']}) + '\n')
+          PY
+      - name: Publish fixed commit release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          tag="agent-$GITHUB_SHA"
+          if gh release view "$tag" --json assets > existing-release.json 2>/dev/null; then
+            python3 - <<'PYVERIFY'
+          import json
+          from pathlib import Path
+          names = {a['name'] for a in json.loads(Path('existing-release.json').read_text())['assets']}
+          assert {'agent-image.tar.gz', 'agent-image.tar.gz.sha256', 'release.json'} <= names
+          PYVERIFY
+            exit 0
+          fi
+          gh release create "$tag" agent-image.tar.gz agent-image.tar.gz.sha256 release.json \
+            --target "$GITHUB_SHA" --title "Agent $GITHUB_SHA" \
+            --notes 'Production image; deployment and browser acceptance are separate.'

@@ -18,8 +18,22 @@ class Settings:
     base_url: str = ""
     model: str = DEFAULT_MODEL
     api_key: str = ""
+    mode: str = "local"
+    public_url: str = ""
+    proxy_key: str = ""
 
     def validate(self) -> Settings:
+        if self.mode not in {"local", "server"}:
+            raise ValueError("运行模式必须为 local 或 server。")
+        if self.mode == "server":
+            parsed = urlsplit(self.public_url)
+            if (parsed.scheme != "https" or not parsed.hostname or parsed.path
+                    or parsed.query or parsed.fragment or parsed.username or parsed.password):
+                raise ValueError("服务器模式需要明确的 HTTPS 域名，不包含路径或凭据。")
+            if len(self.proxy_key) < 48:
+                raise ValueError("服务器模式需要独立的至少 48 字符代理密钥。")
+            if self.provider not in {"ollama", "gateway"}:
+                raise ValueError("服务器模式仅支持操作员配置的模型 API。")
         if not self.root.is_dir():
             raise ValueError("授权文件目录不存在，请在 M5 指定实际 Downloads 目录。")
         if self.root == self.data_dir or self.root in self.data_dir.parents:
@@ -43,7 +57,8 @@ class Settings:
 
     def public(self) -> dict:
         return {
-            "root": str(self.root),
+            "root": "我的上传文件" if self.mode == "server" else str(self.root),
+            "mode": self.mode,
             "provider": self.provider,
             "model": self.model,
             "configured": self.configured,
@@ -81,8 +96,12 @@ def load_settings(root: str | None = None, data_dir: str | None = None) -> Setti
         default_model = os.environ.get("CODEX_CLI_MODEL", "")
     elif provider == "claude_code_cli":
         default_model = os.environ.get("CLAUDE_CODE_CLI_MODEL", "")
+    mode = pick("mode", "local")
+    input_root = Path(root or pick("root", str(Path.home() / "Downloads"))).expanduser().resolve()
+    if mode == "server":
+        input_root.mkdir(parents=True, exist_ok=True, mode=0o700)
     return Settings(
-        root=Path(root or pick("root", str(Path.home() / "Downloads"))).expanduser().resolve(),
+        root=input_root,
         data_dir=Path(
             data_dir or pick("data_dir", str(Path.home() / ".local/share/agent"))
         ).expanduser().resolve(),
@@ -90,4 +109,7 @@ def load_settings(root: str | None = None, data_dir: str | None = None) -> Setti
         base_url=base_url.rstrip("/"),
         model=pick("model", default_model),
         api_key=key,
+        mode=mode,
+        public_url=pick("public_url").rstrip("/"),
+        proxy_key=pick("proxy_key"),
     ).validate()

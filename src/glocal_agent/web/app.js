@@ -61,17 +61,18 @@
   const activeJob = (job) => job.status === "queued" || job.status === "running";
 
   async function api(path, options = {}) {
-    if (!session || session === "__SESSION_TOKEN__") throw new Error("请通过正在运行的本机 Agent 服务打开工作台；当前页面尚未获得会话凭证。");
+    if (!session || session === "__SESSION_TOKEN__") throw new Error("请刷新工作台页面；当前页面尚未获得会话凭证。");
     const url = new URL(path, window.location.origin);
-    if (url.origin !== window.location.origin) throw new Error("请求地址必须属于本机 Agent 服务。");
+    if (url.origin !== window.location.origin) throw new Error("请求地址必须属于当前工作台。");
     const headers = { "X-Agent-Session": session };
-    if (options.body !== undefined) headers["Content-Type"] = "application/json";
+    if (options.rawBody !== undefined) headers["Content-Type"] = "application/octet-stream";
+    else if (options.body !== undefined) headers["Content-Type"] = "application/json";
     const response = await fetch(url, {
       method: options.method || "GET", headers, credentials: "same-origin", cache: "no-store", redirect: "error",
-      ...(options.body !== undefined ? { body: JSON.stringify(options.body) } : {})
+      ...(options.rawBody !== undefined ? { body: options.rawBody } : options.body !== undefined ? { body: JSON.stringify(options.body) } : {})
     });
     let data;
-    try { data = await response.json(); } catch { throw new Error("本机服务返回了无法读取的响应，请检查服务日志。"); }
+    try { data = await response.json(); } catch { throw new Error("服务返回了无法读取的响应，请刷新页面或重新登录。"); }
     if (!response.ok) {
       const detail = data.error || data.detail || data.message;
       const message = (Array.isArray(detail) ? detail.map((entry) => value(entry.msg || entry)).join("；") : value(detail)).slice(0, 700);
@@ -139,8 +140,8 @@
     $("nav-jobs").toggleAttribute("aria-current", !files);
     if (files) $("nav-files").setAttribute("aria-current", "page");
     else $("nav-jobs").setAttribute("aria-current", "page");
-    $("page-title").textContent = files ? "我的 Downloads" : "任务记录";
-    $("page-description").textContent = files ? "选择材料，交给 AI 阅读、归纳和分析。" : "回到一项任务，查看结果、引用与本机报告。";
+    $("page-title").textContent = files ? (state.config?.mode === "server" ? "我的文件" : "我的 Downloads") : "任务记录";
+    $("page-description").textContent = files ? "选择材料，交给 AI 阅读、归纳和分析。" : "回到一项任务，查看结果、引用与报告。";
   }
   function switchDetail(tab) {
     const source = tab === "source";
@@ -155,14 +156,14 @@
     $("selected-count").textContent = `已选择 ${state.selected.size} 份`;
     const inProgress = state.jobs.some(activeJob);
     $("analyze-button").disabled = state.submitting || inProgress || !state.config?.configured || state.selected.size === 0 || !$("instruction").value.trim();
-    $("analyze-button").title = !state.config?.configured ? "请先在本机服务配置 Spark 模型" : inProgress ? "请等待当前后台任务完成" : "";
+    $("analyze-button").title = !state.config?.configured ? "请联系操作员配置模型连接" : inProgress ? "请等待当前后台任务完成" : "";
     if (!state.submitting) $("analyze-button").replaceChildren(document.createTextNode(inProgress ? "任务进行中" : "开始分析 "), ...(inProgress ? [] : [node("span", "", "↗")]));
   }
   function renderFiles() {
     const container = $("file-list");
     $("file-count").textContent = String(state.files.length);
     if (!state.files.length) {
-      empty(container, "这个目录没有可显示的文件", "可将需要分析的材料放入授权目录，然后重新扫描。");
+      empty(container, "还没有文件", state.config?.mode === "server" ? "点击上传文件，开始阅读和分析你的资料。" : "可将需要分析的材料放入授权目录，然后重新扫描。");
       return;
     }
     const fragment = document.createDocumentFragment();
@@ -198,6 +199,20 @@
   async function loadConfig() {
     try {
       state.config = await api("/api/config");
+      if (state.config.mode === "server") {
+        $("file-nav-label").textContent = "我的文件";
+        $("page-title").textContent = "我的文件";
+        document.querySelector(".scope-tag").textContent = "个人空间";
+        document.querySelector(".folder-info strong").textContent = "上传的资料";
+        document.querySelector(".scan-option").classList.add("hidden");
+        document.querySelector(".future-label").textContent = "文件阅读 · 分析 · 报告";
+        document.querySelector(".sidebar-footnote").textContent = "文件、任务和报告保存在你的个人空间。";
+        document.querySelector(".composer-footer p").textContent = "选中文件交给模型分析，报告保存在你的个人空间，可随时下载。";
+        $("upload-button").classList.remove("hidden");
+        $("office-apps").classList.remove("hidden");
+        $("scan-button").textContent = "刷新文件";
+        await scanFiles();
+      }
       $("root-path").textContent = value(state.config.root) || "未配置文件目录";
       $("model-status").textContent = state.config.configured ? "模型已配置" : "尚未配置模型";
       $("model-name").textContent = state.config.model ? `${value(state.config.provider)} · ${value(state.config.model)}` : "请配置 Spark Ollama";
@@ -209,6 +224,32 @@
       notice("global-notice", error.message, true);
     }
   }
+  function applyFiles(data) {
+    state.files = list(data.files);
+    state.selected = new Set([...state.selected].filter((id) => state.files.some((file) => file.id === id && file.supported)));
+    if (!state.files.some((file) => file.id === state.currentFile)) state.currentFile = null;
+    renderFiles(); updateSelection();
+    $("list-description").textContent = `${state.files.length} 份文件 · ${state.files.filter((file) => file.supported).length} 份可处理`;
+    notice("scan-warnings", list(data.warnings).map(warningLabel).join("\n"));
+  }
+  async function uploadFiles() {
+    const files = [...$("upload-files").files];
+    if (!files.length) return;
+    const button = $("upload-button");
+    button.disabled = true;
+    let done = 0;
+    try {
+      for (const file of files) {
+        if (file.size > 15 * 1024 * 1024) throw new Error(`${file.name} 超过单文件 15 MiB 上限。`);
+        button.textContent = `上传 ${done + 1}/${files.length}…`;
+        const data = await api(`/api/uploads?name=${encodeURIComponent(file.name)}`, { method: "POST", rawBody: file });
+        applyFiles(data);
+        done += 1;
+      }
+      notice("scan-warnings", `已上传 ${done} 份文件。请选择材料并填写分析任务。`);
+    } catch (error) { notice("scan-warnings", `已上传 ${done} 份。${error.message}`, true); }
+    finally { button.disabled = false; button.textContent = "上传文件"; $("upload-files").value = ""; }
+  }
   async function scanFiles() {
     const button = $("scan-button");
     button.disabled = true;
@@ -216,15 +257,9 @@
     notice("scan-warnings", "");
     try {
       const data = await api("/api/scan", { method: "POST", body: { recursive: $("recursive-scan").checked } });
-      state.files = list(data.files);
-      state.selected = new Set([...state.selected].filter((id) => state.files.some((file) => file.id === id && file.supported)));
-      if (!state.files.some((file) => file.id === state.currentFile)) state.currentFile = null;
-      renderFiles();
-      updateSelection();
-      $("list-description").textContent = `${state.files.length} 份文件 · ${state.files.filter((file) => file.supported).length} 份可处理`;
-      notice("scan-warnings", list(data.warnings).map(warningLabel).join("\n"));
+      applyFiles(data);
     } catch (error) { notice("scan-warnings", error.message, true); }
-    finally { button.disabled = false; button.textContent = "重新扫描"; }
+    finally { button.disabled = false; button.textContent = state.config?.mode === "server" ? "刷新文件" : "重新扫描"; }
   }
 
   async function previewFile(id) {
@@ -377,7 +412,7 @@
       if (result.model) content.append(node("div", "source-record", `分析模型：${value(result.model)}`));
     }
     if (list(job.artifacts).length) {
-      content.append(node("h3", "", "本机报告文件"));
+      content.append(node("h3", "", "报告文件"));
       for (const artifact of job.artifacts) {
         const button = node("button", "artifact-button");
         button.type = "button";
@@ -394,7 +429,7 @@
     button.disabled = true;
     try {
       const url = new URL(value(artifact.url), window.location.origin);
-      if (url.origin !== window.location.origin) throw new Error("报告地址不属于当前本机服务，无法下载。");
+      if (url.origin !== window.location.origin) throw new Error("报告地址不属于当前工作台，无法下载。");
       const response = await fetch(url, { headers: { "X-Agent-Session": session }, credentials: "same-origin", redirect: "error" });
       if (!response.ok) throw new Error(`报告下载失败（HTTP ${response.status}）。`);
       const blob = await response.blob();
@@ -501,6 +536,8 @@
     });
   }
   $("scan-button").addEventListener("click", scanFiles);
+  $("upload-button").addEventListener("click", () => $("upload-files").click());
+  $("upload-files").addEventListener("change", uploadFiles);
   $("select-all").addEventListener("click", () => {
     state.selected = new Set(state.files.filter((file) => file.supported).map((file) => file.id));
     renderFiles(); updateSelection();

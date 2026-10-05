@@ -62,6 +62,7 @@ def main():
     serve.add_argument("--root", help="授权输入目录，默认 ~/Downloads")
     serve.add_argument("--data-dir", help="运行数据目录，默认 ~/.local/share/agent")
     serve.add_argument("--port", type=int, default=8768)
+    serve.add_argument("--host", default="127.0.0.1")
     args = parser.parse_args()
     try:
         if args.command == "configure":
@@ -73,11 +74,13 @@ def main():
 
             os.umask(0o077)
             settings = load_settings(args.root, args.data_dir)
-            print(f"本机工作台：http://127.0.0.1:{args.port}")
-            print(f"授权目录：{settings.root}")
+            if settings.mode != "server" and args.host != "127.0.0.1":
+                raise ValueError("本机模式只能监听 127.0.0.1；公网入口需要 server 模式和受信登录。")
+            print("工作台启动：" + (settings.public_url or f"http://127.0.0.1:{args.port}"))
             uvicorn.run(
-                create_app(settings), host="127.0.0.1", port=args.port,
+                create_app(settings), host=args.host, port=args.port,
                 access_log=False, log_level="warning",
+                proxy_headers=False,
             )
     except ValueError as exc:
         parser.exit(2, str(exc) + "\n")

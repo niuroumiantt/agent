@@ -17,10 +17,11 @@ from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, Field
 from starlette.middleware.trustedhost import TrustedHostMiddleware
 
+from .batch import run_batch
 from .config import Settings
 from .extract import extract
-from .files import CatalogError, FileCatalog
-from .model import ModelError, analyze
+from .files import MAX_FILES, CatalogError, FileCatalog
+from .model import analyze
 from .reports import write_reports
 from .store import Store
 
@@ -32,7 +33,7 @@ class ScanRequest(BaseModel):
 
 
 class JobRequest(BaseModel):
-    file_ids: list[str] = Field(min_length=1, max_length=6)
+    file_ids: list[str] = Field(min_length=1, max_length=MAX_FILES)
     instruction: str = Field(min_length=1, max_length=2000)
 
 
@@ -43,11 +44,16 @@ def create_app(settings: Settings, analyzer=analyze) -> FastAPI:
     session_token = secrets.token_urlsafe(32)
     catalog_lock = threading.Lock()
     job_gate = threading.Lock()
+    cancellation_lock = threading.Lock()
+    cancellations: dict[str, threading.Event] = {}
     pool = ThreadPoolExecutor(max_workers=1, thread_name_prefix="office-agent")
 
     @asynccontextmanager
     async def lifespan(app):
         yield
+        with cancellation_lock:
+            for event in cancellations.values():
+                event.set()
         pool.shutdown(wait=True, cancel_futures=True)
         store.close()
 
@@ -120,61 +126,29 @@ def create_app(settings: Settings, analyzer=analyze) -> FastAPI:
     def preview(file_id: str):
         return read_source(file_id)
 
-    def prepare_sources(ids: list[str]) -> list[dict]:
-        if len(set(ids)) != len(ids):
-            raise HTTPException(422, "选择中有重复文件。")
-        sources = []
-        budget = min(8000, 24000 // len(ids))
-        for index, file_id in enumerate(ids, 1):
-            raw = read_source(file_id)
-            parsed = raw["extraction"]
-            remaining = budget
-            blocks = []
-            clipped = False
-            for block in parsed["blocks"]:
-                text = block["text"][:remaining]
-                if text:
-                    blocks.append({"locator": block["locator"], "text": text})
-                if len(text) < len(block["text"]):
-                    clipped = True
-                remaining -= len(text)
-            warnings = list(parsed["warnings"])
-            status = parsed["status"]
-            if clipped:
-                status = "partial"
-                warnings.append("本次模型只读取了部分内容；此结果不代表完整文件审阅。")
-            sources.append({
-                "source_id": f"S{index}",
-                "file": raw["file"], "sha256": raw["sha256"],
-                "status": status, "warnings": warnings,
-                "extractor": parsed["extractor"], "blocks": blocks,
-            })
-        if not any(source["blocks"] for source in sources):
-            raise HTTPException(422, "所选文件没有可读取的文字，请先查看识别状态。")
-        return sources
-
-    def execute(job_id: str):
+    def execute(job_id: str, snapshot: FileCatalog, ids: list[str], cancelled: threading.Event):
         try:
             task = store.get(job_id, include_payload=True)
             store.update(job_id, "running")
-            result = analyzer(settings, task["instruction"], task["payload"])
-            result["sources"] = [
-                {key: value for key, value in source.items() if key != "blocks"}
-                for source in task["payload"]
-            ]
-            result["warnings"] = list(dict.fromkeys(
-                result["warnings"] + [
-                    f'{source["source_id"]}：{warning}'
-                    for source in task["payload"] for warning in source["warnings"]
-                ]
-            ))
-            artifacts = write_reports(settings.data_dir, job_id, result)
-            store.update(job_id, "completed", result=result, artifacts=artifacts)
-        except ModelError as exc:
-            store.update(job_id, "failed", error=str(exc))
+
+            def progress_update(progress, result):
+                store.update(job_id, "running", progress=progress, result=result)
+
+            status, result, progress, error = run_batch(
+                settings, task["instruction"], snapshot, ids, analyzer, cancelled, progress_update
+            )
+            artifacts = write_reports(settings.data_dir, job_id, result) if result else []
+            store.update(job_id, status, result=result, artifacts=artifacts,
+                         progress=progress, error=error)
         except Exception:
-            store.update(job_id, "failed", error="文件分析或报告生成失败，未修改原件。")
+            # Preserve already analysed sources if a later read or export fails.
+            task = store.get(job_id)
+            store.update(job_id, "partial" if task and task["result"] else "failed",
+                         result=task["result"] if task else None,
+                         error="文件分析或报告生成失败，未修改原件。")
         finally:
+            with cancellation_lock:
+                cancellations.pop(job_id, None)
             job_gate.release()
 
     @app.post("/api/jobs", status_code=202)
@@ -183,16 +157,36 @@ def create_app(settings: Settings, analyzer=analyze) -> FastAPI:
             raise HTTPException(409, "模型后端尚未配置，请先在本机运行 configure。")
         if not body.instruction.strip():
             raise HTTPException(422, "请填写分析任务。")
+        if len(set(body.file_ids)) != len(body.file_ids):
+            raise HTTPException(422, "选择中有重复文件。")
         if not job_gate.acquire(blocking=False):
             raise HTTPException(409, "已有分析任务正在运行，请等待它结束。")
         try:
-            sources = prepare_sources(body.file_ids)
-            job_id = store.create(body.instruction, getpass.getuser(), sources)
-            pool.submit(execute, job_id)
+            with catalog_lock:
+                snapshot = catalog.freeze(body.file_ids)
+            references = [snapshot.get(file_id) for file_id in body.file_ids]
+            if not any(item["supported"] for item in references):
+                raise HTTPException(422, "所选文件没有可处理的格式；凭据文件默认禁止读取。")
+            job_id = store.create(body.instruction, getpass.getuser(), references)
+            cancelled = threading.Event()
+            with cancellation_lock:
+                cancellations[job_id] = cancelled
+            pool.submit(execute, job_id, snapshot, body.file_ids, cancelled)
             return {"id": job_id, "status": "queued"}
         except Exception:
             job_gate.release()
             raise
+
+    @app.post("/api/jobs/{job_id}/cancel", status_code=202)
+    def cancel_job(job_id: str):
+        with cancellation_lock:
+            cancelled = cancellations.get(job_id)
+            if cancelled is None:
+                if store.get(job_id) is None:
+                    raise HTTPException(404, "任务不存在。")
+                raise HTTPException(409, "任务已经结束。")
+            cancelled.set()
+        return {"id": job_id, "message": "已请求停止，当前模型调用结束后保留已有结果。"}
 
     @app.get("/api/jobs")
     def jobs():
@@ -208,7 +202,7 @@ def create_app(settings: Settings, analyzer=analyze) -> FastAPI:
     @app.get("/api/jobs/{job_id}/artifacts/{name}")
     def artifact(job_id: str, name: str):
         task = store.get(job_id)
-        if task is None or task["status"] != "completed":
+        if task is None or task["status"] not in {"completed", "partial", "cancelled"}:
             raise HTTPException(404, "报告尚未生成。")
         if name not in {item["name"] for item in task["artifacts"]}:
             raise HTTPException(404, "报告不存在。")

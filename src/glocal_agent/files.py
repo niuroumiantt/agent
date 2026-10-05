@@ -15,22 +15,11 @@ import threading
 from pathlib import Path
 from typing import Any
 
+from .file_policy import SUPPORTED_EXTENSIONS, sensitive_filename
+
 MAX_FILES = 2_000
 MAX_DIRECTORIES = 2_000
 MAX_FILE_BYTES = 15 * 1024 * 1024
-SUPPORTED_EXTENSIONS = frozenset(
-    {
-        ".pdf",
-        ".docx",
-        ".xlsx",
-        ".xlsm",
-        ".pptx",
-        ".txt",
-        ".md",
-        ".csv",
-        ".tsv",
-    }
-)
 
 
 class CatalogError(ValueError):
@@ -138,6 +127,10 @@ class FileCatalog:
                         relative.encode("utf-8", "surrogateescape")
                     ).hexdigest()
                     extension = Path(name).suffix.lower()
+                    blocked = (
+                        "sensitive_file_blocked" if sensitive_filename(name)
+                        else "file_too_large" if info.st_size > MAX_FILE_BYTES else None
+                    )
                     metadata = {
                         "id": file_id,
                         "name": name,
@@ -145,7 +138,8 @@ class FileCatalog:
                         "extension": extension,
                         "size": info.st_size,
                         "modified_ns": info.st_mtime_ns,
-                        "supported": extension in SUPPORTED_EXTENSIONS,
+                        "supported": extension in SUPPORTED_EXTENSIONS and blocked is None,
+                        "blocked_reason": blocked,
                     }
                     self._entries[file_id] = (metadata, _fingerprint(info))
                 except OSError:
@@ -171,8 +165,20 @@ class FileCatalog:
         with self._lock:
             return self._read(file_id)
 
+    def freeze(self, file_ids: list[str]) -> FileCatalog:
+        """Keep the selected scan fingerprints even if the UI rescans later."""
+        with self._lock:
+            snapshot = FileCatalog(self.root)
+            snapshot._root_identity = self._root_identity
+            for file_id in file_ids:
+                snapshot._entries[file_id] = (self.get(file_id), self._entries[file_id][1])
+            snapshot._scanned = True
+            return snapshot
+
     def _read(self, file_id: str) -> tuple[dict[str, Any], bytes]:
         metadata = self.get(file_id)
+        if metadata.get("blocked_reason"):
+            raise CatalogError(metadata["blocked_reason"])
         expected = self._entries[file_id][1]
         parts = metadata["relative_path"].split("/")
         if not parts or any(part in {"", ".", ".."} or part.startswith(".") for part in parts):

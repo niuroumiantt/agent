@@ -1,4 +1,5 @@
 import json
+import sqlite3
 
 import pytest
 from docx import Document
@@ -43,6 +44,30 @@ def test_store_single_instance_and_restart_marks_interrupted(tmp_path):
     assert resumed.get(job_id)["error"]
     assert resumed.path.stat().st_mode & 0o777 == 0o600
     resumed.close()
+
+
+def test_existing_task_database_migrates_and_retains_results(tmp_path):
+    directory = tmp_path / "data"
+    directory.mkdir()
+    with sqlite3.connect(directory / "tasks.sqlite3") as db:
+        db.execute("""CREATE TABLE jobs (
+            id TEXT PRIMARY KEY, status TEXT, created_at TEXT, updated_at TEXT,
+            instruction TEXT, actor TEXT, payload TEXT, result TEXT, artifacts TEXT, error TEXT
+        )""")
+        db.execute("INSERT INTO jobs VALUES (?,?,?,?,?,?,?,?,?,?)", (
+            "old", "completed", "2026", "2026", "read", "user", "[]",
+            '{"summary":"old result"}', "[]", None,
+        ))
+    store = Store(directory)
+    try:
+        assert store.get("old")["result"]["summary"] == "old result"
+        assert store.get("old")["progress"] == {}
+        new_id = store.create("read", "user", [])
+        store.update(new_id, "running", progress={"files_done": 1})
+        store.update(new_id, "partial", result={"summary": "partial"})
+        assert store.get(new_id)["progress"]["files_done"] == 1
+    finally:
+        store.close()
 
 
 def test_office_exports_handle_controls_and_formula_like_untrusted_text(tmp_path):

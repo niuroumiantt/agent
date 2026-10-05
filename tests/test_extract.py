@@ -1,6 +1,7 @@
 import zipfile
 from io import BytesIO
 
+import pytest
 from docx import Document
 from openpyxl import Workbook
 from pypdf import PdfWriter
@@ -8,6 +9,56 @@ from pypdf.generic import DecodedStreamObject, DictionaryObject, NameObject
 
 from glocal_agent import extract as extraction
 from glocal_agent.extract import extract
+
+
+def test_shell_is_read_as_text_without_execution(tmp_path):
+    target = tmp_path / "never-created"
+    content = f"#!/bin/sh\ntouch {target}\necho Purchase order\n".encode()
+    result = extract("office.sh", content)
+    assert result.status == "ok"
+    assert "touch " in result.blocks[1].text
+    assert not target.exists()
+
+
+def test_html_extracts_visible_text_without_loading_external_resources():
+    result = extract("news.html", b'''<html><head><title>Hidden</title></head><body>
+        <h1>Contract &amp; PO</h1><script>window.invalid = true;</script>
+        <style>body { display: none; }</style><p>Total: 32</p>
+        <iframe src="https://never-fetched.invalid"></iframe></body></html>''')
+    assert result.status == "ok"
+    assert [block.text for block in result.blocks] == ["Contract & PO", "Total: 32"]
+    assert result.extractor == "html_text"
+
+
+@pytest.mark.parametrize("filename,content", [
+    ("private.pem", b"do not read"),
+    ("smtp_credentials.csv", b"do not read"),
+    ("po.txt", b"-----BEGIN OPENSSH PRIVATE KEY-----\nsynthetic"),
+    ("po.csv", b"User,SMTP Password\nalice,synthetic"),
+    ("po.txt", b'api_key="synthetic-key-value-123456789"'),
+])
+def test_detectable_credentials_produce_no_text(filename, content):
+    result = extract(filename, content)
+    assert result.status == "blocked"
+    assert not result.blocks
+
+
+def test_credentials_past_extraction_limit_still_block_text(monkeypatch):
+    monkeypatch.setattr(extraction, "MAX_CHARACTERS", 5)
+    result = extract("po.txt", b"ordinary text\naws_secret_access_key=synthetic")
+    assert result.status == "blocked"
+    assert result.warnings == ["credential_content_detected"]
+
+
+def test_credentials_in_office_cells_produce_no_text():
+    book = Workbook()
+    book.active.append(["User", "Secret access key"])
+    book.active.append(["alice", "synthetic"])
+    content = BytesIO()
+    book.save(content)
+    result = extract("accounts.xlsx", content.getvalue())
+    assert result.status == "blocked"
+    assert not result.blocks
 
 
 def pdf_bytes(texts):

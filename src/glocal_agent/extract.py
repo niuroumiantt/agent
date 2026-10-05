@@ -11,12 +11,21 @@ import posixpath
 import re
 import zipfile
 from dataclasses import dataclass
+from html.parser import HTMLParser
 from io import BytesIO, StringIO
 from pathlib import Path, PurePosixPath
 from xml.etree import ElementTree as ET
 
+from .file_policy import (
+    HTML_EXTENSIONS,
+    SUPPORTED_EXTENSIONS,
+    TEXT_EXTENSIONS,
+    credential_content,
+    sensitive_filename,
+)
+
 MAX_FILE_BYTES = 15 * 1024 * 1024
-MAX_CHARACTERS = 16_000
+MAX_CHARACTERS = 200_000
 MAX_PAGES = 50
 MAX_ROWS = 1_000
 MAX_CELLS = 20_000
@@ -173,6 +182,40 @@ def _text(content: bytes, extension: str) -> Extracted:
             break
         if not collector.add(f"line {number}", line.rstrip("\r\n")):
             break
+    return collector.finish()
+
+
+class _HTMLText(HTMLParser):
+    def __init__(self, collector: _Collector):
+        super().__init__(convert_charrefs=True)
+        self.collector = collector
+        self.hidden: list[str] = []
+        self.number = 0
+
+    def handle_starttag(self, tag, attrs):
+        if tag in {"script", "style", "template", "noscript", "head"}:
+            self.hidden.append(tag)
+
+    def handle_endtag(self, tag):
+        if tag in self.hidden:
+            self.hidden = self.hidden[:self.hidden.index(tag)]
+
+    def handle_data(self, data):
+        if self.hidden or not data.strip():
+            return
+        self.number += 1
+        if not self.collector.add(f"html text {self.number}", data.strip()):
+            raise _LimitReached
+
+
+def _html(content: bytes) -> Extracted:
+    collector = _Collector("html_text")
+    parser = _HTMLText(collector)
+    try:
+        parser.feed(_decode(content, collector))
+        parser.close()
+    except _LimitReached:
+        pass
     return collector.finish()
 
 
@@ -363,12 +406,12 @@ def _pptx(archive: zipfile.ZipFile) -> Extracted:
     return collector.finish()
 
 
-def extract(filename: str, content: bytes) -> Extracted:
+def _extract(filename: str, content: bytes) -> Extracted:
     """Extract bounded, located text; warnings never include document contents."""
     extension = Path(filename).suffix.lower()
     if extension in IMAGE_EXTENSIONS:
         return Extracted("needs_ocr", [], ["ocr_required"], "none")
-    if extension not in {".txt", ".md", ".csv", ".tsv", ".pdf", ".docx", ".xlsx", ".xlsm", ".pptx"}:
+    if extension not in SUPPORTED_EXTENSIONS:
         return Extracted("unsupported", [], ["unsupported_format"], "none")
     if len(content) > MAX_FILE_BYTES:
         return Extracted("partial", [], ["file_size_limit_reached"], "none")
@@ -380,8 +423,10 @@ def extract(filename: str, content: bytes) -> Extracted:
         ".pptx": "pptx_xml",
     }.get(extension, "delimited_text" if extension in {".csv", ".tsv"} else "plain_text")
     try:
-        if extension in {".txt", ".md", ".csv", ".tsv"}:
+        if extension in TEXT_EXTENSIONS:
             return _text(content, extension)
+        if extension in HTML_EXTENSIONS:
+            return _html(content)
         if extension == ".pdf":
             return _pdf(content)
         with _checked_zip(content) as archive:
@@ -394,3 +439,19 @@ def extract(filename: str, content: bytes) -> Extracted:
         return Extracted("partial", [], ["archive_limit_reached"], extractor)
     except Exception:
         return Extracted("failed", [], ["document_parse_failed"], extractor)
+
+
+def extract(filename: str, content: bytes) -> Extracted:
+    """Exclude detectable credentials from previews, model inputs and reports."""
+    if sensitive_filename(filename):
+        return Extracted("blocked", [], ["sensitive_file_blocked"], "none")
+    # Inspect text before parser limits can hide a credential further down the file.
+    extension = Path(filename).suffix.lower()
+    if extension in TEXT_EXTENSIONS | HTML_EXTENSIONS:
+        decoded = _decode(content, _Collector("none"))
+        if credential_content(decoded):
+            return Extracted("blocked", [], ["credential_content_detected"], "none")
+    result = _extract(filename, content)
+    if credential_content("\n".join(block.text for block in result.blocks)):
+        return Extracted("blocked", [], ["credential_content_detected"], "none")
+    return result

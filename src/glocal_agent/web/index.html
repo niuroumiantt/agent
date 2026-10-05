@@ -47,7 +47,8 @@
           <button class="button button-secondary" id="scan-button" type="button">扫描文件</button>
         </div>
         <div class="notice hidden" id="scan-warnings" role="status"></div>
-        <div class="list-toolbar"><span id="list-description">尚未扫描</span><span>当前目录 · 最多选择 6 份</span></div>
+        <div class="list-toolbar"><span id="list-description">尚未扫描</span><label class="scan-option"><input type="checkbox" id="recursive-scan"> 包含子文件夹</label></div>
+        <div class="file-controls"><button class="text-button" id="select-all" type="button">全选可处理文件</button><button class="text-button" id="clear-selection" type="button">取消选择</button><span>逐文件、分段分析</span></div>
         <div class="file-list" id="file-list">
           <div class="empty-state"><span class="empty-glyph" aria-hidden="true">▤</span><h2>先看看你的材料</h2><p>扫描已授权目录后，文件会显示在这里。<br>扫描不会移动、重命名或删除文件。</p></div>
         </div>
@@ -60,7 +61,7 @@
           </div>
           <label class="sr-only" for="instruction">分析任务</label>
           <textarea id="instruction" rows="4" maxlength="2000" placeholder="例如：比较这几份报价的价格、交期和付款条件，生成采购建议，并标出需要我确认的地方。"></textarea>
-          <div class="composer-footer"><p>选中文件的提取内容将发送至你配置的 Spark 模型。<br>报告保存到本机，原文件保持原位。</p><button class="button button-primary" id="analyze-button" type="button" disabled>开始分析 <span aria-hidden="true">↗</span></button></div>
+          <div class="composer-footer"><p>选中文件的提取内容将逐段发送至你配置的模型。<br>凭据默认排除；报告显示读取范围，并保存到本机。</p><button class="button button-primary" id="analyze-button" type="button" disabled>开始分析 <span aria-hidden="true">↗</span></button></div>
         </section>
       </section>
 

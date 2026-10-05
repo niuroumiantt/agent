@@ -199,3 +199,11 @@ textarea::placeholder{color:#a0aaa3}
 .job-card p{font-size:11px}
 .notice{font-size:10px}
 }
+
+.scan-option{display:flex;align-items:center;gap:6px;white-space:nowrap;cursor:pointer}
+.scan-option input{accent-color:var(--brand)}
+.file-controls{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin:12px 0;font-size:10px;color:#86928a}
+.file-controls .text-button{padding:8px 0}
+.job-progress progress{width:100%;accent-color:var(--brand)}
+.job-progress .button{margin-top:8px;font-size:11px}
+.job-state.partial,.job-state.cancelled{background:#fff1ec;color:#a0775f}

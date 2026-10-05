@@ -34,6 +34,9 @@ def write_reports(directory: Path, job_id: str, result: dict) -> list[dict]:
     }
     for source in result["sources"]:
         line = f'{source["source_id"]} · {source["file"]["relative_path"]} · {source["status"]}'
+        if "analysis_status" in source:
+            line += (f' · 分析 {source["analysis_status"]}'
+                     f' · 分段 {source["segments_done"]}/{source["segments_total"]}')
         lines.extend(["", line, f'SHA-256: {source["sha256"]}'])
         doc.add_paragraph(office_text(line))
         doc.add_paragraph(f'SHA-256: {source["sha256"]}')
@@ -43,7 +46,8 @@ def write_reports(directory: Path, job_id: str, result: dict) -> list[dict]:
     doc.add_heading("文件归纳", 1)
     lines.extend(["", "## 文件归纳"])
     for item in result["documents"]:
-        line = f'{item["source_id"]} · {item["category"]}: {item["summary"]}'
+        segment = f' · 分段 {item["segment"]}' if item.get("segment") else ""
+        line = f'{item["source_id"]}{segment} · {item["category"]}: {item["summary"]}'
         lines.extend(["", line])
         doc.add_paragraph(office_text(line))
     doc.add_heading("候选事实与原文", 1)
@@ -71,12 +75,13 @@ def write_reports(directory: Path, job_id: str, result: dict) -> list[dict]:
     for column, width in {"A": 10, "B": 35, "C": 25, "D": 70, "E": 60, "F": 24}.items():
         sheet.column_dimensions[column].width = width
     sources_sheet = workbook.create_sheet("来源与限制")
-    sources_sheet.append(["来源", "文件", "SHA-256", "读取状态", "限制"])
+    sources_sheet.append(["来源", "文件", "SHA-256", "读取状态", "限制", "分析状态", "已处理分段"])
     for source in result["sources"]:
         row = sources_sheet.max_row + 1
         values = [
             source["source_id"], source["file"]["relative_path"], source["sha256"],
-            source["status"], "；".join(source["warnings"]),
+            source["status"], "；".join(source["warnings"]), source.get("analysis_status", ""),
+            f'{source.get("segments_done", "")}/{source.get("segments_total", "")}',
         ]
         for column, value in enumerate(values, 1):
             sources_sheet.cell(row, column, office_text(value)).data_type = "s"

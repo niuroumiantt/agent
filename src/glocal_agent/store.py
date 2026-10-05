@@ -34,6 +34,8 @@ class Store:
                 updated_at TEXT NOT NULL, instruction TEXT NOT NULL, actor TEXT NOT NULL,
                 payload TEXT NOT NULL, result TEXT, artifacts TEXT, error TEXT
             )""")
+            if "progress" not in {row["name"] for row in db.execute("PRAGMA table_info(jobs)")}:
+                db.execute("ALTER TABLE jobs ADD COLUMN progress TEXT")
             db.execute(
                 "UPDATE jobs SET status='interrupted', error=?, updated_at=? "
                 "WHERE status IN ('queued','running')",
@@ -55,20 +57,23 @@ class Store:
         time = now()
         with self.connect() as db:
             db.execute(
-                "INSERT INTO jobs VALUES (?, 'queued', ?, ?, ?, ?, ?, NULL, NULL, NULL)",
+                "INSERT INTO jobs (id,status,created_at,updated_at,instruction,actor,payload) "
+                "VALUES (?, 'queued', ?, ?, ?, ?, ?)",
                 (job_id, time, time, instruction, actor, json.dumps(sources, ensure_ascii=False)),
             )
         return job_id
 
-    def update(self, job_id: str, status: str, result=None, artifacts=None, error=None):
+    def update(self, job_id: str, status: str, result=None, artifacts=None, error=None,
+               progress=None):
         with self.connect() as db:
             db.execute(
-                "UPDATE jobs SET status=?, updated_at=?, result=?, artifacts=?, error=? WHERE id=?",
+                "UPDATE jobs SET status=?, updated_at=?, result=?, artifacts=?, error=?, "
+                "progress=COALESCE(?,progress) WHERE id=?",
                 (
                     status, now(),
                     json.dumps(result, ensure_ascii=False) if result is not None else None,
                     json.dumps(artifacts, ensure_ascii=False) if artifacts is not None else None,
-                    error, job_id,
+                    error, json.dumps(progress) if progress is not None else None, job_id,
                 ),
             )
 
@@ -80,6 +85,7 @@ class Store:
         item = dict(row)
         item["result"] = json.loads(item["result"]) if item["result"] else None
         item["artifacts"] = json.loads(item["artifacts"]) if item["artifacts"] else []
+        item["progress"] = json.loads(item["progress"]) if item["progress"] else {}
         if include_payload:
             item["payload"] = json.loads(item["payload"])
         else:

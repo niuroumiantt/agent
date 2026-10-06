@@ -16,7 +16,11 @@ jobs:
       - uses: astral-sh/setup-uv@v6
         with:
           python-version: '3.12'
-      - run: uv sync --locked --group dev && uv run ruff check src tests && uv run pytest
+      - run: uv sync --locked --group dev && uv run ruff check src tests tools/check_chat_browser.py && uv run pytest
+      - name: Validate chat workspace before publishing
+        run: |
+          uv run playwright install --with-deps chromium
+          uv run python tools/check_chat_browser.py
       - name: Build immutable release archive
         run: |
           docker build --label org.opencontainers.image.revision="$GITHUB_SHA" -t "agent:agent-$GITHUB_SHA" .

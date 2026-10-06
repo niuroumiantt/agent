@@ -4,6 +4,7 @@ import asyncio
 import getpass
 import hashlib
 import hmac
+import json
 import secrets
 import threading
 import uuid
@@ -21,9 +22,10 @@ from starlette.middleware.trustedhost import TrustedHostMiddleware
 
 from .batch import run_batch
 from .config import Settings
+from .conversation import direct_action, plan
 from .extract import extract
 from .files import MAX_FILES, CatalogError, FileCatalog
-from .model import analyze
+from .model import ModelError, analyze
 from .reports import write_reports
 from .store import Store
 from .uploads import receive_upload
@@ -40,7 +42,16 @@ class JobRequest(BaseModel):
     instruction: str = Field(min_length=1, max_length=2000)
 
 
-def create_app(settings: Settings, analyzer=analyze) -> FastAPI:
+class ConversationRequest(BaseModel):
+    job_id: str | None = None
+
+
+class MessageRequest(BaseModel):
+    content: str = Field(min_length=1, max_length=2000)
+    file_ids: list[str] | None = Field(default=None, max_length=MAX_FILES)
+
+
+def create_app(settings: Settings, analyzer=analyze, planner=plan) -> FastAPI:
     settings.validate()
     catalog = FileCatalog(settings.root) if settings.mode == "local" else None
     catalogs: dict[str, FileCatalog] = {}
@@ -265,5 +276,186 @@ def create_app(settings: Settings, analyzer=analyze) -> FastAPI:
         if name not in {item["name"] for item in task["artifacts"]}:
             raise HTTPException(404, "报告不存在。")
         return FileResponse(settings.data_dir / "artifacts" / job_id / name, filename=name)
+
+    def owned_conversation(identifier, identity):
+        conversation = store.conversation(identifier, identity)
+        if conversation is None:
+            raise HTTPException(404, "对话不存在。")
+        return conversation
+
+    def latest_job(conversation):
+        return next((message["job"] for message in reversed(conversation["messages"])
+                     if message["job"]), None)
+
+    def tool_answer(action, identifier, identity, selected, scoped_catalog, content=""):
+        conversation = owned_conversation(identifier, identity)
+        task = latest_job(conversation)
+        if action == "cancel":
+            stopped = False
+            with cancellation_lock:
+                for message in conversation["messages"]:
+                    for key in (message["id"], message["job_id"]):
+                        if key in cancellations:
+                            cancellations[key].set()
+                            stopped = True
+            return ("已请求停止；当前模型调用结束后，会保留已经完成的内容。" if stopped
+                    else "这个对话没有正在运行的任务。"), {}
+        if action == "status":
+            if not task:
+                return "这个对话还没有文件分析任务。", {}
+            labels = {"queued": "等待执行", "running": "分析中", "completed": "已完成",
+                      "partial": "部分完成", "cancelled": "已停止", "failed": "失败",
+                      "interrupted": "已中断"}
+            return "当前任务" + labels.get(task["status"], task["status"]) + "。", {}
+        if action == "reports":
+            if not task or not task["artifacts"]:
+                return "报告还没有生成。任务完成后，我会把下载入口放在这里。", {}
+            return "这是该任务已生成的报告，选择需要的格式即可下载。", {
+                "artifacts": task["artifacts"]}
+        if action == "files":
+            with catalog_lock:
+                recursive = settings.mode == "local" and any(
+                    word in content for word in ("子目录", "子文件夹", "递归"))
+                files = scoped_catalog.scan(recursive=recursive)
+            return f'已刷新文件，左侧有 {len(files["files"])} 份资料。', {"catalog": files}
+        if action == "preview":
+            if not selected:
+                return "先在左侧选择需要查看的文件，也可以把文件拖进对话。", {}
+            previews = []
+            for file_id in selected[:5]:
+                with catalog_lock:
+                    metadata, content = scoped_catalog.read(file_id)
+                parsed = asdict(extract(metadata["name"], content))
+                # The full protected preview endpoint remains available; keep a
+                # conversational preview small and explicitly show its coverage.
+                total = len(parsed["blocks"])
+                parsed["blocks"] = parsed["blocks"][:8]
+                previews.append({"file": metadata, "extraction": parsed,
+                                 "blocks_total": total})
+            return "原文预览如下，保留文件中的来源位置。", {"previews": previews}
+        return "", {}
+
+    def execute_chat(identifier, message_id, identity, content, ids, snapshot, scoped, cancelled):
+        held = False
+        try:
+            if cancelled.is_set():
+                store.answer(message_id, "这条消息已停止。", status="cancelled")
+                return
+            held = job_gate.acquire(blocking=False)
+            if not held:
+                raise ModelError("已有任务等待执行，请稍后再发送这条消息。")
+            store.answer(message_id, "正在思考…", status="running")
+            conversation = owned_conversation(identifier, identity)
+            # Exclude the new turn and queued messages from the prior discussion.
+            boundary = next(index for index, message in enumerate(conversation["messages"])
+                            if message["id"] == message_id) - 1
+            history = [{"role": message["role"], "content": message["content"][:1000]}
+                       for message in conversation["messages"][:boundary]
+                       if message["status"] == "completed"][-6:]
+            previous = latest_job(conversation)
+            files = [{"name": snapshot.get(file_id)["name"][:200]} for file_id in ids[:30]]
+            decision = planner(settings, content, history, files,
+                               previous["result"] if previous else None)
+            if cancelled.is_set():
+                store.answer(message_id, "这条消息已停止。", status="cancelled")
+                return
+            action = decision["action"]
+            if action == "analyze":
+                if not ids:
+                    store.answer(message_id, "先在左侧选择资料，或把文件拖进对话，我再帮你分析。")
+                    return
+                references = [snapshot.get(file_id) for file_id in ids]
+                if not any(item["supported"] for item in references):
+                    raise ModelError("所选文件没有可处理的格式，请选择其他文件。")
+                context = json.dumps(history[-4:], ensure_ascii=False)
+                instruction = content + ("\n此前对话仅供理解任务，事实仍以所选原文为准：" + context
+                                         if history else "")
+                job_id = store.create(instruction, identity, references)
+                with cancellation_lock:
+                    cancellations[job_id] = cancelled
+                store.answer(message_id, decision["reply"], status="running", job_id=job_id)
+                held = False  # execute owns and releases the existing task gate.
+                execute(job_id, snapshot, ids, cancelled)
+                task = store.get(job_id, actor=identity)
+                label = {"completed": "分析完成。", "partial": "已保留完成的部分，请核对读取范围。",
+                         "cancelled": "任务已停止，已有结果已保留。"}.get(task["status"], "")
+                store.answer(message_id, label or task["error"] or "这次任务未完成。",
+                             status="completed" if label else "failed", job_id=job_id)
+            elif action == "reply":
+                store.answer(message_id, decision["reply"])
+            elif action in {"preview", "reports", "files", "status", "cancel"}:
+                answer, metadata = tool_answer(action, identifier, identity, ids,
+                                               scoped if action == "files" else snapshot, content)
+                store.answer(message_id, answer, metadata=metadata)
+            else:
+                raise ModelError("这次回答没有可执行的操作，请重新发送。")
+        except (ModelError, CatalogError) as error:
+            store.answer(message_id, str(error), status="failed")
+        except Exception:
+            store.answer(message_id, "这次回答未完成。你可以继续发送消息，或重新提交。",
+                         status="failed")
+        finally:
+            if held:
+                job_gate.release()
+            with cancellation_lock:
+                cancellations.pop(message_id, None)
+
+    @app.get("/api/conversations")
+    def conversations(request: Request):
+        return {"conversations": store.conversations(actor(request))}
+
+    @app.post("/api/conversations", status_code=201)
+    def new_conversation(body: ConversationRequest, request: Request):
+        identity = actor(request)
+        task = owned_task(request, body.job_id) if body.job_id else None
+        identifier = store.create_conversation(identity, task["instruction"] if task else "新对话")
+        if task:
+            stored = store.get(task["id"], include_payload=True, actor=identity)
+            ids = [source["id"] for source in stored["payload"]]
+            message = store.append_turn(identifier, identity, task["instruction"], ids)
+            store.answer(message, "这是此前的任务，你可以在这里继续追问。", job_id=task["id"])
+        return owned_conversation(identifier, identity)
+
+    @app.get("/api/conversations/{identifier}")
+    def conversation(identifier: str, request: Request):
+        return owned_conversation(identifier, actor(request))
+
+    @app.post("/api/conversations/{identifier}/messages", status_code=202)
+    def send_message(identifier: str, body: MessageRequest, request: Request):
+        identity = actor(request)
+        current = owned_conversation(identifier, identity)
+        content = body.content.strip()
+        if not content:
+            raise HTTPException(422, "请输入一条消息。")
+        action = direct_action(content)
+        if not action and not settings.configured:
+            raise HTTPException(409, "模型尚未配置，请联系操作员。")
+        ids = body.file_ids
+        if ids is None:
+            ids = next((message["file_ids"] for message in reversed(current["messages"])
+                        if message["role"] == "user"), [])
+        if len(set(ids)) != len(ids):
+            raise HTTPException(422, "选择中有重复文件。")
+        scoped = user_catalog(request)
+        with catalog_lock:
+            snapshot = scoped.freeze(ids) if ids and action not in {
+                "cancel", "status", "reports", "files"} else scoped
+        try:
+            message = store.append_turn(identifier, identity, content, ids, control=bool(action))
+        except ValueError as error:
+            raise HTTPException(409, str(error)) from error
+        if action:
+            try:
+                answer, metadata = tool_answer(action, identifier, identity, ids, snapshot, content)
+                store.answer(message, answer, metadata=metadata)
+            except CatalogError as error:
+                store.answer(message, str(error), status="failed")
+        else:
+            cancelled = threading.Event()
+            with cancellation_lock:
+                cancellations[message] = cancelled
+            pool.submit(execute_chat, identifier, message, identity, content, ids, snapshot,
+                        scoped, cancelled)
+        return owned_conversation(identifier, identity)
 
     return app

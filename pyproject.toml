@@ -16,7 +16,11 @@ dependencies = [
 glocal-agent = "glocal_agent.cli:main"
 
 [dependency-groups]
-dev = ["pytest>=8,<10", "ruff>=0.12,<1"]
+dev = [
+    "playwright>=1.56,<2",
+    "pytest>=8,<10",
+    "ruff>=0.12,<1",
+]
 
 [build-system]
 requires = ["hatchling"]

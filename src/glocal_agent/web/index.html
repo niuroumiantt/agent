@@ -4,93 +4,33 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="agent-session" content="__SESSION_TOKEN__">
-  <meta name="color-scheme" content="light">
-  <title>Glocal Agent · 办公工作台</title>
+  <meta name="color-scheme" content="dark">
+  <title>Glocal Agent · 对话工作台</title>
   <link rel="stylesheet" href="/static/style.css">
   <script src="/static/app.js" defer></script>
 </head>
 <body>
   <div class="app-shell">
-    <aside class="sidebar">
-      <a class="brand" href="/" aria-label="Glocal Agent 工作台">
-        <span class="brand-mark">g</span>
-        <span><strong>Glocal Agent</strong><small>AI 办公工作台</small></span>
-      </a>
-      <div class="workspace-label">个人工作空间 <span class="pilot-tag">试点</span></div>
-      <nav aria-label="工作空间">
-        <button class="nav-item active" id="nav-files" type="button" aria-current="page"><span aria-hidden="true">▤</span> <span id="file-nav-label">Downloads</span> <span class="nav-count" id="file-count">0</span></button>
-        <button class="nav-item" id="nav-jobs" type="button"><span aria-hidden="true">◷</span> 任务记录 <span class="nav-count" id="job-count">0</span></button>
-      </nav>
-      <nav id="office-apps" class="hidden" aria-label="公司应用">
-        <a class="nav-item" href="https://oa.glocalstorage.cn/">OA 办公</a>
-        <a class="nav-item" href="https://mail.glocalstorage.cn/">Mail 邮件</a>
-        <a class="nav-item" href="/oauth2/sign_out">退出工作台</a>
-      </nav>
-      <div class="sidebar-note">
-        <div class="eyebrow">从一份材料开始</div>
-        <p>让文件、邮件与业务流程逐步连接到同一个思考工作台。</p>
-        <div class="future-label">本期：授权目录 · 只读分析</div>
-      </div>
-      <div class="model-card">
-        <span class="status-dot" id="model-dot" aria-hidden="true"></span>
-        <div><strong id="model-status">读取配置中</strong><small id="model-name">本机服务 → Spark Ollama</small></div>
-      </div>
-      <p class="sidebar-footnote">模型配置不代表连接已验证。<br>本机文件由运行服务的机器读取。</p>
+    <aside class="sidebar" id="sidebar" aria-label="文件与对话">
+      <header class="sidebar-header"><span class="brand-mark" aria-hidden="true">g</span><strong>Glocal Agent</strong><button id="close-sidebar" class="icon-button mobile-only" aria-label="关闭侧栏" type="button">×</button></header>
+      <button id="new-chat" class="new-chat" type="button"><span aria-hidden="true">＋</span> 新对话 <kbd>⌘ K</kbd></button>
+      <section class="sidebar-section files-section" aria-labelledby="files-heading">
+        <div class="section-heading"><h2 id="files-heading">文件</h2><label class="select-all-label"><input id="select-all" type="checkbox"> 全选</label></div>
+        <div class="file-list" id="file-list"><p class="sidebar-empty">正在读取文件…</p></div>
+      </section>
+      <section class="sidebar-section conversations-section" aria-labelledby="conversations-heading">
+        <div class="section-heading"><h2 id="conversations-heading">对话</h2></div>
+        <div id="conversation-list" class="conversation-list"></div>
+      </section>
+      <details class="legacy-tasks" id="legacy-tasks"><summary>此前的任务 <span id="job-count">0</span></summary><div id="job-list"></div></details>
+      <footer class="sidebar-footer"><div class="model-status"><span id="model-dot" class="status-dot"></span><span id="model-name">正在读取模型…</span></div><nav id="office-apps" class="hidden" aria-label="公司应用"><a href="https://oa.glocalstorage.cn/">OA</a><a href="https://mail.glocalstorage.cn/">Mail</a><a href="/oauth2/sign_out">退出</a></nav></footer>
     </aside>
-
-    <main class="workspace">
-      <header class="workspace-header">
-        <div><div class="eyebrow">GLOCAL / PERSONAL WORKSPACE</div><h1 id="page-title">我的 Downloads</h1><p id="page-description">选择材料，交给 AI 阅读、归纳和分析。</p></div>
-        <span class="scope-tag">只读目录</span>
-      </header>
-      <div class="notice hidden" id="global-notice" role="status"></div>
-
-      <section id="files-view" aria-label="文件工作空间">
-        <div class="folder-card">
-          <span class="folder-icon" aria-hidden="true">▱</span>
-          <div class="folder-info"><strong>已授权的文件目录</strong><code id="root-path">等待本机服务配置</code></div>
-          <button class="button button-secondary" id="scan-button" type="button">扫描文件</button>
-          <button class="button button-primary hidden" id="upload-button" type="button">上传文件</button>
-          <input id="upload-files" type="file" multiple hidden accept=".pdf,.docx,.xlsx,.xlsm,.pptx,.txt,.md,.csv,.tsv,.sh,.html,.htm">
-        </div>
-        <div class="notice hidden" id="scan-warnings" role="status"></div>
-        <div class="list-toolbar"><span id="list-description">尚未扫描</span><label class="scan-option"><input type="checkbox" id="recursive-scan"> 包含子文件夹</label></div>
-        <div class="file-controls"><button class="text-button" id="select-all" type="button">全选可处理文件</button><button class="text-button" id="clear-selection" type="button">取消选择</button><span>逐文件、分段分析</span></div>
-        <div class="file-list" id="file-list">
-          <div class="empty-state"><span class="empty-glyph" aria-hidden="true">▤</span><h2>先看看你的材料</h2><p>扫描已授权目录后，文件会显示在这里。<br>扫描不会移动、重命名或删除文件。</p></div>
-        </div>
-        <section class="composer" aria-labelledby="composer-title">
-          <div class="composer-heading"><h2 id="composer-title">这次想完成什么？</h2><span id="selected-count">已选择 0 份</span></div>
-          <div class="task-presets" aria-label="任务提示">
-            <button type="button" data-preset="阅读这些材料，按主题归类，归纳要点，指出值得跟进的问题。请为关键事实引用原文和位置。">整理与归纳</button>
-            <button type="button" data-preset="将这些材料的主要内容翻译为中文，并整理一份中文摘要。保留专有名词、金额和日期，指出不确定之处，引用原文位置。">翻译与摘要</button>
-            <button type="button" data-preset="阅读这些 PO 或合同，提取交易双方、产品、金额、币种、交期与关键条款。比较材料中的差异，标出缺失或需要人工核对的信息，并引用原文位置。">核对 PO / 合同</button>
-          </div>
-          <label class="sr-only" for="instruction">分析任务</label>
-          <textarea id="instruction" rows="4" maxlength="2000" placeholder="例如：比较这几份报价的价格、交期和付款条件，生成采购建议，并标出需要我确认的地方。"></textarea>
-          <div class="composer-footer"><p>选中文件的提取内容将逐段发送至你配置的模型。<br>凭据默认排除；报告显示读取范围，并保存到本机。</p><button class="button button-primary" id="analyze-button" type="button" disabled>开始分析 <span aria-hidden="true">↗</span></button></div>
-        </section>
-      </section>
-
-      <section id="jobs-view" class="hidden" aria-label="任务记录">
-        <div class="list-toolbar"><span>任务与分析产物</span><button class="text-button" id="refresh-jobs" type="button">刷新记录 ↻</button></div>
-        <div id="job-list" class="job-list"><div class="empty-state"><span class="empty-glyph" aria-hidden="true">◷</span><h2>还没有任务</h2><p>选择材料并开始分析，任务会保存在这里。</p></div></div>
-      </section>
-      <footer class="workspace-footer">Glocal Agent 试点 · 文件归纳与来源核对</footer>
+    <button id="sidebar-backdrop" class="sidebar-backdrop hidden" aria-label="关闭侧栏" type="button"></button>
+    <main class="chat-workspace" id="chat-workspace">
+      <header class="chat-header"><button id="open-sidebar" class="icon-button mobile-only" aria-label="打开文件与对话" aria-expanded="false" aria-controls="sidebar" type="button">☰</button><div class="chat-heading"><span class="header-label">个人工作空间</span><h1 id="chat-title">新对话</h1></div><span class="workspace-tag">对话工作台</span></header>
+      <div class="thread" id="thread" tabindex="0" aria-label="对话内容"><section class="welcome" id="welcome"><span class="welcome-mark" aria-hidden="true">g</span><h2>想一起完成什么？</h2><p>左侧选择资料，直接告诉我你的想法。<br>我们在这里阅读、分析，然后继续讨论。</p><div class="suggestions"><button data-message="总结选中的文件，并引用原文。" type="button">总结这些材料 <span>↗</span></button><button data-message="比较选中的文件，指出差异和需要跟进的问题。" type="button">比较与核对 <span>↗</span></button><button data-message="查看文件列表" type="button">看看我的文件 <span>↗</span></button></div></section></div>
+      <div class="composer-area"><div id="notice" class="notice hidden" role="status"></div><div class="composer" id="composer"><div id="attachments" class="attachments" aria-label="本条消息的文件"></div><label class="sr-only" for="message-input">发送给 Agent 的消息</label><textarea id="message-input" rows="2" maxlength="2000" placeholder="直接说你的想法，或拖入文件…"></textarea><div class="composer-toolbar"><div class="composer-tools"><button id="attach-button" class="icon-button" aria-label="上传文件" title="上传文件" type="button">＋</button><input id="upload-files" type="file" multiple hidden accept=".pdf,.docx,.xlsx,.xlsm,.pptx,.txt,.md,.csv,.tsv,.sh,.html,.htm"><span id="context-label">未选择文件</span></div><div class="send-tools"><button id="stop-button" class="stop-button hidden" type="button">■ 停止</button><button id="send-button" class="send-button" type="button" disabled aria-label="发送消息">↑</button></div></div></div><p class="composer-hint">Enter 发送 · Shift + Enter 换行 <span id="composer-model"></span></p></div>
     </main>
-
-    <aside class="detail-panel" aria-label="材料和分析详情">
-      <div class="detail-tabs" role="tablist" aria-label="详情类型">
-        <button id="tab-source" class="detail-tab active" type="button" role="tab" aria-selected="true" aria-controls="source-panel">来源预览</button>
-        <button id="tab-report" class="detail-tab" type="button" role="tab" aria-selected="false" aria-controls="report-panel">分析报告 <span class="report-indicator hidden" id="report-indicator"></span></button>
-      </div>
-      <section id="source-panel" role="tabpanel" aria-labelledby="tab-source">
-        <div class="detail-empty"><span aria-hidden="true">⌕</span><h2>从原文开始</h2><p>点击一份文件，查看提取内容与来源位置。扫描件可能需要 OCR。</p></div>
-      </section>
-      <section id="report-panel" class="hidden" role="tabpanel" aria-labelledby="tab-report">
-        <div class="detail-empty"><span aria-hidden="true">✧</span><h2>等待一项任务</h2><p>分析完成后，摘要、建议、引用和报告文件会显示在这里。</p></div>
-      </section>
-    </aside>
   </div>
 </body>
 </html>

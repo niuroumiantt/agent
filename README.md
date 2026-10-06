@@ -8,8 +8,16 @@ Glocal AI 原生办公体系的任务工作台与跨应用协调层。目标入�
 
 ## 当前可用范围
 
-- 在 M5 上明确授权一个目录，默认 `~/Downloads`。点击扫描后才列出文件；
-  默认不递归子目录，勾选后才包含子目录。模型只接收用户选中的文件文字。
+- 工作台以对话为中心：左侧选择文件、切换历史对话；主区域是持续聊天，输入框
+  始终保留。文件分析、进度、原文预览、引用和报告下载都出现在助手消息中。
+- 可直接发送“总结这些文件”“查看原文”“停止当前任务”“下载报告”。模型根据
+  对话选择已有的只读操作；追问会带上先前讨论与已有分析，新增文件分析仍逐段
+  阅读所选原文。一般对话可以不选择文件。
+- 服务器上传支持输入框附件按钮和拖入对话。文件选择显示为本条消息的附件，
+  对话与任务一并持久化；刷新后可以恢复，旧任务也可转入对话继续讨论。
+- 在 M5 上明确授权一个目录，默认 `~/Downloads`。工作台启动或发送“扫描文件”后
+  列出授权目录中的文件；发送“扫描文件，包含子目录”才递归列出子目录。
+  模型只接收用户选中的文件文字。
 - 预览 PDF 文字层、DOCX、XLSX/XLSM、PPTX、TXT/MD/CSV/TSV、SH 和 HTML/HTM，记录原件
   SHA-256、页码/段落/单元格出处、解析器和读取限制。
 - Spark Ollama 原生 API、LiteLLM/OpenAI 兼容 API、Codex CLI、Claude Code CLI
@@ -86,7 +94,7 @@ cd ~/code/agent && uv run glocal-agent configure
 ## 运行数据
 
 - 配置：`~/.config/agent/config.json`，权限 `0600`；不进入 Git。
-- 任务、原文引用与来源指纹、进度和报告：`~/.local/share/agent/`，本机私人数据。
+- 对话、任务、原文引用与来源指纹、进度和报告：`~/.local/share/agent/`，本机私人数据。
 - 输入目录与输出目录分开。源文件只读，报告生成到运行目录；报告下载另存由浏览器处理。
 - 同一运行目录只允许一个实例。每次一个模型任务，减少 Spark 与 CLI 的资源争用。
 - 重启后的未完成任务标记为中断，保留记录；用户核对后重新提交，不自动重复调用。
@@ -110,10 +118,15 @@ cd ~/code/agent && uv run glocal-agent configure
 uv sync --locked --group dev
 uv run ruff check src tests
 uv run pytest
+uv run playwright install chromium
+uv run python tools/check_chat_browser.py
 ```
 
-测试使用合成材料、模拟 API 和假 CLI，不发送真实文件，也不能证明 M5、Spark、
-真实 CLI 或 OA 生产环境已经连通。界面通过 localhost 提供，不能直接公网部署。
+浏览器检查使用独立的 localhost HTTPS、合成登录身份与模型，覆盖上传、文件选择、
+连续追问、刷新恢复、对话内原文与 Word 下载、桌面/手机布局。Playwright 只属于
+开发依赖，不安装到生产镜像。测试使用合成材料、模拟 API 和假 CLI，不发送真实文件，
+也不能证明 M5、Spark、真实 CLI 或 OA 生产环境已经连通。本机模式的界面通过 localhost
+提供；服务器部署使用下文的受信登录代理配置。
 有关跨应用边界和下一阶段，见 [架构](docs/architecture.md)。
 
 ## 服务器工作台

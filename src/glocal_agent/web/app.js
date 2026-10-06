@@ -8,6 +8,13 @@
     if (text !== undefined) el.textContent = String(text ?? "");
     return el;
   };
+  const icon = (name, className = "") => {
+    const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    svg.setAttribute("class", `icon${className ? ` ${className}` : ""}`);
+    svg.setAttribute("aria-hidden", "true"); svg.setAttribute("focusable", "false");
+    const use = document.createElementNS("http://www.w3.org/2000/svg", "use");
+    use.setAttribute("href", `#i-${name}`); svg.append(use); return svg;
+  };
   const state = { config:null, files:[], selected:new Set(), conversations:[], current:null,
     jobs:[], submitting:false, uploading:false, timer:null, fingerprint:"", request:0 };
   const active = job => ["queued", "running"].includes(job?.status);
@@ -45,8 +52,8 @@
   function selection() {
     const names = state.files.filter(f => state.selected.has(f.id));
     const chips = names.slice(0, 20).map(file => {
-      const chip = node("span", "attachment"); chip.append(node("span", "", file.name));
-      const remove = node("button", "", "×"); remove.type = "button";
+      const chip = node("span", "attachment"); chip.append(icon("file"), node("span", "", file.name));
+      const remove = node("button"); remove.type = "button"; remove.append(icon("close"));
       remove.setAttribute("aria-label", `取消选择 ${file.name}`);
       remove.onclick = () => { state.selected.delete(file.id); renderFiles(); };
       chip.append(remove); return chip;
@@ -67,11 +74,13 @@
       check.disabled = !file.supported; check.setAttribute("aria-label", `选择 ${file.name}`);
       check.onchange = () => { if (check.checked) state.selected.add(file.id); else state.selected.delete(file.id); row.classList.toggle("selected", check.checked); selection(); };
       const info = node("span", "file-info");
-      info.append(node("span", "file-name", file.name), node("span", "file-meta", file.supported ? formatSize(file.size) : "当前不可读取"));
+      const extension = file.extension?.slice(1) || "txt";
+      info.append(node("span", "file-name", file.name), node("span", "file-meta", file.supported ? `${extension.toUpperCase()} · ${formatSize(file.size)}` : "当前不可读取"));
       info.title = file.relative_path || file.name;
-      row.append(check, node("span", "file-type", file.extension?.slice(1).toUpperCase() || "TXT"), info); return row;
+      const type = node("span", "file-type"); type.dataset.format = extension; type.append(icon("file"));
+      row.append(check, type, info); return row;
     });
-    $("file-list").replaceChildren(...(rows.length ? rows : [node("p", "sidebar-empty", state.config?.mode === "server" ? "把文件拖入对话，或点击输入框旁的 ＋ 上传。" : "发送“扫描文件”，读取已授权的目录。") ]));
+    $("file-list").replaceChildren(...(rows.length ? rows : [node("p", "sidebar-empty", state.config?.mode === "server" ? "把文件拖入对话，或点击输入框的附件按钮上传。" : "发送“扫描文件”，读取已授权的目录。") ]));
     selection();
   }
   function applyFiles(data) {
@@ -82,7 +91,8 @@
   }
   function renderConversations() {
     const entries = state.conversations.map(c => {
-      const button = node("button", `conversation-button${c.id === state.current?.id ? " active" : ""}`, c.title);
+      const button = node("button", `conversation-button${c.id === state.current?.id ? " active" : ""}`);
+      button.append(icon("chat"), node("span", "", c.title));
       button.type = "button"; button.title = c.title; button.onclick = () => openConversation(c.id);
       if (c.id === state.current?.id) button.setAttribute("aria-current", "page"); return button;
     });
@@ -111,9 +121,11 @@
     renderFiles(); renderThread(true); await refreshList(); schedule(); showSidebar(false); $("message-input").focus();
     return conversation;
   }
-  function details(parent, title, key) {
+  function details(parent, title, key, kind = "file") {
     const wrap = node("details", "report-details"); wrap.dataset.detail = key;
-    wrap.append(node("summary", "", title)); parent.append(wrap); return wrap;
+    const summary = node("summary");
+    summary.append(icon(kind), node("span", "", title), icon("chevron", "detail-chevron"));
+    wrap.append(summary); parent.append(wrap); return wrap;
   }
   async function download(artifact, button) {
     button.disabled = true;
@@ -133,18 +145,25 @@
     for (const artifact of values) {
       const types = {docx:"Word", xlsx:"Excel", csv:"CSV", md:"Markdown", json:"JSON"};
       const extension = artifact.name?.split(".").pop();
-      const button = node("button", "artifact-button", `↓ ${types[extension] || artifact.name}`);
+      const label = types[extension] || artifact.name;
+      const button = node("button", "artifact-button"); button.append(icon("download"), node("span", "", label));
+      button.setAttribute("aria-label", `下载 ${label}`); button.dataset.format = extension;
       button.type = "button"; button.title = artifact.name; button.onclick = () => download(artifact, button); wrap.append(button);
     }
     parent.append(wrap);
   }
   function jobContent(parent, job, messageId) {
     const stats = job.progress || {};
-    const progress = node("div", "job-progress"); progress.append(node("strong", "", labels[job.status] || job.status));
+    const progress = node("div", `job-progress${active(job) ? "" : " settled"}`); progress.dataset.status = job.status;
+    const heading = node("div", "progress-heading");
+    heading.append(icon(job.status === "completed" ? "check" : "clock"), node("strong", "", labels[job.status] || job.status));
+    progress.append(heading);
     if (stats.files_total) {
       progress.append(node("p", "", `已处理 ${stats.files_done || 0} / ${stats.files_total} 份文件`));
-      const meter = node("progress"); meter.max = stats.files_total; meter.value = stats.files_done || 0;
-      meter.setAttribute("aria-label", "文件分析进度"); progress.append(meter);
+      if (active(job)) {
+        const meter = node("progress"); meter.max = stats.files_total; meter.value = stats.files_done || 0;
+        meter.setAttribute("aria-label", "文件分析进度"); progress.append(meter);
+      }
     }
     if (active(job) && stats.current_file) progress.append(node("p", "", stats.phase === "summarizing" ? "正在综合各段分析…" : `${stats.current_file}${stats.segments_total ? ` · 分段 ${stats.current_segment}/${stats.segments_total}` : ""}`));
     parent.append(progress);
@@ -158,18 +177,22 @@
         if (!active(job)) parent.append(node("div", "notice", "部分材料未完整分析，请查看下面的读取范围。"));
       }
       if (list(result.recommendations).length && !active(job)) {
+        parent.append(node("h3", "recommendations-heading", "下一步建议"));
         const ul = node("ul", "recommendations"); result.recommendations.forEach(r => ul.append(node("li", "", r))); parent.append(ul);
       }
       if (list(result.facts).length) {
-        const wrap = details(parent, `原文引用 · ${result.facts.length}`, `${messageId}-facts`);
+        const wrap = details(parent, `原文引用 · ${result.facts.length}`, `${messageId}-facts`, "quote");
         for (const fact of result.facts) {
           const citation = node("section", "citation");
           const source = list(result.sources).find(s => s.source_id === fact.source_id);
-          citation.append(node("small", "", `${source?.file?.name || fact.source_id} · ${fact.locator}`), node("p", "", fact.claim), node("blockquote", "", fact.quote), node("small", fact.verified ? "" : "unverified", fact.verified ? "原文片段已匹配" : "引用待核对"));
+          citation.append(node("small", "", `${source?.file?.name || fact.source_id} · ${fact.locator}`), node("p", "", fact.claim), node("blockquote", "", fact.quote));
+          const status = node("small", `citation-status ${fact.verified ? "verified" : "unverified"}`);
+          status.append(icon(fact.verified ? "check" : "clock"), node("span", "", fact.verified ? "原文片段已匹配" : "引用待核对"));
+          citation.append(status);
           wrap.append(citation);
         }
       }
-      const sources = details(parent, "文件与读取范围", `${messageId}-sources`);
+      const sources = details(parent, "文件与读取范围", `${messageId}-sources`, "folder");
       for (const source of list(result.sources)) sources.append(node("p", "source-coverage", `${source.file?.name || source.source_id} · ${source.segments_done || 0}/${source.segments_total || 0} 段${list(source.warnings).length ? " · 提取或分析范围有提示，请核对原文件" : ""}`));
     }
     artifacts(parent, job.artifacts);
@@ -184,12 +207,16 @@
     const opened = new Set([...thread.querySelectorAll("details[open]")].map(d => d.dataset.detail));
     const messages = list(conversation?.messages).map(message => {
       const row = node("article", `message ${message.role}`); row.dataset.messageId = message.id;
-      row.append(node("span", "message-avatar", message.role === "assistant" ? "g" : "你"));
+      const avatar = node("span", "message-avatar");
+      avatar.setAttribute("aria-hidden", "true"); avatar.append(icon(message.role === "assistant" ? "sparkle" : "user"));
+      row.append(avatar);
       const content = node("div", "message-content"); content.append(node("div", "message-role", message.role === "assistant" ? "Glocal Agent" : "你"));
       const text = node("p", `message-text${active(message) && !message.job ? " thinking" : ""}`, message.content || "正在等待执行…"); content.append(text);
       if (message.role === "user" && list(message.file_ids).length) {
         const files = node("div", "message-files");
-        for (const id of message.file_ids.slice(0, 20)) files.append(node("span", "message-file", state.files.find(f => f.id === id)?.name || "已选文件"));
+        for (const id of message.file_ids.slice(0, 20)) {
+          const chip = node("span", "message-file"); chip.append(icon("file"), node("span", "", state.files.find(f => f.id === id)?.name || "已选文件")); files.append(chip);
+        }
         content.append(files);
       }
       if (message.job) jobContent(content, message.job, message.id);
@@ -290,7 +317,7 @@
       applyFiles(await api("/api/scan", {method:"POST", body:{recursive:false}}));
       await refreshList();
       const jobs = await api("/api/jobs"); state.jobs = list(jobs.jobs); $("job-count").textContent = state.jobs.length;
-      $("job-list").replaceChildren(...state.jobs.map(job => { const button = node("button", "job-button", `${labels[job.status] || job.status} · ${job.instruction}`); button.type = "button"; button.onclick = () => newConversation(job.id).catch(e => notice(e.message, true)); return button; }));
+      $("job-list").replaceChildren(...state.jobs.map(job => { const button = node("button", "job-button"); button.append(icon("file"), node("span", "", `${labels[job.status] || job.status} · ${job.instruction}`)); button.type = "button"; button.onclick = () => newConversation(job.id).catch(e => notice(e.message, true)); return button; }));
       let remembered; try { remembered = localStorage.getItem("agent-conversation"); } catch { /* No storage. */ }
       if (state.conversations.some(c => c.id === remembered)) await openConversation(remembered);
       else { remember(null); renderThread(true); }

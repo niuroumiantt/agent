@@ -12,7 +12,7 @@ import uuid
 from pathlib import Path
 
 import uvicorn
-from playwright.sync_api import sync_playwright
+from playwright.sync_api import expect, sync_playwright
 
 from glocal_agent.app import create_app
 from glocal_agent.config import Settings
@@ -22,7 +22,9 @@ def analyzer(settings, instruction, sources):
     time.sleep(0.15)
     source = sources[0]
     return {
-        "summary": "清单记录了 32 件产品。请继续核对供应商的单价、交期和付款条件。",
+        "summary": "这份采购清单记录了 32 件产品，供应商为 Example。资料列出了数量，"
+        "但没有明确的单价、交付日期和付款条件。\n\n"
+        "建议先补齐报价与交期，再核对采购计划。下面保留了原文引用，便于你逐项确认。",
         "documents": [],
         "facts": []
         if source["source_id"] == "S0"
@@ -35,7 +37,11 @@ def analyzer(settings, instruction, sources):
                 "verified": True,
             }
         ],
-        "recommendations": ["向供应商确认单价与交期，并补充付款条款。"],
+        "recommendations": [
+            "核对 32 件是否与采购计划一致。",
+            "向供应商确认单价、币种与交付日期。",
+            "补充付款条款，再归档到对应的采购任务。",
+        ],
         "warnings": [],
         "model": settings.model,
     }
@@ -137,6 +143,9 @@ def run(output):
                 page.goto(settings.public_url, wait_until="networkidle")
                 assert not page.locator("#open-sidebar").is_visible()
                 assert not page.locator("#close-sidebar").is_visible()
+                if output:
+                    output.mkdir(parents=True, exist_ok=True)
+                    page.screenshot(path=str(output / "agent-light-welcome.png"), full_page=True)
                 page.locator("#upload-files").set_input_files(
                     {
                         "name": "采购清单.txt",
@@ -149,15 +158,25 @@ def run(output):
                 assert checkbox.is_checked()
                 page.locator("#message-input").fill("总结这份采购清单，并引用原文。")
                 page.locator("#message-input").press("Enter")
-                page.get_by_role("button", name="↓ Word", exact=True).wait_for(timeout=15000)
+                page.get_by_role("button", name="下载 Word", exact=True).wait_for(timeout=15000)
                 assert page.locator(".message.user .message-files").inner_text() == "采购清单.txt"
+                page.locator(".report-details").first.locator("summary").click()
+                assert "Quantity: 32" in page.locator(".citation").first.inner_text()
+                if output:
+                    page.locator("#thread").evaluate(
+                        "e => { e.style.scrollBehavior = 'auto'; e.scrollTop = 0; }"
+                    )
+                    page.screenshot(path=str(output / "agent-light-report.png"), full_page=True)
+                page.locator(".report-details").first.locator("summary").click()
                 page.locator("#message-input").fill("接下来应该核对什么？")
                 page.locator("#message-input").press("Enter")
                 page.get_by_text("根据刚才的清单，我们可以继续核对三件事：", exact=False).wait_for()
                 if output:
                     output.mkdir(parents=True, exist_ok=True)
-                    page.locator("#thread").evaluate("e => e.scrollTop = 0")
-                    page.screenshot(path=str(output / "agent-chat-desktop.png"), full_page=True)
+                    page.locator("#thread").evaluate(
+                        "e => { e.style.scrollBehavior = 'auto'; e.scrollTop = 0; }"
+                    )
+                    page.screenshot(path=str(output / "agent-light-desktop.png"), full_page=True)
                 page.reload(wait_until="networkidle")
                 page.get_by_text("根据刚才的清单，我们可以继续核对三件事：", exact=False).wait_for()
                 page.locator("#message-input").fill("查看原文")
@@ -171,7 +190,7 @@ def run(output):
                     "这是该任务已生成的报告，选择需要的格式即可下载。", exact=True
                 ).wait_for()
                 with page.expect_download() as downloaded:
-                    page.get_by_role("button", name="↓ Word", exact=True).last.click()
+                    page.get_by_role("button", name="下载 Word", exact=True).last.click()
                 assert Path(downloaded.value.path()).read_bytes().startswith(b"PK")
                 assert page.locator(".detail-panel").count() == 0
                 assert page.evaluate("document.documentElement.scrollWidth <= innerWidth")
@@ -181,10 +200,12 @@ def run(output):
                 assert page.locator("#sidebar").evaluate("e => e.classList.contains('open')")
                 page.locator("#close-sidebar").click()
                 assert not page.locator("#sidebar").evaluate("e => e.classList.contains('open')")
+                expect(page.locator("#sidebar")).not_to_be_in_viewport()
                 assert page.evaluate("document.documentElement.scrollWidth <= innerWidth")
                 assert page.locator("#message-input").is_visible()
                 if output:
-                    page.screenshot(path=str(output / "agent-chat-mobile.png"), full_page=True)
+                    page.locator("#thread").evaluate("e => e.scrollTop = e.scrollHeight")
+                    page.screenshot(path=str(output / "agent-light-mobile.png"), full_page=True)
                 # File names and material must remain text, including markup-like input.
                 page.locator("#upload-files").set_input_files(
                     {
@@ -195,6 +216,14 @@ def run(output):
                 )
                 page.get_by_role("checkbox", name="选择 报价 <img>.txt", exact=True).wait_for()
                 assert page.locator(".file-list img").count() == 0
+                if output:
+                    page.locator("#open-sidebar").click()
+                    page.locator("#new-chat").click()
+                    page.locator("#welcome").wait_for()
+                    expect(page.locator("#sidebar")).not_to_be_in_viewport()
+                    page.screenshot(
+                        path=str(output / "agent-light-mobile-welcome.png"), full_page=True
+                    )
                 assert not errors, errors
                 browser.close()
         finally:

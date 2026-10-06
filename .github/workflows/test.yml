@@ -11,7 +11,11 @@ jobs:
         with:
           python-version: '3.12'
       - run: uv sync --locked --group dev
-      - run: uv run ruff check src tests
+      - run: uv run ruff check src tests tools/check_chat_browser.py
       - run: uv run pytest
+      - name: Chat workspace browser flow
+        run: |
+          uv run playwright install --with-deps chromium
+          uv run python tools/check_chat_browser.py
       - name: Build production container
         run: docker build -t agent:ci .

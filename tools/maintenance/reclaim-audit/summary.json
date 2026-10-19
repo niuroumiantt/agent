@@ -1,0 +1,200 @@
+{
+  "generated": "2026-10-19T16:38:17+0800",
+  "raw_root": "/home/spark/.local/share/inresearch.ai/raw-materials",
+  "originals_root": "/home/spark/.local/share/inresearch.ai/originals",
+  "files_total": 91419,
+  "counts": {
+    "dup": 90619,
+    "orphan": 327,
+    "error": 0,
+    "empty": 473
+  },
+  "bytes": {
+    "dup": 268258783197,
+    "orphan": 29322904,
+    "error": 0,
+    "empty": 0
+  },
+  "elapsed_seconds": 76.9,
+  "reclaimable_bytes": 268258783197,
+  "reclaimable_human": "249.8 GB",
+  "top_reclaimable_groups": [
+    {
+      "group": "m4-20260906",
+      "dup_bytes": 267482325037,
+      "dup_human": "249.1 GB",
+      "dup_files": 86714,
+      "orphan_bytes": 2141445
+    },
+    {
+      "group": "l1-promote-20260926",
+      "dup_bytes": 283264311,
+      "dup_human": "0.3 GB",
+      "dup_files": 30,
+      "orphan_bytes": 0
+    },
+    {
+      "group": "l1-promote-20260926-c",
+      "dup_bytes": 73639293,
+      "dup_human": "0.1 GB",
+      "dup_files": 5,
+      "orphan_bytes": 0
+    },
+    {
+      "group": "research-match-97fd272f1fdfc18677462d0292f5fbf26ca86b4d1b485c2dba03269b643a0e83",
+      "dup_bytes": 6768044,
+      "dup_human": "0.0 GB",
+      "dup_files": 1,
+      "orphan_bytes": 0
+    },
+    {
+      "group": "research-match-dc5c6097513c88e38769c6ab64b19b85ce7e430f348e97c916a7effc9c21bcde",
+      "dup_bytes": 3615537,
+      "dup_human": "0.0 GB",
+      "dup_files": 1,
+      "orphan_bytes": 0
+    },
+    {
+      "group": "research-match-d8c9290b58a56a8d9031587c55a554298f25b635cadf21caa24397205876aae2",
+      "dup_bytes": 3021855,
+      "dup_human": "0.0 GB",
+      "dup_files": 1,
+      "orphan_bytes": 0
+    },
+    {
+      "group": "research-match-97aee34affd134fb26f07e646e8b45763fad5e74572bd023ea62828959d1b34d",
+      "dup_bytes": 2460219,
+      "dup_human": "0.0 GB",
+      "dup_files": 1,
+      "orphan_bytes": 0
+    },
+    {
+      "group": "research-match-5c1809af72fee084277f5667573c85a908e404d4975e68a22a26378b5f081256",
+      "dup_bytes": 2121747,
+      "dup_human": "0.0 GB",
+      "dup_files": 1,
+      "orphan_bytes": 0
+    },
+    {
+      "group": "research-match-ee41db0404523917a5f0152a05769feace6a234a2c49bb4b7da9ccea3273292e",
+      "dup_bytes": 1294692,
+      "dup_human": "0.0 GB",
+      "dup_files": 1,
+      "orphan_bytes": 0
+    },
+    {
+      "group": "research-match-78841053f5a9f357df9c4a88a0ead4a9ea26e5e79cf300563e87a0e4d2f85396",
+      "dup_bytes": 1070104,
+      "dup_human": "0.0 GB",
+      "dup_files": 1,
+      "orphan_bytes": 0
+    },
+    {
+      "group": "research-match-dcadb699d2306b8b2aac73783519ff1a95482fe147fce35dba9ece4e6b383711",
+      "dup_bytes": 834599,
+      "dup_human": "0.0 GB",
+      "dup_files": 1,
+      "orphan_bytes": 0
+    },
+    {
+      "group": "research-match-3f32a20d9647c7e606fc1c700e5df633681d557b0d93b57a4c53166bc2a6699b",
+      "dup_bytes": 609080,
+      "dup_human": "0.0 GB",
+      "dup_files": 1,
+      "orphan_bytes": 0
+    },
+    {
+      "group": "research-match-921ea482d212b28fb94695b32134d3ec648054c15f946bee5a1094ddf0b467d7",
+      "dup_bytes": 557843,
+      "dup_human": "0.0 GB",
+      "dup_files": 1,
+      "orphan_bytes": 0
+    },
+    {
+      "group": "research-match-a3ec9a2d40be086040c50eb078f355a75f6ed011ffb56b78041cb0829a5ab33a",
+      "dup_bytes": 540759,
+      "dup_human": "0.0 GB",
+      "dup_files": 1,
+      "orphan_bytes": 0
+    },
+    {
+      "group": "research-match-b02b9bbb5d6a016f73b080fa46755199834cbd2afe39949e23c2ebe4250f9c3f",
+      "dup_bytes": 476531,
+      "dup_human": "0.0 GB",
+      "dup_files": 1,
+      "orphan_bytes": 0
+    },
+    {
+      "group": "research-match-8b21830ffe47b102ffaa2e09ca15bb2a3a207afffa315c53824d6bf0c1b53f67",
+      "dup_bytes": 417946,
+      "dup_human": "0.0 GB",
+      "dup_files": 1,
+      "orphan_bytes": 0
+    },
+    {
+      "group": "research-match-b03ecfa72fa782e07c64018d84e142435f3549c94948b43aa4c3513f0d3ee791",
+      "dup_bytes": 381632,
+      "dup_human": "0.0 GB",
+      "dup_files": 1,
+      "orphan_bytes": 0
+    },
+    {
+      "group": "research-match-904fe1863ad02343a08184069c2192d3e643240a02092236baf7d2f575a7316b",
+      "dup_bytes": 318736,
+      "dup_human": "0.0 GB",
+      "dup_files": 1,
+      "orphan_bytes": 0
+    },
+    {
+      "group": "research-match-8f5e9f3c3378a80c21f1dc7cf1899b065ecd4f0af75d849c645e820fa8379df8",
+      "dup_bytes": 296533,
+      "dup_human": "0.0 GB",
+      "dup_files": 1,
+      "orphan_bytes": 0
+    },
+    {
+      "group": "research-match-4775074164839f2364940cba24b1944ef52315084914e92d40592c79aa83cad3",
+      "dup_bytes": 274972,
+      "dup_human": "0.0 GB",
+      "dup_files": 1,
+      "orphan_bytes": 0
+    },
+    {
+      "group": "research-match-bcb1906f55a47891fd5c48f97bd1f7137fbce9f7644664f28aa89ee45b46cae1",
+      "dup_bytes": 227073,
+      "dup_human": "0.0 GB",
+      "dup_files": 1,
+      "orphan_bytes": 0
+    },
+    {
+      "group": "research-match-ba043c47b92f0cdfd9a6893e57f7eaf737d6802c282c8705be3eb62f1111cd91",
+      "dup_bytes": 163321,
+      "dup_human": "0.0 GB",
+      "dup_files": 1,
+      "orphan_bytes": 0
+    },
+    {
+      "group": "research-match-630f864569513568d500a113001d17a49fbd5e8316839840df2090e20b5955f7",
+      "dup_bytes": 143614,
+      "dup_human": "0.0 GB",
+      "dup_files": 1,
+      "orphan_bytes": 0
+    },
+    {
+      "group": "research-match-dd42fdf1693989423e2f2f3529bb21a0cb5b3764578621117db2b3878c54d246",
+      "dup_bytes": 139258,
+      "dup_human": "0.0 GB",
+      "dup_files": 1,
+      "orphan_bytes": 0
+    },
+    {
+      "group": "research-match-2ad05c5724548ce394f4dc0d920e17fcdc26134008f4e9bd4ae18bba8c8a0aa3",
+      "dup_bytes": 136216,
+      "dup_human": "0.0 GB",
+      "dup_files": 1,
+      "orphan_bytes": 0
+    }
+  ],
+  "error_samples": [],
+  "error_total": 0
+}

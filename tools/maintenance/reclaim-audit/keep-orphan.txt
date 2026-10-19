@@ -1,0 +1,327 @@
+/home/spark/.local/share/inresearch.ai/raw-materials/research-match-c83023f2470619c9c9dac49b2f5034444e031a6b888de34eee74c7a52dc4603d/EPRI_Powering_Intelligence.pdf	3524487
+/home/spark/.local/share/inresearch.ai/raw-materials/research-match-9fdd4505d93d1ad6a210954870637e5a17117d35f1a051876718a9bed4df76fb/2026-10-19-daily-wechat.html	3453816
+/home/spark/.local/share/inresearch.ai/raw-materials/research-match-299f2f4f56ac38c82b8412c8b9b7ff6d1b9c3045e99717e4a70b8f3d983d33f0/ERCOT_Megapack_Data_Centers_2025.pdf	5417879
+/home/spark/.local/share/inresearch.ai/raw-materials/research-match-b161be4ac28a3f9b2d81c160a6dea68c67a7d10b993824787f16396735a3fa2d/Grid_Strategies_National_Load_Growth_2023.pdf	1046130
+/home/spark/.local/share/inresearch.ai/raw-materials/web-3618e3e1f76d41e581031b8a793e9f58/中国大陆数据中心园区关键指标登记表_2026-10-14_v6.xlsx	984370
+/home/spark/.local/share/inresearch.ai/raw-materials/web-3369d9b62769470095424016a3a62dcb/中国大陆数据中心园区关键指标登记表_2026-10-14_v6 (1).xlsx	984370
+/home/spark/.local/share/inresearch.ai/raw-materials/web-125abdc2b1dc4d79b58a68f55a5cddf1/数据中心全国园区库.xlsx	1087269
+/home/spark/.local/share/inresearch.ai/raw-materials/web-f8e7b66f38214c71863a173103dba81b/中国大陆数据中心园区关键指标登记表_2026-10-14_v5.xlsx	958797
+/home/spark/.local/share/inresearch.ai/raw-materials/web-4bbb5ec009d1400e9199a640ee07245c/dahai1.xlsx	53931
+/home/spark/.local/share/inresearch.ai/raw-materials/research-match-7c266a5f464983b06a8d688dbfcf50ab059de489143c0134b6fd2f43c1e3d667/2026-10-12-daily-wechat.html	1654552
+/home/spark/.local/share/inresearch.ai/raw-materials/research-match-d941201296edc86823f0783049159b635994763612cd9b03a262785b5028a253/Grid_Strategies_National_Load_Growth_2024.pdf	1172093
+/home/spark/.local/share/inresearch.ai/raw-materials/research-match-24dacc20292c26e5a70861d81af29dc765d6b5748ba532b93fcc349dada7ebfe/Supermicro_Liquid_Cooling.pdf	940098
+/home/spark/.local/share/inresearch.ai/raw-materials/research-match-5514cf0cee4f6b2e71b434bf2d1773d91f9c9b34f3d40c095b3ae922df512acf/Georgia_PSC_Data_Center_Power_Terms_20250123.pdf	99986
+/home/spark/.local/share/inresearch.ai/raw-materials/web-78f0a0a155fa4686922c01a08700ed52/中国大陆数据中心园区关键指标登记表_2026-10-14_v5.xlsx	958797
+/home/spark/.local/share/inresearch.ai/raw-materials/research-match-c78de7214ab3e0aef8bd11cd3f4cd271587e8a7675666507c1532bb4f28f714a/MISO_OMS_Survey_Results_2024.pdf	2308399
+/home/spark/.local/share/inresearch.ai/raw-materials/research-match-6689d9f82980a70b5919df242aabc394449653c9710e8e74f44dbc14477be65f/MISO_MTEP24_Report_Preview.pdf	2536485
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/.DS_Store	10244
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/数据中心资料/.DS_Store	8196
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/数据中心资料/2024存储报告/__MACOSX/存储企业24年报告/._复旦微电-东方证券研报.pdf	476
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/数据中心资料/2024存储报告/__MACOSX/存储企业24年报告/._同友科技 2024上半年年报.pdf	672
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/数据中心资料/2024存储报告/__MACOSX/存储企业24年报告/._东芯股份-华金证券报告.pdf	512
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/数据中心资料/2024存储报告/__MACOSX/存储企业24年报告/._复旦微电 2024H1年度报告.pdf	672
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/数据中心资料/2024存储报告/__MACOSX/存储企业24年报告/._北京君正2024H1年报.pdf	588
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/数据中心资料/2024存储报告/__MACOSX/存储企业24年报告/._恒烁股份 2024H1年报 PDF.pdf	660
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/数据中心资料/2024存储报告/__MACOSX/存储企业24年报告/._普冉股份2024H1年报.pdf	666
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/数据中心资料/2024存储报告/__MACOSX/存储企业24年报告/._澜起科技-中泰证券研究报告.pdf	179
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/数据中心资料/2024存储报告/__MACOSX/存储企业24年报告/._兆易创新-华福证券分析报告.pdf	512
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/数据中心资料/2024存储报告/__MACOSX/存储企业24年报告/._江波龙-天风证券报告.pdf	476
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/数据中心资料/2024存储报告/__MACOSX/存储企业24年报告/._聚辰股份2024H1年度报告.pdf	660
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/数据中心资料/2024存储报告/__MACOSX/存储企业24年报告/._北京君正-国联证券.pdf	512
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/数据中心资料/2024存储报告/__MACOSX/存储企业24年报告/._东芯半导体2024H1年报.pdf	672
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/数据中心资料/2024存储报告/__MACOSX/存储企业24年报告/._佰维存储-东吴证券报告.pdf	476
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/数据中心资料/2024存储报告/__MACOSX/存储企业24年报告/._普冉股份-天风证券分析报告.pdf	512
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/数据中心资料/2024存储报告/__MACOSX/存储企业24年报告/._康佳芯盈-2024H1年报.pdf	672
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/数据中心资料/2024存储报告/__MACOSX/存储企业24年报告/._佰维存储-2024H1年度报告.pdf	476
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/数据中心资料/2024存储报告/__MACOSX/存储企业24年报告/._澜起科技2024H1年报.pdf	672
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/数据中心资料/2024存储报告/__MACOSX/存储企业24年报告/._同有科技-华鑫证券报告.pdf	608
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/数据中心资料/2024存储报告/__MACOSX/存储市场/._AI+PC元年有望开启，领航存储市场步入“价值”长景气新周期.pdf	662
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/数据中心资料/2024存储报告/__MACOSX/存储企业24年报告/._江波龙 2024H1年报.pdf	590
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/数据中心资料/2024存储报告/__MACOSX/存储企业24年报告/._兆易创新：兆易创新2024年半年度报告.pdf	509
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/数据中心资料/2024存储报告/__MACOSX/存储市场/._存储市场报告-山西证券H3_AP202404171630401555_1.pdf	664
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/数据中心资料/2024存储报告/__MACOSX/存储市场/._中国银河证券-存储行业深度报告H3_AP202403141626700024_1.pdf	235
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/数据中心资料/2024存储报告/__MACOSX/存储市场/._电子行业存储芯片周度跟踪：NAND+DRAM价格小幅波动，美光HBM产能维持高增速.pdf	705
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/数据中心资料/2024存储报告/__MACOSX/存储市场/._看好国产存储供应链机遇，材料篇.pdf	277
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/数据中心资料/2024存储报告/__MACOSX/存储市场/._2024Q3存储合约价季涨幅环比收敛.pdf	277
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/数据中心资料/2024存储报告/__MACOSX/存储市场/._存储芯片板块跟踪报告（十）：2024-2025年行业有望持续扩容，高端产品渗透加速.pdf	277
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/数据中心资料/2024存储报告/__MACOSX/存储市场/._存储行业投资机会梳理.pdf	519
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/数据中心资料/2024存储报告/__MACOSX/存储市场/._AI时代核心存力HBM.pdf	542
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/数据中心资料/2024存储报告/__MACOSX/存储市场/._存储专题跟踪，HBM引领AI存力扩容，产品切换加剧产能紧缺！.pdf	662
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/数据中心资料/2024存储报告/__MACOSX/存储市场/._存储市场持续复苏，MLCC订单出货比有望回升.pdf	595
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/数据中心资料/2024存储报告/__MACOSX/存储市场/._存储行业报告：AI对存储晶圆产能消耗拉动显著.pdf	613
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/数据中心资料/2024存储报告/__MACOSX/存储市场/._存储板块跟踪报告（九）：周期复苏叠加AI拉动，存储模组行情有望渐行渐盛.pdf	277
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/数据中心资料/2024存储报告/__MACOSX/存储市场/._存储行业深度：技术路径、产业周期、产业链及相关公司深度梳理.pdf	693
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/数据中心资料/2024存储报告/__MACOSX/存储市场/._台积电指引AI需求持续强劲，看好存储板块业绩表现.pdf	688
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/数据中心资料/半导体综研 VIP(8)/fudan ilab project/~$cripts.docx	162
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/数据中心报告购买/.DS_Store	20484
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/数据中心报告购买/01/.DS_Store	10244
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/数据中心报告购买/01/04项目【华东地区 2017出版 无清单】xx电信通信机楼项目/.DS_Store	6148
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/数据中心报告购买/01/02项目【华东地区 2019.6出版 无清单】xx国际信息中心机楼工程/.DS_Store	6148
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/数据中心报告购买/01/02项目【华东地区 2019.6出版 无清单】xx国际信息中心机楼工程/电信5#楼邮电院校审修改版2019.08.05/.DS_Store	6148
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/数据中心报告购买/01/08项目【华北地区 2019.2出版 无清单】x云数据中心三期/.DS_Store	8196
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/数据中心报告购买/01/03项目【华西地区 2018.11出版 无清单】xx物联网基地机房工程/.DS_Store	6148
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/数据中心报告购买/01/01项目【华南地区 2019.8出版 带清单EXCEL表格】xx移动综合业务接入机房工程/.DS_Store	6148
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/数据中心报告购买/01/01项目【华南地区 2019.8出版 带清单EXCEL表格】xx移动综合业务接入机房工程/来宾接入机房(含基础)/中间数据/Yjkbase_stiff_fea/MBS.TM.IDX.TMP	14736
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/数据中心报告购买/01/01项目【华南地区 2019.8出版 带清单EXCEL表格】xx移动综合业务接入机房工程/来宾接入机房(含基础)/中间数据/Yjkbase_stiff_fea/MBS.TM.DAT.TMP	2688
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/数据中心报告购买/01/01项目【华南地区 2019.8出版 带清单EXCEL表格】xx移动综合业务接入机房工程/来宾接入机房(含基础)/基础计算及结果输出/中间数据/中间数据/YjkCAL_MID/CAL_MID.TM.IDX.TMP	624
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/数据中心报告购买/01/01项目【华南地区 2019.8出版 带清单EXCEL表格】xx移动综合业务接入机房工程/来宾接入机房(含基础)/基础计算及结果输出/中间数据/中间数据/YjkCAL_MID/CAL_MID.TM.DAT.TMP	864
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/数据中心报告购买/01/01项目【华南地区 2019.8出版 带清单EXCEL表格】xx移动综合业务接入机房工程/来宾接入机房(含基础)/基础计算及结果输出/中间数据/中间数据/YjkLaLiangHingeEnd_MID/LaLiangHingeEnd_MID.TM.IDX.TMP	1164
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/数据中心报告购买/01/01项目【华南地区 2019.8出版 带清单EXCEL表格】xx移动综合业务接入机房工程/来宾接入机房(含基础)/基础计算及结果输出/中间数据/中间数据/YjkLaLiangHingeEnd_MID/LaLiangHingeEnd_MID.TM.DAT.TMP	1056
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/数据中心报告购买/01/01项目【华南地区 2019.8出版 带清单EXCEL表格】xx移动综合业务接入机房工程/来宾接入机房(含基础)/基础计算及结果输出/中间数据/中间数据/YjkLaLiangFixEnd_MID/LaLiangFixEnd_MID.TM.IDX.TMP	1164
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/数据中心报告购买/01/01项目【华南地区 2019.8出版 带清单EXCEL表格】xx移动综合业务接入机房工程/来宾接入机房(含基础)/基础计算及结果输出/中间数据/中间数据/YjkLaLiangFixEnd_MID/LaLiangFixEnd_MID.TM.DAT.TMP	1056
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/数据中心报告购买/01/01项目【华南地区 2019.8出版 带清单EXCEL表格】xx移动综合业务接入机房工程/来宾地下水泵房（筏板基础）/施工图/Deflection/中间数据/YjkF2/F2.TM.DAT.TMP	864
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/数据中心报告购买/01/01项目【华南地区 2019.8出版 带清单EXCEL表格】xx移动综合业务接入机房工程/来宾地下水泵房（筏板基础）/施工图/Deflection/中间数据/YjkF2/F2.TM.IDX.TMP	84
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/数据中心报告购买/01/01项目【华南地区 2019.8出版 带清单EXCEL表格】xx移动综合业务接入机房工程/来宾地下水泵房（筏板基础）/施工图/Deflection/中间数据/YjkF1/F1.TM.IDX.TMP	564
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/数据中心报告购买/01/01项目【华南地区 2019.8出版 带清单EXCEL表格】xx移动综合业务接入机房工程/来宾地下水泵房（筏板基础）/施工图/Deflection/中间数据/YjkF1/F1.TM.DAT.TMP	864
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/数据中心报告购买/01/01项目【华南地区 2019.8出版 带清单EXCEL表格】xx移动综合业务接入机房工程/来宾地下水泵房（筏板基础）/SubBeam/中间数据/YjkSAPSS_SubBeam1/SAPSS_SubBeam1.TM.DAT.TMP	864
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/数据中心报告购买/01/01项目【华南地区 2019.8出版 带清单EXCEL表格】xx移动综合业务接入机房工程/来宾地下水泵房（筏板基础）/SubBeam/中间数据/YjkSAPSS_SubBeam1/SAPSS_SubBeam1.TM.IDX.TMP	12
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/数据中心报告购买/01/01项目【华南地区 2019.8出版 带清单EXCEL表格】xx移动综合业务接入机房工程/来宾地下水泵房（筏板基础）/设计结果/~$设计送审报告.doc	162
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/数据中心报告购买/01/01项目【华南地区 2019.8出版 带清单EXCEL表格】xx移动综合业务接入机房工程/来宾地下水泵房（筏板基础）/基础计算及结果输出/中间数据/中间数据/YjkFeaNonLCal_MID/FeaNonLCal_MID.TM.IDX.TMP	9960
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/数据中心报告购买/01/01项目【华南地区 2019.8出版 带清单EXCEL表格】xx移动综合业务接入机房工程/来宾地下水泵房（筏板基础）/基础计算及结果输出/中间数据/中间数据/YjkFeaNonLCal_MID/FeaNonLCal_MID.TM.DAT.TMP	864
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/数据中心报告购买/01/01项目【华南地区 2019.8出版 带清单EXCEL表格】xx移动综合业务接入机房工程/来宾地下水泵房（筏板基础）/基础计算及结果输出/中间数据/中间数据/YjkCAL_MID/CAL_MID.TM.IDX.TMP	9960
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/数据中心报告购买/01/01项目【华南地区 2019.8出版 带清单EXCEL表格】xx移动综合业务接入机房工程/来宾地下水泵房（筏板基础）/基础计算及结果输出/中间数据/中间数据/YjkCAL_MID/CAL_MID.TM.DAT.TMP	69504
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/数据中心报告购买/01/01项目【华南地区 2019.8出版 带清单EXCEL表格】xx移动综合业务接入机房工程/来宾地下水泵房（筏板基础）/基础计算及结果输出/中间数据/中间数据/YjkDLGWater_MID/DLGWater_MID.TM.DAT.TMP	864
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/数据中心报告购买/01/01项目【华南地区 2019.8出版 带清单EXCEL表格】xx移动综合业务接入机房工程/来宾地下水泵房（筏板基础）/基础计算及结果输出/中间数据/中间数据/YjkDLGWater_MID/DLGWater_MID.TM.IDX.TMP	1380
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/数据中心报告购买/01/01项目【华南地区 2019.8出版 带清单EXCEL表格】xx移动综合业务接入机房工程/来宾地下水泵房（筏板基础）/基础计算及结果输出/中间数据/中间数据/YjkTXBWater_MID/TXBWater_MID.TM.IDX.TMP	9960
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/数据中心报告购买/01/01项目【华南地区 2019.8出版 带清单EXCEL表格】xx移动综合业务接入机房工程/来宾地下水泵房（筏板基础）/基础计算及结果输出/中间数据/中间数据/YjkTXBWater_MID/TXBWater_MID.TM.DAT.TMP	69504
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/数据中心报告购买/01/07项目【华东地区 2016.5出版 无清单】x产业园数据中心/.DS_Store	6148
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/数据中心报告购买/01/05项目【华中地区 2016出版 带清单EXCEL表格】xx联通计算中心一期工程/.DS_Store	6148
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/数据中心报告购买/IDC机房/jz316.IDC机房机楼数据中心建筑结构水电暖通部分含工艺CAD图纸/01项目【华南地区 2019.8出版 带清单EXCEL表格】xx移动综合业务接入机房工程/来宾接入机房(含基础)/中间数据/Yjkbase_stiff_fea/MBS.TM.IDX.TMP	14736
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/数据中心报告购买/IDC机房/jz316.IDC机房机楼数据中心建筑结构水电暖通部分含工艺CAD图纸/01项目【华南地区 2019.8出版 带清单EXCEL表格】xx移动综合业务接入机房工程/来宾接入机房(含基础)/中间数据/Yjkbase_stiff_fea/MBS.TM.DAT.TMP	2688
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/数据中心报告购买/IDC机房/jz316.IDC机房机楼数据中心建筑结构水电暖通部分含工艺CAD图纸/01项目【华南地区 2019.8出版 带清单EXCEL表格】xx移动综合业务接入机房工程/来宾接入机房(含基础)/基础计算及结果输出/中间数据/中间数据/YjkCAL_MID/CAL_MID.TM.IDX.TMP	624
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/数据中心报告购买/IDC机房/jz316.IDC机房机楼数据中心建筑结构水电暖通部分含工艺CAD图纸/01项目【华南地区 2019.8出版 带清单EXCEL表格】xx移动综合业务接入机房工程/来宾接入机房(含基础)/基础计算及结果输出/中间数据/中间数据/YjkCAL_MID/CAL_MID.TM.DAT.TMP	864
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/数据中心报告购买/IDC机房/jz316.IDC机房机楼数据中心建筑结构水电暖通部分含工艺CAD图纸/01项目【华南地区 2019.8出版 带清单EXCEL表格】xx移动综合业务接入机房工程/来宾接入机房(含基础)/基础计算及结果输出/中间数据/中间数据/YjkLaLiangHingeEnd_MID/LaLiangHingeEnd_MID.TM.IDX.TMP	1164
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/数据中心报告购买/IDC机房/jz316.IDC机房机楼数据中心建筑结构水电暖通部分含工艺CAD图纸/01项目【华南地区 2019.8出版 带清单EXCEL表格】xx移动综合业务接入机房工程/来宾接入机房(含基础)/基础计算及结果输出/中间数据/中间数据/YjkLaLiangHingeEnd_MID/LaLiangHingeEnd_MID.TM.DAT.TMP	1056
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/数据中心报告购买/IDC机房/jz316.IDC机房机楼数据中心建筑结构水电暖通部分含工艺CAD图纸/01项目【华南地区 2019.8出版 带清单EXCEL表格】xx移动综合业务接入机房工程/来宾接入机房(含基础)/基础计算及结果输出/中间数据/中间数据/YjkLaLiangFixEnd_MID/LaLiangFixEnd_MID.TM.IDX.TMP	1164
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/数据中心报告购买/IDC机房/jz316.IDC机房机楼数据中心建筑结构水电暖通部分含工艺CAD图纸/01项目【华南地区 2019.8出版 带清单EXCEL表格】xx移动综合业务接入机房工程/来宾接入机房(含基础)/基础计算及结果输出/中间数据/中间数据/YjkLaLiangFixEnd_MID/LaLiangFixEnd_MID.TM.DAT.TMP	1056
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/数据中心报告购买/IDC机房/jz316.IDC机房机楼数据中心建筑结构水电暖通部分含工艺CAD图纸/01项目【华南地区 2019.8出版 带清单EXCEL表格】xx移动综合业务接入机房工程/来宾地下水泵房（筏板基础）/施工图/Deflection/中间数据/YjkF2/F2.TM.DAT.TMP	864
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/数据中心报告购买/IDC机房/jz316.IDC机房机楼数据中心建筑结构水电暖通部分含工艺CAD图纸/01项目【华南地区 2019.8出版 带清单EXCEL表格】xx移动综合业务接入机房工程/来宾地下水泵房（筏板基础）/施工图/Deflection/中间数据/YjkF2/F2.TM.IDX.TMP	84
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/数据中心报告购买/IDC机房/jz316.IDC机房机楼数据中心建筑结构水电暖通部分含工艺CAD图纸/01项目【华南地区 2019.8出版 带清单EXCEL表格】xx移动综合业务接入机房工程/来宾地下水泵房（筏板基础）/施工图/Deflection/中间数据/YjkF1/F1.TM.IDX.TMP	564
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/数据中心报告购买/IDC机房/jz316.IDC机房机楼数据中心建筑结构水电暖通部分含工艺CAD图纸/01项目【华南地区 2019.8出版 带清单EXCEL表格】xx移动综合业务接入机房工程/来宾地下水泵房（筏板基础）/施工图/Deflection/中间数据/YjkF1/F1.TM.DAT.TMP	864
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/数据中心报告购买/IDC机房/jz316.IDC机房机楼数据中心建筑结构水电暖通部分含工艺CAD图纸/01项目【华南地区 2019.8出版 带清单EXCEL表格】xx移动综合业务接入机房工程/来宾地下水泵房（筏板基础）/SubBeam/中间数据/YjkSAPSS_SubBeam1/SAPSS_SubBeam1.TM.IDX.TMP	12
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/数据中心报告购买/IDC机房/jz316.IDC机房机楼数据中心建筑结构水电暖通部分含工艺CAD图纸/01项目【华南地区 2019.8出版 带清单EXCEL表格】xx移动综合业务接入机房工程/来宾地下水泵房（筏板基础）/SubBeam/中间数据/YjkSAPSS_SubBeam1/SAPSS_SubBeam1.TM.DAT.TMP	864
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/数据中心报告购买/IDC机房/jz316.IDC机房机楼数据中心建筑结构水电暖通部分含工艺CAD图纸/01项目【华南地区 2019.8出版 带清单EXCEL表格】xx移动综合业务接入机房工程/来宾地下水泵房（筏板基础）/设计结果/~$设计送审报告.doc	162
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/数据中心报告购买/IDC机房/jz316.IDC机房机楼数据中心建筑结构水电暖通部分含工艺CAD图纸/01项目【华南地区 2019.8出版 带清单EXCEL表格】xx移动综合业务接入机房工程/来宾地下水泵房（筏板基础）/基础计算及结果输出/中间数据/中间数据/YjkFeaNonLCal_MID/FeaNonLCal_MID.TM.IDX.TMP	9960
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/数据中心报告购买/IDC机房/jz316.IDC机房机楼数据中心建筑结构水电暖通部分含工艺CAD图纸/01项目【华南地区 2019.8出版 带清单EXCEL表格】xx移动综合业务接入机房工程/来宾地下水泵房（筏板基础）/基础计算及结果输出/中间数据/中间数据/YjkFeaNonLCal_MID/FeaNonLCal_MID.TM.DAT.TMP	864
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/数据中心报告购买/IDC机房/jz316.IDC机房机楼数据中心建筑结构水电暖通部分含工艺CAD图纸/01项目【华南地区 2019.8出版 带清单EXCEL表格】xx移动综合业务接入机房工程/来宾地下水泵房（筏板基础）/基础计算及结果输出/中间数据/中间数据/YjkCAL_MID/CAL_MID.TM.IDX.TMP	9960
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/数据中心报告购买/IDC机房/jz316.IDC机房机楼数据中心建筑结构水电暖通部分含工艺CAD图纸/01项目【华南地区 2019.8出版 带清单EXCEL表格】xx移动综合业务接入机房工程/来宾地下水泵房（筏板基础）/基础计算及结果输出/中间数据/中间数据/YjkCAL_MID/CAL_MID.TM.DAT.TMP	69504
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/数据中心报告购买/IDC机房/jz316.IDC机房机楼数据中心建筑结构水电暖通部分含工艺CAD图纸/01项目【华南地区 2019.8出版 带清单EXCEL表格】xx移动综合业务接入机房工程/来宾地下水泵房（筏板基础）/基础计算及结果输出/中间数据/中间数据/YjkDLGWater_MID/DLGWater_MID.TM.DAT.TMP	864
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/数据中心报告购买/IDC机房/jz316.IDC机房机楼数据中心建筑结构水电暖通部分含工艺CAD图纸/01项目【华南地区 2019.8出版 带清单EXCEL表格】xx移动综合业务接入机房工程/来宾地下水泵房（筏板基础）/基础计算及结果输出/中间数据/中间数据/YjkDLGWater_MID/DLGWater_MID.TM.IDX.TMP	1380
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/数据中心报告购买/IDC机房/jz316.IDC机房机楼数据中心建筑结构水电暖通部分含工艺CAD图纸/01项目【华南地区 2019.8出版 带清单EXCEL表格】xx移动综合业务接入机房工程/来宾地下水泵房（筏板基础）/基础计算及结果输出/中间数据/中间数据/YjkTXBWater_MID/TXBWater_MID.TM.IDX.TMP	9960
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/数据中心报告购买/IDC机房/jz316.IDC机房机楼数据中心建筑结构水电暖通部分含工艺CAD图纸/01项目【华南地区 2019.8出版 带清单EXCEL表格】xx移动综合业务接入机房工程/来宾地下水泵房（筏板基础）/基础计算及结果输出/中间数据/中间数据/YjkTXBWater_MID/TXBWater_MID.TM.DAT.TMP	69504
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/数据中心报告购买/202L 数据中心新/.DS_Store	20484
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/数据中心报告购买/202L 数据中心新/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾接入机房(含基础)/中间数据/Yjkbase_stiff_fea/MBS.TM.IDX.TMP	14736
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/数据中心报告购买/202L 数据中心新/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾接入机房(含基础)/中间数据/Yjkbase_stiff_fea/MBS.TM.DAT.TMP	2688
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/数据中心报告购买/202L 数据中心新/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾接入机房(含基础)/基础计算及结果输出/中间数据/中间数据/YjkCAL_MID/CAL_MID.TM.IDX.TMP	624
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/数据中心报告购买/202L 数据中心新/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾接入机房(含基础)/基础计算及结果输出/中间数据/中间数据/YjkCAL_MID/CAL_MID.TM.DAT.TMP	864
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/数据中心报告购买/202L 数据中心新/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾接入机房(含基础)/基础计算及结果输出/中间数据/中间数据/YjkLaLiangHingeEnd_MID/LaLiangHingeEnd_MID.TM.IDX.TMP	1164
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/数据中心报告购买/202L 数据中心新/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾接入机房(含基础)/基础计算及结果输出/中间数据/中间数据/YjkLaLiangHingeEnd_MID/LaLiangHingeEnd_MID.TM.DAT.TMP	1056
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/数据中心报告购买/202L 数据中心新/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾接入机房(含基础)/基础计算及结果输出/中间数据/中间数据/YjkLaLiangFixEnd_MID/LaLiangFixEnd_MID.TM.IDX.TMP	1164
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/数据中心报告购买/202L 数据中心新/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾接入机房(含基础)/基础计算及结果输出/中间数据/中间数据/YjkLaLiangFixEnd_MID/LaLiangFixEnd_MID.TM.DAT.TMP	1056
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/数据中心报告购买/202L 数据中心新/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾地下水泵房（筏板基础）/施工图/Deflection/中间数据/YjkF2/F2.TM.DAT.TMP	864
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/数据中心报告购买/202L 数据中心新/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾地下水泵房（筏板基础）/施工图/Deflection/中间数据/YjkF2/F2.TM.IDX.TMP	84
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/数据中心报告购买/202L 数据中心新/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾地下水泵房（筏板基础）/施工图/Deflection/中间数据/YjkF1/F1.TM.IDX.TMP	564
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/数据中心报告购买/202L 数据中心新/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾地下水泵房（筏板基础）/施工图/Deflection/中间数据/YjkF1/F1.TM.DAT.TMP	864
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/数据中心报告购买/202L 数据中心新/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾地下水泵房（筏板基础）/SubBeam/中间数据/YjkSAPSS_SubBeam1/SAPSS_SubBeam1.TM.IDX.TMP	12
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/数据中心报告购买/202L 数据中心新/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾地下水泵房（筏板基础）/SubBeam/中间数据/YjkSAPSS_SubBeam1/SAPSS_SubBeam1.TM.DAT.TMP	864
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/数据中心报告购买/202L 数据中心新/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾地下水泵房（筏板基础）/设计结果/~$设计送审报告.doc	162
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/数据中心报告购买/202L 数据中心新/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾地下水泵房（筏板基础）/基础计算及结果输出/中间数据/中间数据/YjkFeaNonLCal_MID/FeaNonLCal_MID.TM.IDX.TMP	9960
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/数据中心报告购买/202L 数据中心新/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾地下水泵房（筏板基础）/基础计算及结果输出/中间数据/中间数据/YjkFeaNonLCal_MID/FeaNonLCal_MID.TM.DAT.TMP	864
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/数据中心报告购买/202L 数据中心新/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾地下水泵房（筏板基础）/基础计算及结果输出/中间数据/中间数据/YjkCAL_MID/CAL_MID.TM.IDX.TMP	9960
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/数据中心报告购买/202L 数据中心新/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾地下水泵房（筏板基础）/基础计算及结果输出/中间数据/中间数据/YjkCAL_MID/CAL_MID.TM.DAT.TMP	69504
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/数据中心报告购买/202L 数据中心新/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾地下水泵房（筏板基础）/基础计算及结果输出/中间数据/中间数据/YjkDLGWater_MID/DLGWater_MID.TM.DAT.TMP	864
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/数据中心报告购买/202L 数据中心新/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾地下水泵房（筏板基础）/基础计算及结果输出/中间数据/中间数据/YjkDLGWater_MID/DLGWater_MID.TM.IDX.TMP	1380
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/数据中心报告购买/202L 数据中心新/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾地下水泵房（筏板基础）/基础计算及结果输出/中间数据/中间数据/YjkTXBWater_MID/TXBWater_MID.TM.IDX.TMP	9960
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/数据中心报告购买/202L 数据中心新/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾地下水泵房（筏板基础）/基础计算及结果输出/中间数据/中间数据/YjkTXBWater_MID/TXBWater_MID.TM.DAT.TMP	69504
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/数据中心报告购买/202L 数据中心新/2023.8中国电信浙江公司金华婺城数据中心项目/__MACOSX/金华婺城幕墙施工图20230811/._.DS_Store	120
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/数据中心报告购买/202L 数据中心新/2023.8中国电信浙江公司金华婺城数据中心项目/__MACOSX/._金华婺城幕墙施工图20230811	287
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/数据中心报告购买/202L 数据中心新/2023.8中国电信浙江公司金华婺城数据中心项目/__MACOSX/金华婺城幕墙施工图20230811/._01目录.dwg	176
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/数据中心报告购买/202L 数据中心新/2023.8中国电信浙江公司金华婺城数据中心项目/__MACOSX/金华婺城幕墙施工图20230811/._其余打印样式.ctb	187
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/数据中心报告购买/202L 数据中心新/2023.8中国电信浙江公司金华婺城数据中心项目/__MACOSX/金华婺城幕墙施工图20230811/._平立面大样图打印样式.ctb	187
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/数据中心报告购买/202L 数据中心新/2023.8中国电信浙江公司金华婺城数据中心项目/__MACOSX/金华婺城幕墙施工图20230811/._06型材断面图.bak	187
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/数据中心报告购买/202L 数据中心新/2023.8中国电信浙江公司金华婺城数据中心项目/__MACOSX/金华婺城幕墙施工图20230811/._04金华格栅大样0516.dwg	176
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/数据中心报告购买/202L 数据中心新/2023.8中国电信浙江公司金华婺城数据中心项目/金华婺城幕墙施工图20230811/.DS_Store	6148
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/数据中心报告购买/202L 数据中心新/2016.1 中国联通湖南长沙云计算中心一期IDC机房、动力中心、动力楼、通信枢纽楼建设工程/.DS_Store	6148
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/数据中心报告购买/202L 数据中心新/2016.1 中国联通湖南长沙云计算中心一期IDC机房、动力中心、动力楼、通信枢纽楼建设工程/人防图纸/.DS_Store	6148
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/数据中心报告购买/202L 数据中心新/2016.1 中国联通湖南长沙云计算中心一期IDC机房、动力中心、动力楼、通信枢纽楼建设工程/人防图纸/结构/.DS_Store	6148
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/数据中心报告购买/202L 数据中心新/2016.1 中国联通湖南长沙云计算中心一期IDC机房、动力中心、动力楼、通信枢纽楼建设工程/人防图纸/结构/7月22号联通人防结构完成版/7月22号联通人防结构完成版/.DS_Store	6148
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/数据中心报告购买/202L 数据中心新/2016.1 中国联通湖南长沙云计算中心一期IDC机房、动力中心、动力楼、通信枢纽楼建设工程/人防图纸/结构/7月22号联通人防结构完成版(1)/.DS_Store	6148
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/数据中心报告购买/202L 数据中心新/2020.5 大数据安全产业示范基地及国家大数据安全靶场（数据区）/.DS_Store	10244
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/数据中心报告购买/202L 数据中心新/2020.5 大数据安全产业示范基地及国家大数据安全靶场（数据区）/数据区1结构1-3#楼+计算书0805/.DS_Store	6148
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/数据中心报告购买/202L 数据中心新/2020.5 大数据安全产业示范基地及国家大数据安全靶场（数据区）/数据区1结构1-3#楼+计算书0805/(数据区1)1~3#楼结构审图2020.08.03/.DS_Store	6148
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/数据中心报告购买/202L 数据中心新/2020.5 大数据安全产业示范基地及国家大数据安全靶场（数据区）/数据区1结构1-3#楼+计算书0805/(数据区1)1~3#楼结构审图2020.08.03/(数据区1)3#楼结构审图2020.08.04/3#楼结构计算书/.DS_Store	8196
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/数据中心报告购买/202L 数据中心新/2024.12 中国联通茂名新建通信局房项目一期（中国联通茂名5G边缘计算中心（一期））初设深度/.DS_Store	6148
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/数据中心报告购买/202L 数据中心新/2024.12 中国联通茂名新建通信局房项目一期（中国联通茂名5G边缘计算中心（一期））初设深度/附件5-初步设计图纸/.DS_Store	6148
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/数据中心报告购买/202L 数据中心新/2024.12 中国联通茂名新建通信局房项目一期（中国联通茂名5G边缘计算中心（一期））初设深度/附件5-初步设计图纸/1-图纸/.DS_Store	6148
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/数据中心报告购买/202L 数据中心新/2024.12 中国联通茂名新建通信局房项目一期（中国联通茂名5G边缘计算中心（一期））初设深度/造价类资料（全程免费，得来不易需要完成一些小任务）1/附件1-工程量清单/.DS_Store	8196
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/Global半导体研究资料/.DS_Store	6148
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/报告/.DS_Store	8196
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/42套数据中心IDC机房楼机房2024 —2025/.DS_Store	20484
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/42套数据中心IDC机房楼机房2024 —2025/2019.6 苏州太湖国际信息中心三期5#、6#机楼工程/.DS_Store	6148
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/42套数据中心IDC机房楼机房2024 —2025/2023.4 定兴县公安局智慧乡村、小区与指挥系统智慧化项目-机房/.DS_Store	6148
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/42套数据中心IDC机房楼机房2024 —2025/2024.12 中国移动（福建南平）延平通信枢纽楼/.DS_Store	8196
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/42套数据中心IDC机房楼机房2024 —2025/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/.DS_Store	10244
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/42套数据中心IDC机房楼机房2024 —2025/2019.8 中国移动广西公司来宾综合业务接入机房工程/.DS_Store	8196
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/42套数据中心IDC机房楼机房2024 —2025/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾接入机房(含基础)/中间数据/Yjkbase_stiff_fea/MBS.TM.IDX.TMP	14736
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/42套数据中心IDC机房楼机房2024 —2025/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾接入机房(含基础)/中间数据/Yjkbase_stiff_fea/MBS.TM.DAT.TMP	2688
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/42套数据中心IDC机房楼机房2024 —2025/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾接入机房(含基础)/基础计算及结果输出/中间数据/中间数据/YjkCAL_MID/CAL_MID.TM.IDX.TMP	624
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/42套数据中心IDC机房楼机房2024 —2025/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾接入机房(含基础)/基础计算及结果输出/中间数据/中间数据/YjkCAL_MID/CAL_MID.TM.DAT.TMP	864
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/42套数据中心IDC机房楼机房2024 —2025/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾接入机房(含基础)/基础计算及结果输出/中间数据/中间数据/YjkLaLiangHingeEnd_MID/LaLiangHingeEnd_MID.TM.IDX.TMP	1164
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/42套数据中心IDC机房楼机房2024 —2025/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾接入机房(含基础)/基础计算及结果输出/中间数据/中间数据/YjkLaLiangHingeEnd_MID/LaLiangHingeEnd_MID.TM.DAT.TMP	1056
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/42套数据中心IDC机房楼机房2024 —2025/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾接入机房(含基础)/基础计算及结果输出/中间数据/中间数据/YjkLaLiangFixEnd_MID/LaLiangFixEnd_MID.TM.IDX.TMP	1164
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/42套数据中心IDC机房楼机房2024 —2025/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾接入机房(含基础)/基础计算及结果输出/中间数据/中间数据/YjkLaLiangFixEnd_MID/LaLiangFixEnd_MID.TM.DAT.TMP	1056
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/42套数据中心IDC机房楼机房2024 —2025/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾地下水泵房（筏板基础）/施工图/Deflection/中间数据/YjkF2/F2.TM.DAT.TMP	864
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/42套数据中心IDC机房楼机房2024 —2025/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾地下水泵房（筏板基础）/施工图/Deflection/中间数据/YjkF2/F2.TM.IDX.TMP	84
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/42套数据中心IDC机房楼机房2024 —2025/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾地下水泵房（筏板基础）/施工图/Deflection/中间数据/YjkF1/F1.TM.IDX.TMP	564
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/42套数据中心IDC机房楼机房2024 —2025/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾地下水泵房（筏板基础）/施工图/Deflection/中间数据/YjkF1/F1.TM.DAT.TMP	864
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/42套数据中心IDC机房楼机房2024 —2025/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾地下水泵房（筏板基础）/SubBeam/中间数据/YjkSAPSS_SubBeam1/SAPSS_SubBeam1.TM.IDX.TMP	12
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/42套数据中心IDC机房楼机房2024 —2025/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾地下水泵房（筏板基础）/SubBeam/中间数据/YjkSAPSS_SubBeam1/SAPSS_SubBeam1.TM.DAT.TMP	864
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/42套数据中心IDC机房楼机房2024 —2025/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾地下水泵房（筏板基础）/设计结果/~$设计送审报告.doc	162
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/42套数据中心IDC机房楼机房2024 —2025/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾地下水泵房（筏板基础）/基础计算及结果输出/中间数据/中间数据/YjkFeaNonLCal_MID/FeaNonLCal_MID.TM.IDX.TMP	9960
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/42套数据中心IDC机房楼机房2024 —2025/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾地下水泵房（筏板基础）/基础计算及结果输出/中间数据/中间数据/YjkFeaNonLCal_MID/FeaNonLCal_MID.TM.DAT.TMP	864
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/42套数据中心IDC机房楼机房2024 —2025/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾地下水泵房（筏板基础）/基础计算及结果输出/中间数据/中间数据/YjkCAL_MID/CAL_MID.TM.IDX.TMP	9960
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/42套数据中心IDC机房楼机房2024 —2025/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾地下水泵房（筏板基础）/基础计算及结果输出/中间数据/中间数据/YjkCAL_MID/CAL_MID.TM.DAT.TMP	69504
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/42套数据中心IDC机房楼机房2024 —2025/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾地下水泵房（筏板基础）/基础计算及结果输出/中间数据/中间数据/YjkDLGWater_MID/DLGWater_MID.TM.DAT.TMP	864
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/42套数据中心IDC机房楼机房2024 —2025/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾地下水泵房（筏板基础）/基础计算及结果输出/中间数据/中间数据/YjkDLGWater_MID/DLGWater_MID.TM.IDX.TMP	1380
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/42套数据中心IDC机房楼机房2024 —2025/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾地下水泵房（筏板基础）/基础计算及结果输出/中间数据/中间数据/YjkTXBWater_MID/TXBWater_MID.TM.IDX.TMP	9960
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/42套数据中心IDC机房楼机房2024 —2025/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾地下水泵房（筏板基础）/基础计算及结果输出/中间数据/中间数据/YjkTXBWater_MID/TXBWater_MID.TM.DAT.TMP	69504
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/42套数据中心IDC机房楼机房2024 —2025/2019.7中国电信云计算重庆基地二期工程/.DS_Store	8196
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/42套数据中心IDC机房楼机房2024 —2025/2019.7 中国移动南方基地二期工程二阶段项目/.DS_Store	10244
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/42套数据中心IDC机房楼机房2024 —2025/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/.DS_Store	6148
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/42套数据中心IDC机房楼机房2024 —2025/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/.DS_Store	10244
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/42套数据中心IDC机房楼机房2024 —2025/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/总包管理服务费及甲供材料保管费/.DS_Store	6148
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/42套数据中心IDC机房楼机房2024 —2025/2018.7中国移动（河北廊坊）数据中心二期工程/.DS_Store	6148
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/42套数据中心IDC机房楼机房2024 —2025/2023.1广西桂北云计算产业园一期项目通信机楼土建工程/.DS_Store	10244
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/42套数据中心IDC机房楼机房2024 —2025/2021.1 六安电信信息化中心和六安电信云计算数据中心项目/.DS_Store	6148
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/42套数据中心IDC机房楼机房2024 —2025/2023.2 中国移动（济宁）数据中心/.DS_Store	6148
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/42套数据中心IDC机房楼机房2024 —2025/2023.2 中国移动（济宁）数据中心/中国移动(济宁)数据中心附属用房/.DS_Store	6148
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/42套数据中心IDC机房楼机房2024 —2025/2023.2 中国移动（济宁）数据中心/济宁数据中心室外工程图纸/.DS_Store	6148
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/42套数据中心IDC机房楼机房2024 —2025/2024.8 中国建设银行浙江省分行档案数据中心项目DF/.DS_Store	6148
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/42套数据中心IDC机房楼机房2024 —2025/2025.2 产业园大数据中心建设项目/.DS_Store	6148
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/42套数据中心IDC机房楼机房2024 —2025/2023.8中国电信浙江公司金华婺城数据中心项目/.DS_Store	6148
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/42套数据中心IDC机房楼机房2024 —2025/2023.8中国电信浙江公司金华婺城数据中心项目/__MACOSX/._金华婺城幕墙施工图20230811	287
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/42套数据中心IDC机房楼机房2024 —2025/2023.8中国电信浙江公司金华婺城数据中心项目/__MACOSX/金华婺城幕墙施工图20230811/._.DS_Store	120
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/42套数据中心IDC机房楼机房2024 —2025/2023.8中国电信浙江公司金华婺城数据中心项目/__MACOSX/金华婺城幕墙施工图20230811/._01目录.dwg	176
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/42套数据中心IDC机房楼机房2024 —2025/2023.8中国电信浙江公司金华婺城数据中心项目/__MACOSX/金华婺城幕墙施工图20230811/._平立面大样图打印样式.ctb	187
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/42套数据中心IDC机房楼机房2024 —2025/2023.8中国电信浙江公司金华婺城数据中心项目/__MACOSX/金华婺城幕墙施工图20230811/._其余打印样式.ctb	187
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/42套数据中心IDC机房楼机房2024 —2025/2023.8中国电信浙江公司金华婺城数据中心项目/__MACOSX/金华婺城幕墙施工图20230811/._06型材断面图.bak	187
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/42套数据中心IDC机房楼机房2024 —2025/2023.8中国电信浙江公司金华婺城数据中心项目/__MACOSX/金华婺城幕墙施工图20230811/._04金华格栅大样0516.dwg	176
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/42套数据中心IDC机房楼机房2024 —2025/2023.8中国电信浙江公司金华婺城数据中心项目/金华婺城幕墙施工图20230811/.DS_Store	6148
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/42套数据中心IDC机房楼机房2024 —2025/2024.9 中国移动衢州双港通信枢纽建设项目（一期）/.DS_Store	8196
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/42套数据中心IDC机房楼机房2024 —2025/2020.4 大数据应用工厂项目/.DS_Store	6148
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/42套数据中心IDC机房楼机房2024 —2025/2025.3 汶川县财政片区更新改造项目和阿坝州汶川县新型智慧城市建设项目(城市运营中心机房)/.DS_Store	8196
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/42套数据中心IDC机房楼机房2024 —2025/2016.1 中国联通湖南长沙云计算中心一期IDC机房、动力中心、动力楼、通信枢纽楼建设工程/.DS_Store	6148
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/42套数据中心IDC机房楼机房2024 —2025/2020.7 福建广电网络莆田NGB业务中心（机房）/.DS_Store	6148
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/42套数据中心IDC机房楼机房2024 —2025/2023.3  宁德市大数据产业园及基础配套设施项目（一期）IT云平台/.DS_Store	6148
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/42套数据中心IDC机房楼机房2024 —2025/2016.12 华为(永州)云计算数据中心设计项目/.DS_Store	6148
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/42套数据中心IDC机房楼机房2024 —2025/2025.2 黄岩区大闸路以东、永丰路以北地块建设工程（电信置换项目）/.DS_Store	6148
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/42套数据中心IDC机房楼机房2024 —2025/2020.3 中国电信浙江公司金华林田数据中心项目/.DS_Store	6148
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/42套数据中心IDC机房楼机房2024 —2025/2019.6 重庆有线水土综合枢纽基地建设项目/.DS_Store	8196
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/42套数据中心IDC机房楼机房2024 —2025/2024.8 中国电信云计算重庆基地项目（四期）土建/.DS_Store	6148
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/42套数据中心IDC机房楼机房2024 —2025/2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼/.DS_Store	10244
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/42套数据中心IDC机房楼机房2024 —2025/2025.4 南安市供电公司备用调度指挥数据中心DF/.DS_Store	6148
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/42套数据中心IDC机房楼机房2024 —2025/2020.5 大数据安全产业示范基地及国家大数据安全靶场（数据区）/.DS_Store	10244
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/42套数据中心IDC机房楼机房2024 —2025/2020.5 大数据安全产业示范基地及国家大数据安全靶场（数据区）/数据区1结构1-3#楼+计算书0805/.DS_Store	6148
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/42套数据中心IDC机房楼机房2024 —2025/2020.5 大数据安全产业示范基地及国家大数据安全靶场（数据区）/数据区1结构1-3#楼+计算书0805/(数据区1)1~3#楼结构审图2020.08.03/.DS_Store	6148
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/42套数据中心IDC机房楼机房2024 —2025/2017.1 中国电信股份有限公司金华分公司罗店工业园通信机楼项目/.DS_Store	6148
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/42套数据中心IDC机房楼机房2024 —2025/2016.5 江苏常州百度大数据产业园数据中心/.DS_Store	6148
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/42套数据中心IDC机房楼机房2024 —2025/2024.12 中国联通茂名新建通信局房项目一期（中国联通茂名5G边缘计算中心（一期））初设深度/.DS_Store	6148
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/42套数据中心IDC机房楼机房2024 —2025/2024.12 中国联通茂名新建通信局房项目一期（中国联通茂名5G边缘计算中心（一期））初设深度/附件5-初步设计图纸/.DS_Store	6148
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/42套数据中心IDC机房楼机房2024 —2025/2024.12 中国联通茂名新建通信局房项目一期（中国联通茂名5G边缘计算中心（一期））初设深度/附件5-初步设计图纸/1-图纸/.DS_Store	6148
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/42套数据中心IDC机房楼机房2024 —2025/2024.12 中国联通茂名新建通信局房项目一期（中国联通茂名5G边缘计算中心（一期））初设深度/造价类资料（全程免费，得来不易需要完成一些小任务）1/附件1-工程量清单/.DS_Store	8196
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/42套数据中心IDC机房楼机房2024 —2025/2024.12 中国联通茂名新建通信局房项目一期（中国联通茂名5G边缘计算中心（一期））初设深度/造价类资料（全程免费，得来不易需要完成一些小任务）1/.DS_Store	6148
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/42套数据中心IDC机房楼机房2024 —2025/2024.12 中国联通茂名新建通信局房项目一期（中国联通茂名5G边缘计算中心（一期））初设深度/造价类资料（全程免费，得来不易需要完成一些小任务）1/附件1-工程量清单/中国联通茂名新建通信局房项目一期（中国联通茂名5G边缘计算中心（一期））工程总承包（EPC）项目--1控制价/中国联通茂名新建通信局房项目一期（中国联通茂名5G边缘计算中心（一期））工程总承包（EPC）项目/其他服务费/.DS_Store	6148
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/42套数据中心IDC机房楼机房2024 —2025/2024.12 中国联通茂名新建通信局房项目一期（中国联通茂名5G边缘计算中心（一期））初设深度/造价类资料（全程免费，得来不易需要完成一些小任务）1/附件1-工程量清单/中国联通茂名新建通信局房项目一期（中国联通茂名5G边缘计算中心（一期））工程总承包（EPC）项目--1控制价/.DS_Store	6148
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/42套数据中心IDC机房楼机房2024 —2025/2024.12 中国联通茂名新建通信局房项目一期（中国联通茂名5G边缘计算中心（一期））初设深度/造价类资料（全程免费，得来不易需要完成一些小任务）1/附件1-工程量清单/中国联通茂名新建通信局房项目一期（中国联通茂名5G边缘计算中心（一期））工程总承包（EPC）项目--1控制价/中国联通茂名新建通信局房项目一期（中国联通茂名5G边缘计算中心（一期））工程总承包（EPC）项目/.DS_Store	8196
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/42套数据中心IDC机房楼机房2024 —2025/2024.12 中国联通茂名新建通信局房项目一期（中国联通茂名5G边缘计算中心（一期））初设深度/造价类资料（全程免费，得来不易需要完成一些小任务）1/附件1-工程量清单/中国联通茂名新建通信局房项目一期（中国联通茂名5G边缘计算中心（一期））工程总承包（EPC）项目--1控制价/中国联通茂名新建通信局房项目一期（中国联通茂名5G边缘计算中心（一期））工程总承包（EPC）项目/室外工程/.DS_Store	10244
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/42套数据中心IDC机房楼机房2024 —2025/2025.3 全国一体化工业大数据山东云中心省会经济圈区域分中心项目1号楼、1a地下室、2-A号楼、2-B号/.DS_Store	8196
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/42套数据中心IDC机房楼机房2024 —2025/2025.3 全国一体化工业大数据山东云中心省会经济圈区域分中心项目1号楼、1a地下室、2-A号楼、2-B号/2-B号楼（CAD）/.DS_Store	6148
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/42套数据中心IDC机房楼机房2024 —2025/2025.2 中国联通（怀来）大数据创新产业园项目（DC4、DC5土建新建工程）/.DS_Store	6148
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/42套数据中心IDC机房楼机房2024 —2025/2018.11 长寿物联网应用示范基地机房工程/.DS_Store	6148
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/42套数据中心IDC机房楼机房2024 —2025/2024.7 中国电信重庆公司科学城数据中心运维楼土建项目/.DS_Store	6148
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/42套数据中心IDC机房楼机房2024 —2025/2019.2 乌兰察布华为云数据中心三期一阶段项目/.DS_Store	8196
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/42套数据中心IDC机房楼机房2024 —2025/2022.1中国移动粤港澳（广州）通信机楼二期工程/.DS_Store	10244
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/要删/.DS_Store	8196
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/要删/assets/.DS_Store	6148
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/要删/reports/.DS_Store	6148
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/要删/reader/.DS_Store	8196
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/要删/reader/.claude/settings.local.json	419
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/要删/data/.DS_Store	6148
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/要删/docs/.DS_Store	6148
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/要删/docs/library/.DS_Store	8196
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/要删/docs/library/_projects/.DS_Store	6148
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/要删/docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾接入机房(含基础)/中间数据/Yjkbase_stiff_fea/MBS.TM.IDX.TMP	14736
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/要删/docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾接入机房(含基础)/中间数据/Yjkbase_stiff_fea/MBS.TM.DAT.TMP	2688
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/要删/docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾接入机房(含基础)/基础计算及结果输出/中间数据/中间数据/YjkCAL_MID/CAL_MID.TM.IDX.TMP	624
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/要删/docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾接入机房(含基础)/基础计算及结果输出/中间数据/中间数据/YjkCAL_MID/CAL_MID.TM.DAT.TMP	864
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/要删/docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾接入机房(含基础)/基础计算及结果输出/中间数据/中间数据/YjkLaLiangHingeEnd_MID/LaLiangHingeEnd_MID.TM.IDX.TMP	1164
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/要删/docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾接入机房(含基础)/基础计算及结果输出/中间数据/中间数据/YjkLaLiangHingeEnd_MID/LaLiangHingeEnd_MID.TM.DAT.TMP	1056
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/要删/docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾接入机房(含基础)/基础计算及结果输出/中间数据/中间数据/YjkLaLiangFixEnd_MID/LaLiangFixEnd_MID.TM.IDX.TMP	1164
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/要删/docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾接入机房(含基础)/基础计算及结果输出/中间数据/中间数据/YjkLaLiangFixEnd_MID/LaLiangFixEnd_MID.TM.DAT.TMP	1056
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/要删/docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾地下水泵房（筏板基础）/施工图/Deflection/中间数据/YjkF2/F2.TM.DAT.TMP	864
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/要删/docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾地下水泵房（筏板基础）/施工图/Deflection/中间数据/YjkF2/F2.TM.IDX.TMP	84
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/要删/docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾地下水泵房（筏板基础）/施工图/Deflection/中间数据/YjkF1/F1.TM.IDX.TMP	564
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/要删/docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾地下水泵房（筏板基础）/施工图/Deflection/中间数据/YjkF1/F1.TM.DAT.TMP	864
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/要删/docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾地下水泵房（筏板基础）/SubBeam/中间数据/YjkSAPSS_SubBeam1/SAPSS_SubBeam1.TM.IDX.TMP	12
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/要删/docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾地下水泵房（筏板基础）/SubBeam/中间数据/YjkSAPSS_SubBeam1/SAPSS_SubBeam1.TM.DAT.TMP	864
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/要删/docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾地下水泵房（筏板基础）/水泵房设计结果/设计结果/~$设计送审报告.doc	162
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/要删/docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾地下水泵房（筏板基础）/基础计算及结果输出/中间数据/中间数据/YjkFeaNonLCal_MID/FeaNonLCal_MID.TM.IDX.TMP	9960
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/要删/docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾地下水泵房（筏板基础）/基础计算及结果输出/中间数据/中间数据/YjkFeaNonLCal_MID/FeaNonLCal_MID.TM.DAT.TMP	864
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/要删/docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾地下水泵房（筏板基础）/基础计算及结果输出/中间数据/中间数据/YjkCAL_MID/CAL_MID.TM.IDX.TMP	9960
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/要删/docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾地下水泵房（筏板基础）/基础计算及结果输出/中间数据/中间数据/YjkCAL_MID/CAL_MID.TM.DAT.TMP	69504
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/要删/docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾地下水泵房（筏板基础）/基础计算及结果输出/中间数据/中间数据/YjkDLGWater_MID/DLGWater_MID.TM.DAT.TMP	864
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/要删/docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾地下水泵房（筏板基础）/基础计算及结果输出/中间数据/中间数据/YjkDLGWater_MID/DLGWater_MID.TM.IDX.TMP	1380
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/要删/docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾地下水泵房（筏板基础）/基础计算及结果输出/中间数据/中间数据/YjkTXBWater_MID/TXBWater_MID.TM.IDX.TMP	9960
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/要删/docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾地下水泵房（筏板基础）/基础计算及结果输出/中间数据/中间数据/YjkTXBWater_MID/TXBWater_MID.TM.DAT.TMP	69504
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/要删/docs/library/_assets/.DS_Store	6148
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/要删/docs/library/M04_电力与能源/.DS_Store	6148
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/要删/docs/library/_pending/.DS_Store	6148
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/要删/docs/library/_pending/06_工程图纸/.DS_Store	6148
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/要删/docs/library/_pending/06_工程图纸/IDC机房/jz316.IDC机房机楼数据中心建筑结构水电暖通部分含工艺CAD图纸/.DS_Store	6148
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/要删/docs/library/_pending/06_工程图纸/IDC机房/.DS_Store	6148
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/要删/docs/library/_pending/06_工程图纸/IDC机房/jz316.IDC机房机楼数据中心建筑结构水电暖通部分含工艺CAD图纸/01项目【华南地区 2019.8出版 带清单EXCEL表格】xx移动综合业务接入机房工程_解压2/01项目【华南地区 2019.8出版 带清单EXCEL表格】xx移动综合业务接入机房工程/来宾接入机房(含基础)/中间数据/Yjkbase_stiff_fea/MBS.TM.IDX.TMP	14736
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/要删/docs/library/_pending/06_工程图纸/IDC机房/jz316.IDC机房机楼数据中心建筑结构水电暖通部分含工艺CAD图纸/01项目【华南地区 2019.8出版 带清单EXCEL表格】xx移动综合业务接入机房工程_解压2/01项目【华南地区 2019.8出版 带清单EXCEL表格】xx移动综合业务接入机房工程/来宾接入机房(含基础)/中间数据/Yjkbase_stiff_fea/MBS.TM.DAT.TMP	2688
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/要删/docs/library/_pending/06_工程图纸/IDC机房/jz316.IDC机房机楼数据中心建筑结构水电暖通部分含工艺CAD图纸/01项目【华南地区 2019.8出版 带清单EXCEL表格】xx移动综合业务接入机房工程_解压2/01项目【华南地区 2019.8出版 带清单EXCEL表格】xx移动综合业务接入机房工程/来宾接入机房(含基础)/基础计算及结果输出/中间数据/中间数据/YjkCAL_MID/CAL_MID.TM.IDX.TMP	624
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/要删/docs/library/_pending/06_工程图纸/IDC机房/jz316.IDC机房机楼数据中心建筑结构水电暖通部分含工艺CAD图纸/01项目【华南地区 2019.8出版 带清单EXCEL表格】xx移动综合业务接入机房工程_解压2/01项目【华南地区 2019.8出版 带清单EXCEL表格】xx移动综合业务接入机房工程/来宾接入机房(含基础)/基础计算及结果输出/中间数据/中间数据/YjkCAL_MID/CAL_MID.TM.DAT.TMP	864
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/要删/docs/library/_pending/06_工程图纸/IDC机房/jz316.IDC机房机楼数据中心建筑结构水电暖通部分含工艺CAD图纸/01项目【华南地区 2019.8出版 带清单EXCEL表格】xx移动综合业务接入机房工程_解压2/01项目【华南地区 2019.8出版 带清单EXCEL表格】xx移动综合业务接入机房工程/来宾接入机房(含基础)/基础计算及结果输出/中间数据/中间数据/YjkLaLiangHingeEnd_MID/LaLiangHingeEnd_MID.TM.IDX.TMP	1164
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/要删/docs/library/_pending/06_工程图纸/IDC机房/jz316.IDC机房机楼数据中心建筑结构水电暖通部分含工艺CAD图纸/01项目【华南地区 2019.8出版 带清单EXCEL表格】xx移动综合业务接入机房工程_解压2/01项目【华南地区 2019.8出版 带清单EXCEL表格】xx移动综合业务接入机房工程/来宾接入机房(含基础)/基础计算及结果输出/中间数据/中间数据/YjkLaLiangHingeEnd_MID/LaLiangHingeEnd_MID.TM.DAT.TMP	1056
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/要删/docs/library/_pending/06_工程图纸/IDC机房/jz316.IDC机房机楼数据中心建筑结构水电暖通部分含工艺CAD图纸/01项目【华南地区 2019.8出版 带清单EXCEL表格】xx移动综合业务接入机房工程_解压2/01项目【华南地区 2019.8出版 带清单EXCEL表格】xx移动综合业务接入机房工程/来宾接入机房(含基础)/基础计算及结果输出/中间数据/中间数据/YjkLaLiangFixEnd_MID/LaLiangFixEnd_MID.TM.IDX.TMP	1164
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/要删/docs/library/_pending/06_工程图纸/IDC机房/jz316.IDC机房机楼数据中心建筑结构水电暖通部分含工艺CAD图纸/01项目【华南地区 2019.8出版 带清单EXCEL表格】xx移动综合业务接入机房工程_解压2/01项目【华南地区 2019.8出版 带清单EXCEL表格】xx移动综合业务接入机房工程/来宾接入机房(含基础)/基础计算及结果输出/中间数据/中间数据/YjkLaLiangFixEnd_MID/LaLiangFixEnd_MID.TM.DAT.TMP	1056
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/要删/docs/library/_pending/06_工程图纸/IDC机房/jz316.IDC机房机楼数据中心建筑结构水电暖通部分含工艺CAD图纸/01项目【华南地区 2019.8出版 带清单EXCEL表格】xx移动综合业务接入机房工程_解压2/01项目【华南地区 2019.8出版 带清单EXCEL表格】xx移动综合业务接入机房工程/来宾地下水泵房（筏板基础）/施工图/Deflection/中间数据/YjkF2/F2.TM.DAT.TMP	864
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/要删/docs/library/_pending/06_工程图纸/IDC机房/jz316.IDC机房机楼数据中心建筑结构水电暖通部分含工艺CAD图纸/01项目【华南地区 2019.8出版 带清单EXCEL表格】xx移动综合业务接入机房工程_解压2/01项目【华南地区 2019.8出版 带清单EXCEL表格】xx移动综合业务接入机房工程/来宾地下水泵房（筏板基础）/施工图/Deflection/中间数据/YjkF2/F2.TM.IDX.TMP	84
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/要删/docs/library/_pending/06_工程图纸/IDC机房/jz316.IDC机房机楼数据中心建筑结构水电暖通部分含工艺CAD图纸/01项目【华南地区 2019.8出版 带清单EXCEL表格】xx移动综合业务接入机房工程_解压2/01项目【华南地区 2019.8出版 带清单EXCEL表格】xx移动综合业务接入机房工程/来宾地下水泵房（筏板基础）/施工图/Deflection/中间数据/YjkF1/F1.TM.IDX.TMP	564
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/要删/docs/library/_pending/06_工程图纸/IDC机房/jz316.IDC机房机楼数据中心建筑结构水电暖通部分含工艺CAD图纸/01项目【华南地区 2019.8出版 带清单EXCEL表格】xx移动综合业务接入机房工程_解压2/01项目【华南地区 2019.8出版 带清单EXCEL表格】xx移动综合业务接入机房工程/来宾地下水泵房（筏板基础）/施工图/Deflection/中间数据/YjkF1/F1.TM.DAT.TMP	864
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/要删/docs/library/_pending/06_工程图纸/IDC机房/jz316.IDC机房机楼数据中心建筑结构水电暖通部分含工艺CAD图纸/01项目【华南地区 2019.8出版 带清单EXCEL表格】xx移动综合业务接入机房工程_解压2/01项目【华南地区 2019.8出版 带清单EXCEL表格】xx移动综合业务接入机房工程/来宾地下水泵房（筏板基础）/SubBeam/中间数据/YjkSAPSS_SubBeam1/SAPSS_SubBeam1.TM.DAT.TMP	864
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/要删/docs/library/_pending/06_工程图纸/IDC机房/jz316.IDC机房机楼数据中心建筑结构水电暖通部分含工艺CAD图纸/01项目【华南地区 2019.8出版 带清单EXCEL表格】xx移动综合业务接入机房工程_解压2/01项目【华南地区 2019.8出版 带清单EXCEL表格】xx移动综合业务接入机房工程/来宾地下水泵房（筏板基础）/SubBeam/中间数据/YjkSAPSS_SubBeam1/SAPSS_SubBeam1.TM.IDX.TMP	12
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/要删/docs/library/_pending/06_工程图纸/IDC机房/jz316.IDC机房机楼数据中心建筑结构水电暖通部分含工艺CAD图纸/01项目【华南地区 2019.8出版 带清单EXCEL表格】xx移动综合业务接入机房工程_解压2/01项目【华南地区 2019.8出版 带清单EXCEL表格】xx移动综合业务接入机房工程/来宾地下水泵房（筏板基础）/水泵房设计结果/设计结果/~$设计送审报告.doc	162
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/要删/docs/library/_pending/06_工程图纸/IDC机房/jz316.IDC机房机楼数据中心建筑结构水电暖通部分含工艺CAD图纸/01项目【华南地区 2019.8出版 带清单EXCEL表格】xx移动综合业务接入机房工程_解压2/01项目【华南地区 2019.8出版 带清单EXCEL表格】xx移动综合业务接入机房工程/来宾地下水泵房（筏板基础）/基础计算及结果输出/中间数据/中间数据/YjkFeaNonLCal_MID/FeaNonLCal_MID.TM.IDX.TMP	9960
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/要删/docs/library/_pending/06_工程图纸/IDC机房/jz316.IDC机房机楼数据中心建筑结构水电暖通部分含工艺CAD图纸/01项目【华南地区 2019.8出版 带清单EXCEL表格】xx移动综合业务接入机房工程_解压2/01项目【华南地区 2019.8出版 带清单EXCEL表格】xx移动综合业务接入机房工程/来宾地下水泵房（筏板基础）/基础计算及结果输出/中间数据/中间数据/YjkFeaNonLCal_MID/FeaNonLCal_MID.TM.DAT.TMP	864
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/要删/docs/library/_pending/06_工程图纸/IDC机房/jz316.IDC机房机楼数据中心建筑结构水电暖通部分含工艺CAD图纸/01项目【华南地区 2019.8出版 带清单EXCEL表格】xx移动综合业务接入机房工程_解压2/01项目【华南地区 2019.8出版 带清单EXCEL表格】xx移动综合业务接入机房工程/来宾地下水泵房（筏板基础）/基础计算及结果输出/中间数据/中间数据/YjkCAL_MID/CAL_MID.TM.IDX.TMP	9960
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/要删/docs/library/_pending/06_工程图纸/IDC机房/jz316.IDC机房机楼数据中心建筑结构水电暖通部分含工艺CAD图纸/01项目【华南地区 2019.8出版 带清单EXCEL表格】xx移动综合业务接入机房工程_解压2/01项目【华南地区 2019.8出版 带清单EXCEL表格】xx移动综合业务接入机房工程/来宾地下水泵房（筏板基础）/基础计算及结果输出/中间数据/中间数据/YjkCAL_MID/CAL_MID.TM.DAT.TMP	69504
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/要删/docs/library/_pending/06_工程图纸/IDC机房/jz316.IDC机房机楼数据中心建筑结构水电暖通部分含工艺CAD图纸/01项目【华南地区 2019.8出版 带清单EXCEL表格】xx移动综合业务接入机房工程_解压2/01项目【华南地区 2019.8出版 带清单EXCEL表格】xx移动综合业务接入机房工程/来宾地下水泵房（筏板基础）/基础计算及结果输出/中间数据/中间数据/YjkDLGWater_MID/DLGWater_MID.TM.DAT.TMP	864
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/要删/docs/library/_pending/06_工程图纸/IDC机房/jz316.IDC机房机楼数据中心建筑结构水电暖通部分含工艺CAD图纸/01项目【华南地区 2019.8出版 带清单EXCEL表格】xx移动综合业务接入机房工程_解压2/01项目【华南地区 2019.8出版 带清单EXCEL表格】xx移动综合业务接入机房工程/来宾地下水泵房（筏板基础）/基础计算及结果输出/中间数据/中间数据/YjkDLGWater_MID/DLGWater_MID.TM.IDX.TMP	1380
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/要删/docs/library/_pending/06_工程图纸/IDC机房/jz316.IDC机房机楼数据中心建筑结构水电暖通部分含工艺CAD图纸/01项目【华南地区 2019.8出版 带清单EXCEL表格】xx移动综合业务接入机房工程_解压2/01项目【华南地区 2019.8出版 带清单EXCEL表格】xx移动综合业务接入机房工程/来宾地下水泵房（筏板基础）/基础计算及结果输出/中间数据/中间数据/YjkTXBWater_MID/TXBWater_MID.TM.IDX.TMP	9960
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/要删/docs/library/_pending/06_工程图纸/IDC机房/jz316.IDC机房机楼数据中心建筑结构水电暖通部分含工艺CAD图纸/01项目【华南地区 2019.8出版 带清单EXCEL表格】xx移动综合业务接入机房工程_解压2/01项目【华南地区 2019.8出版 带清单EXCEL表格】xx移动综合业务接入机房工程/来宾地下水泵房（筏板基础）/基础计算及结果输出/中间数据/中间数据/YjkTXBWater_MID/TXBWater_MID.TM.DAT.TMP	69504
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/要删/docs/library/_pending/06_工程图纸/IDC机房/jz316.IDC机房机楼数据中心建筑结构水电暖通部分含工艺CAD图纸/01项目【华南地区 2019.8出版 带清单EXCEL表格】xx移动综合业务接入机房工程/来宾接入机房(含基础)/中间数据/Yjkbase_stiff_fea/MBS.TM.IDX.TMP	14736
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/要删/docs/library/_pending/06_工程图纸/IDC机房/jz316.IDC机房机楼数据中心建筑结构水电暖通部分含工艺CAD图纸/01项目【华南地区 2019.8出版 带清单EXCEL表格】xx移动综合业务接入机房工程/来宾接入机房(含基础)/中间数据/Yjkbase_stiff_fea/MBS.TM.DAT.TMP	2688
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/要删/docs/library/_pending/06_工程图纸/IDC机房/jz316.IDC机房机楼数据中心建筑结构水电暖通部分含工艺CAD图纸/01项目【华南地区 2019.8出版 带清单EXCEL表格】xx移动综合业务接入机房工程/来宾接入机房(含基础)/基础计算及结果输出/中间数据/中间数据/YjkCAL_MID/CAL_MID.TM.IDX.TMP	624
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/要删/docs/library/_pending/06_工程图纸/IDC机房/jz316.IDC机房机楼数据中心建筑结构水电暖通部分含工艺CAD图纸/01项目【华南地区 2019.8出版 带清单EXCEL表格】xx移动综合业务接入机房工程/来宾接入机房(含基础)/基础计算及结果输出/中间数据/中间数据/YjkCAL_MID/CAL_MID.TM.DAT.TMP	864
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/要删/docs/library/_pending/06_工程图纸/IDC机房/jz316.IDC机房机楼数据中心建筑结构水电暖通部分含工艺CAD图纸/01项目【华南地区 2019.8出版 带清单EXCEL表格】xx移动综合业务接入机房工程/来宾接入机房(含基础)/基础计算及结果输出/中间数据/中间数据/YjkLaLiangHingeEnd_MID/LaLiangHingeEnd_MID.TM.IDX.TMP	1164
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/要删/docs/library/_pending/06_工程图纸/IDC机房/jz316.IDC机房机楼数据中心建筑结构水电暖通部分含工艺CAD图纸/01项目【华南地区 2019.8出版 带清单EXCEL表格】xx移动综合业务接入机房工程/来宾接入机房(含基础)/基础计算及结果输出/中间数据/中间数据/YjkLaLiangHingeEnd_MID/LaLiangHingeEnd_MID.TM.DAT.TMP	1056
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/要删/docs/library/_pending/06_工程图纸/IDC机房/jz316.IDC机房机楼数据中心建筑结构水电暖通部分含工艺CAD图纸/01项目【华南地区 2019.8出版 带清单EXCEL表格】xx移动综合业务接入机房工程/来宾接入机房(含基础)/基础计算及结果输出/中间数据/中间数据/YjkLaLiangFixEnd_MID/LaLiangFixEnd_MID.TM.IDX.TMP	1164
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/要删/docs/library/_pending/06_工程图纸/IDC机房/jz316.IDC机房机楼数据中心建筑结构水电暖通部分含工艺CAD图纸/01项目【华南地区 2019.8出版 带清单EXCEL表格】xx移动综合业务接入机房工程/来宾接入机房(含基础)/基础计算及结果输出/中间数据/中间数据/YjkLaLiangFixEnd_MID/LaLiangFixEnd_MID.TM.DAT.TMP	1056
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/要删/docs/library/_pending/06_工程图纸/IDC机房/jz316.IDC机房机楼数据中心建筑结构水电暖通部分含工艺CAD图纸/01项目【华南地区 2019.8出版 带清单EXCEL表格】xx移动综合业务接入机房工程/来宾地下水泵房（筏板基础）/施工图/Deflection/中间数据/YjkF2/F2.TM.DAT.TMP	864
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/要删/docs/library/_pending/06_工程图纸/IDC机房/jz316.IDC机房机楼数据中心建筑结构水电暖通部分含工艺CAD图纸/01项目【华南地区 2019.8出版 带清单EXCEL表格】xx移动综合业务接入机房工程/来宾地下水泵房（筏板基础）/施工图/Deflection/中间数据/YjkF2/F2.TM.IDX.TMP	84
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/要删/docs/library/_pending/06_工程图纸/IDC机房/jz316.IDC机房机楼数据中心建筑结构水电暖通部分含工艺CAD图纸/01项目【华南地区 2019.8出版 带清单EXCEL表格】xx移动综合业务接入机房工程/来宾地下水泵房（筏板基础）/施工图/Deflection/中间数据/YjkF1/F1.TM.IDX.TMP	564
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/要删/docs/library/_pending/06_工程图纸/IDC机房/jz316.IDC机房机楼数据中心建筑结构水电暖通部分含工艺CAD图纸/01项目【华南地区 2019.8出版 带清单EXCEL表格】xx移动综合业务接入机房工程/来宾地下水泵房（筏板基础）/施工图/Deflection/中间数据/YjkF1/F1.TM.DAT.TMP	864
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/要删/docs/library/_pending/06_工程图纸/IDC机房/jz316.IDC机房机楼数据中心建筑结构水电暖通部分含工艺CAD图纸/01项目【华南地区 2019.8出版 带清单EXCEL表格】xx移动综合业务接入机房工程/来宾地下水泵房（筏板基础）/SubBeam/中间数据/YjkSAPSS_SubBeam1/SAPSS_SubBeam1.TM.IDX.TMP	12
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/要删/docs/library/_pending/06_工程图纸/IDC机房/jz316.IDC机房机楼数据中心建筑结构水电暖通部分含工艺CAD图纸/01项目【华南地区 2019.8出版 带清单EXCEL表格】xx移动综合业务接入机房工程/来宾地下水泵房（筏板基础）/SubBeam/中间数据/YjkSAPSS_SubBeam1/SAPSS_SubBeam1.TM.DAT.TMP	864
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/要删/docs/library/_pending/06_工程图纸/IDC机房/jz316.IDC机房机楼数据中心建筑结构水电暖通部分含工艺CAD图纸/01项目【华南地区 2019.8出版 带清单EXCEL表格】xx移动综合业务接入机房工程/来宾地下水泵房（筏板基础）/水泵房设计结果/设计结果/~$设计送审报告.doc	162
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/要删/docs/library/_pending/06_工程图纸/IDC机房/jz316.IDC机房机楼数据中心建筑结构水电暖通部分含工艺CAD图纸/01项目【华南地区 2019.8出版 带清单EXCEL表格】xx移动综合业务接入机房工程/来宾地下水泵房（筏板基础）/基础计算及结果输出/中间数据/中间数据/YjkFeaNonLCal_MID/FeaNonLCal_MID.TM.IDX.TMP	9960
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/要删/docs/library/_pending/06_工程图纸/IDC机房/jz316.IDC机房机楼数据中心建筑结构水电暖通部分含工艺CAD图纸/01项目【华南地区 2019.8出版 带清单EXCEL表格】xx移动综合业务接入机房工程/来宾地下水泵房（筏板基础）/基础计算及结果输出/中间数据/中间数据/YjkFeaNonLCal_MID/FeaNonLCal_MID.TM.DAT.TMP	864
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/要删/docs/library/_pending/06_工程图纸/IDC机房/jz316.IDC机房机楼数据中心建筑结构水电暖通部分含工艺CAD图纸/01项目【华南地区 2019.8出版 带清单EXCEL表格】xx移动综合业务接入机房工程/来宾地下水泵房（筏板基础）/基础计算及结果输出/中间数据/中间数据/YjkCAL_MID/CAL_MID.TM.IDX.TMP	9960
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/要删/docs/library/_pending/06_工程图纸/IDC机房/jz316.IDC机房机楼数据中心建筑结构水电暖通部分含工艺CAD图纸/01项目【华南地区 2019.8出版 带清单EXCEL表格】xx移动综合业务接入机房工程/来宾地下水泵房（筏板基础）/基础计算及结果输出/中间数据/中间数据/YjkCAL_MID/CAL_MID.TM.DAT.TMP	69504
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/要删/docs/library/_pending/06_工程图纸/IDC机房/jz316.IDC机房机楼数据中心建筑结构水电暖通部分含工艺CAD图纸/01项目【华南地区 2019.8出版 带清单EXCEL表格】xx移动综合业务接入机房工程/来宾地下水泵房（筏板基础）/基础计算及结果输出/中间数据/中间数据/YjkDLGWater_MID/DLGWater_MID.TM.DAT.TMP	864
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/要删/docs/library/_pending/06_工程图纸/IDC机房/jz316.IDC机房机楼数据中心建筑结构水电暖通部分含工艺CAD图纸/01项目【华南地区 2019.8出版 带清单EXCEL表格】xx移动综合业务接入机房工程/来宾地下水泵房（筏板基础）/基础计算及结果输出/中间数据/中间数据/YjkDLGWater_MID/DLGWater_MID.TM.IDX.TMP	1380
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/要删/docs/library/_pending/06_工程图纸/IDC机房/jz316.IDC机房机楼数据中心建筑结构水电暖通部分含工艺CAD图纸/01项目【华南地区 2019.8出版 带清单EXCEL表格】xx移动综合业务接入机房工程/来宾地下水泵房（筏板基础）/基础计算及结果输出/中间数据/中间数据/YjkTXBWater_MID/TXBWater_MID.TM.IDX.TMP	9960
+/home/spark/.local/share/inresearch.ai/raw-materials/m4-20260906/要删/docs/library/_pending/06_工程图纸/IDC机房/jz316.IDC机房机楼数据中心建筑结构水电暖通部分含工艺CAD图纸/01项目【华南地区 2019.8出版 带清单EXCEL表格】xx移动综合业务接入机房工程/来宾地下水泵房（筏板基础）/基础计算及结果输出/中间数据/中间数据/YjkTXBWater_MID/TXBWater_MID.TM.DAT.TMP	69504

@@ -1,0 +1,54 @@
+待核对文件 91419 个
+进度 2000/91419  dup=1992 orphan=8 error=0  1536 文件/秒
+进度 4000/91419  dup=3945 orphan=54 error=0  2496 文件/秒
+进度 6000/91419  dup=5942 orphan=56 error=0  890 文件/秒
+进度 8000/91419  dup=7931 orphan=63 error=0  663 文件/秒
+进度 10000/91419  dup=9846 orphan=87 error=0  794 文件/秒
+进度 12000/91419  dup=11845 orphan=88 error=0  667 文件/秒
+进度 14000/91419  dup=13768 orphan=107 error=0  755 文件/秒
+进度 16000/91419  dup=15759 orphan=111 error=0  801 文件/秒
+进度 18000/91419  dup=17758 orphan=111 error=0  790 文件/秒
+进度 20000/91419  dup=19756 orphan=112 error=0  804 文件/秒
+进度 22000/91419  dup=21675 orphan=133 error=0  861 文件/秒
+进度 24000/91419  dup=23670 orphan=135 error=0  909 文件/秒
+进度 26000/91419  dup=25668 orphan=135 error=0  954 文件/秒
+进度 28000/91419  dup=27651 orphan=148 error=0  985 文件/秒
+进度 30000/91419  dup=29645 orphan=152 error=0  1029 文件/秒
+进度 32000/91419  dup=31639 orphan=156 error=0  987 文件/秒
+进度 34000/91419  dup=33639 orphan=156 error=0  937 文件/秒
+进度 36000/91419  dup=35639 orphan=156 error=0  899 文件/秒
+进度 38000/91419  dup=37635 orphan=160 error=0  885 文件/秒
+进度 40000/91419  dup=39578 orphan=178 error=0  915 文件/秒
+进度 42000/91419  dup=41540 orphan=192 error=0  943 文件/秒
+进度 44000/91419  dup=43531 orphan=199 error=0  970 文件/秒
+进度 46000/91419  dup=45504 orphan=222 error=0  991 文件/秒
+进度 48000/91419  dup=47497 orphan=227 error=0  1020 文件/秒
+进度 50000/91419  dup=49477 orphan=247 error=0  1040 文件/秒
+进度 52000/91419  dup=51477 orphan=247 error=0  1075 文件/秒
+进度 54000/91419  dup=53477 orphan=247 error=0  1109 文件/秒
+进度 56000/91419  dup=55477 orphan=247 error=0  1143 文件/秒
+进度 58000/91419  dup=57477 orphan=247 error=0  1177 文件/秒
+进度 60000/91419  dup=59477 orphan=247 error=0  1210 文件/秒
+进度 62000/91419  dup=61477 orphan=247 error=0  1244 文件/秒
+进度 64000/91419  dup=63473 orphan=251 error=0  1224 文件/秒
+进度 66000/91419  dup=65473 orphan=251 error=0  1208 文件/秒
+进度 68000/91419  dup=67473 orphan=251 error=0  1178 文件/秒
+进度 70000/91419  dup=69444 orphan=255 error=0  1183 文件/秒
+进度 72000/91419  dup=71386 orphan=275 error=0  1205 文件/秒
+进度 74000/91419  dup=73386 orphan=275 error=0  1224 文件/秒
+进度 76000/91419  dup=75384 orphan=275 error=0  1234 文件/秒
+进度 78000/91419  dup=77379 orphan=275 error=0  1255 文件/秒
+进度 80000/91419  dup=79378 orphan=276 error=0  1257 文件/秒
+进度 82000/91419  dup=81378 orphan=276 error=0  1255 文件/秒
+进度 84000/91419  dup=83377 orphan=277 error=0  1248 文件/秒
+进度 86000/91419  dup=85375 orphan=278 error=0  1213 文件/秒
+进度 88000/91419  dup=87280 orphan=304 error=0  1219 文件/秒
+进度 90000/91419  dup=89200 orphan=327 error=0  1206 文件/秒
+
+=== 完成 76.9 秒 ===
+dup(可回收)    90619 个  249.8 GB
+orphan(必留)     327 个  0.0 GB
+empty(空文件)    473 个
+error(读失败)      0 个
+清单 /home/spark/reclaim-audit-20261019/audit.jsonl
+汇总 /home/spark/reclaim-audit-20261019/summary.json

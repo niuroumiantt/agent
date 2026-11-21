@@ -60,6 +60,14 @@ class SemiAuthVerifyRequest(SemiAuthEmailRequest):
     code: str = Field(min_length=6, max_length=6)
 
 
+class SemiAuthPasswordRequest(SemiAuthEmailRequest):
+    password: str = Field(min_length=8, max_length=200)
+
+
+class SemiAuthSetPasswordRequest(BaseModel):
+    password: str = Field(min_length=8, max_length=200)
+
+
 def create_app(settings: Settings, analyzer=analyze, planner=plan) -> FastAPI:
     settings.validate()
     catalog = FileCatalog(settings.root) if settings.mode == "local" else None
@@ -228,6 +236,22 @@ def create_app(settings: Settings, analyzer=analyze, planner=plan) -> FastAPI:
     @app.post("/api/semi-auth/verify-code")
     def semi_auth_verify_code(body: SemiAuthVerifyRequest):
         return semi_auth.verify_code(body.email, body.code)
+
+    @app.post("/api/semi-auth/password-status")
+    def semi_auth_password_status(body: SemiAuthEmailRequest):
+        return semi_auth.password_status(body.email)
+
+    @app.post("/api/semi-auth/login-password")
+    def semi_auth_login_password(body: SemiAuthPasswordRequest):
+        return semi_auth.password_login(body.email, body.password)
+
+    @app.post("/api/semi-auth/set-password")
+    def semi_auth_set_password(body: SemiAuthSetPasswordRequest, request: Request):
+        auth = request.headers.get("authorization", "")
+        scheme, _, token = auth.partition(" ")
+        if scheme.lower() != "bearer" or not token:
+            raise SemiAuthError(401, "missing_session", "Session token is required.")
+        return semi_auth.set_password(token, body.password)
 
     @app.get("/api/semi-auth/session")
     def semi_auth_session(request: Request):

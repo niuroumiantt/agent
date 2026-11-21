@@ -12,6 +12,7 @@ from collections.abc import Callable
 from dataclasses import dataclass
 from email.message import EmailMessage
 from email.utils import formataddr
+from pathlib import Path
 
 
 class SemiAuthError(Exception):
@@ -37,6 +38,7 @@ class SemiAuthConfig:
     smtp: SmtpConfig | None
     code_pepper: str
     session_secret: str
+    password_file: Path | None = None
     code_ttl_seconds: int = 600
     token_ttl_seconds: int = 2_592_000
 
@@ -71,6 +73,9 @@ def load_semi_auth_config() -> SemiAuthConfig:
         smtp=smtp,
         code_pepper=env("SEMI_AUTH_CODE_PEPPER"),
         session_secret=env("SEMI_AUTH_SESSION_SECRET"),
+        password_file=Path(env("SEMI_AUTH_PASSWORD_FILE")).expanduser()
+        if env("SEMI_AUTH_PASSWORD_FILE")
+        else None,
         code_ttl_seconds=int(env("SEMI_AUTH_CODE_TTL_SECONDS", "600")),
         token_ttl_seconds=int(env("SEMI_AUTH_TOKEN_TTL_SECONDS", "2592000")),
     )
@@ -122,6 +127,7 @@ class SemiAuthService:
         self._now = now
         self._codes: dict[str, CodeRecord] = {}
         self._request_log: dict[str, list[float]] = {}
+        self._passwords = self._load_passwords()
 
     def request_code(self, email: str, ip: str) -> dict:
         email = normalize_email(email)
@@ -163,11 +169,42 @@ class SemiAuthService:
             raise SemiAuthError(400, "invalid_code", "Verification code is incorrect.")
         self._codes.pop(email, None)
         token = self._sign_session(email)
-        return {"ok": True, "session": {"email": email, "token": token}}
+        return {
+            "ok": True,
+            "password_set": email in self._passwords,
+            "session": {"email": email, "token": token},
+        }
+
+    def set_password(self, token: str, password: str) -> dict:
+        payload = self._verify_session(token)
+        email = payload["email"]
+        self._validate_password(password)
+        salt = secrets.token_bytes(16)
+        iterations = 210_000
+        digest = hashlib.pbkdf2_hmac("sha256", password.encode(), salt, iterations)
+        self._passwords[email] = {
+            "salt": _b64(salt),
+            "hash": _b64(digest),
+            "iterations": iterations,
+            "created_at": int(self._now()),
+        }
+        self._save_passwords()
+        return {"ok": True, "session": {"email": email, "token": self._sign_session(email)}}
+
+    def password_login(self, email: str, password: str) -> dict:
+        email = normalize_email(email)
+        record = self._passwords.get(email)
+        if not record or not self._password_matches(record, password):
+            raise SemiAuthError(401, "invalid_password", "Email or password is incorrect.")
+        return {"ok": True, "session": {"email": email, "token": self._sign_session(email)}}
 
     def session(self, token: str) -> dict:
         payload = self._verify_session(token)
         return {"ok": True, "session": {"email": payload["email"], "expires_at": payload["exp"]}}
+
+    def password_status(self, email: str) -> dict:
+        email = normalize_email(email)
+        return {"ok": True, "has_password": email in self._passwords}
 
     def _check_rate_limit(self, email: str, ip: str) -> None:
         now = self._now()
@@ -216,6 +253,46 @@ class SemiAuthService:
             return payload
         except Exception as exc:
             raise SemiAuthError(401, "invalid_session", "Session is invalid or expired.") from exc
+
+    def _validate_password(self, password: str) -> None:
+        if not isinstance(password, str) or not 8 <= len(password) <= 200:
+            raise SemiAuthError(422, "invalid_password", "Password must be at least 8 characters.")
+
+    def _password_matches(self, record: dict, password: str) -> bool:
+        try:
+            iterations = int(record["iterations"])
+            salt = _unb64(str(record["salt"]))
+            expected = _unb64(str(record["hash"]))
+            actual = hashlib.pbkdf2_hmac("sha256", password.encode(), salt, iterations)
+            return hmac.compare_digest(actual, expected)
+        except Exception:
+            return False
+
+    def _load_passwords(self) -> dict[str, dict]:
+        path = self.config.password_file
+        if path is None:
+            return {}
+        try:
+            data = json.loads(path.read_text(encoding="utf-8"))
+        except FileNotFoundError:
+            return {}
+        except Exception as exc:
+            raise SemiAuthError(
+                500, "password_store_invalid", "Password store is invalid."
+            ) from exc
+        return data if isinstance(data, dict) else {}
+
+    def _save_passwords(self) -> None:
+        path = self.config.password_file
+        if path is None:
+            raise SemiAuthError(
+                503, "password_login_unavailable", "Password login is not configured."
+            )
+        path.parent.mkdir(parents=True, mode=0o700, exist_ok=True)
+        tmp = path.with_name(path.name + f".{os.getpid()}.tmp")
+        tmp.write_text(json.dumps(self._passwords, separators=(",", ":")), encoding="utf-8")
+        os.chmod(tmp, 0o600)
+        tmp.replace(path)
 
 
 def normalize_email(email: str) -> str:

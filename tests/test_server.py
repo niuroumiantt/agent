@@ -9,6 +9,7 @@ from test_app import fake_analysis, finished
 from glocal_agent import uploads
 from glocal_agent.app import create_app
 from glocal_agent.config import Settings
+from glocal_agent.semi_auth import SemiAuthService
 
 DOMAIN = "https://agent.glocalstorage.cn"
 KEY = "synthetic-proxy-key-" + "x" * 48
@@ -110,3 +111,82 @@ def test_public_mode_refuses_missing_boundaries(tmp_path):
                    {"provider": "codex_cli"}):
         with pytest.raises(ValueError):
             dataclasses.replace(settings, **change).validate()
+
+
+def test_semi_auth_requires_proxy_but_not_oidc_session(tmp_path):
+    app, _, a, _ = setup_server(tmp_path)
+    with TestClient(app, base_url=DOMAIN) as client:
+        assert client.post(
+            "/api/semi-auth/request-code", json={"email": "a@example.com"}
+        ).status_code == 403
+        response = client.post(
+            "/api/semi-auth/request-code",
+            json={"email": "a@example.com"},
+            headers={"X-Agent-Proxy-Key": KEY, "Origin": DOMAIN},
+        )
+        assert response.status_code == 503
+        assert response.json()["code"] == "email_not_configured"
+        # Existing authenticated APIs still need an employee subject and session.
+        assert client.get("/api/config", headers={"X-Agent-Proxy-Key": KEY}).status_code == 403
+        assert client.get("/api/config", headers=a).status_code == 200
+
+
+def test_semi_auth_sends_code_and_issues_session(tmp_path, monkeypatch):
+    sent = []
+
+    def sender(config, email, code):
+        sent.append((config.user, email, code))
+
+    monkeypatch.setenv("SEMI_AUTH_SMTP_HOST", "smtp.qiye.163.com")
+    monkeypatch.setenv("SEMI_AUTH_SMTP_PORT", "465")
+    monkeypatch.setenv("SEMI_AUTH_SMTP_SECURE", "1")
+    monkeypatch.setenv("SEMI_AUTH_SMTP_USER", "no-reply@semifly.ai")
+    monkeypatch.setenv("SEMI_AUTH_SMTP_PASSWORD", "synthetic-password")
+    monkeypatch.setenv("SEMI_AUTH_SMTP_FROM", "Semi <no-reply@semifly.ai>")
+    monkeypatch.setenv("SEMI_AUTH_CODE_PEPPER", "synthetic-code-pepper")
+    monkeypatch.setenv("SEMI_AUTH_SESSION_SECRET", "synthetic-session-secret")
+    app, settings, _, _ = setup_server(tmp_path)
+    app.state.store.close()
+    # Replace the captured sender by monkeypatching SMTP itself at the module boundary.
+    # The service stores its sender at app creation, so this test exercises the public
+    # HMAC/session path directly through a fresh test-only app factory below.
+    from glocal_agent import app as app_module
+
+    original = app_module.SemiAuthService
+
+    class TestSemiAuthService(SemiAuthService):
+        def __init__(self, config):
+            super().__init__(config, sender=sender)
+
+    monkeypatch.setattr(app_module, "SemiAuthService", TestSemiAuthService)
+    auth_app = create_app(settings, fake_analysis)
+    headers = {"X-Agent-Proxy-Key": KEY, "Origin": DOMAIN}
+    with TestClient(auth_app, base_url=DOMAIN) as client:
+        response = client.post(
+            "/api/semi-auth/request-code",
+            json={"email": "User@Example.COM"},
+            headers=headers,
+        )
+        assert response.status_code == 200
+        assert sent and sent[0][1] == "user@example.com"
+        code = sent[0][2]
+        wrong = client.post(
+            "/api/semi-auth/verify-code",
+            json={"email": "user@example.com", "code": "000000"},
+            headers=headers,
+        )
+        assert wrong.status_code == 400
+        verified = client.post(
+            "/api/semi-auth/verify-code",
+            json={"email": "user@example.com", "code": code},
+            headers=headers,
+        )
+        assert verified.status_code == 200
+        token = verified.json()["session"]["token"]
+        session = client.get(
+            "/api/semi-auth/session",
+            headers={**headers, "Authorization": f"Bearer {token}"},
+        )
+        assert session.status_code == 200
+        assert session.json()["session"]["email"] == "user@example.com"
+    monkeypatch.setattr(app_module, "SemiAuthService", original)

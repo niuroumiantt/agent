@@ -27,6 +27,7 @@ from .extract import extract
 from .files import MAX_FILES, CatalogError, FileCatalog
 from .model import ModelError, analyze
 from .reports import write_reports
+from .semi_auth import SemiAuthError, SemiAuthService, load_semi_auth_config
 from .store import Store
 from .uploads import receive_upload
 
@@ -51,11 +52,20 @@ class MessageRequest(BaseModel):
     file_ids: list[str] | None = Field(default=None, max_length=MAX_FILES)
 
 
+class SemiAuthEmailRequest(BaseModel):
+    email: str = Field(min_length=3, max_length=254)
+
+
+class SemiAuthVerifyRequest(SemiAuthEmailRequest):
+    code: str = Field(min_length=6, max_length=6)
+
+
 def create_app(settings: Settings, analyzer=analyze, planner=plan) -> FastAPI:
     settings.validate()
     catalog = FileCatalog(settings.root) if settings.mode == "local" else None
     catalogs: dict[str, FileCatalog] = {}
     store = Store(settings.data_dir)
+    semi_auth = SemiAuthService(load_semi_auth_config())
     session_token = secrets.token_urlsafe(32)
     catalog_lock = threading.Lock()
     job_gate = threading.Lock()
@@ -87,6 +97,27 @@ def create_app(settings: Settings, analyzer=analyze, planner=plan) -> FastAPI:
     def owner(request: Request) -> str | None:
         return actor(request) if settings.mode == "server" else None
 
+    def semi_auth_headers(origin: str | None) -> dict[str, str]:
+        if not origin:
+            return {}
+        parsed = urlsplit(origin)
+        allowed = False
+        if settings.mode == "local":
+            allowed = parsed.hostname in {"127.0.0.1", "localhost", "::1"}
+        else:
+            allowed = (
+                parsed.hostname in {"127.0.0.1", "localhost"}
+                or origin == settings.public_url
+            )
+        if not allowed:
+            return {}
+        return {
+            "Access-Control-Allow-Origin": origin,
+            "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
+            "Access-Control-Allow-Headers": "Content-Type, Authorization",
+            "Vary": "Origin",
+        }
+
     def user_catalog(request: Request) -> FileCatalog:
         if catalog is not None:
             return catalog
@@ -106,15 +137,22 @@ def create_app(settings: Settings, analyzer=analyze, planner=plan) -> FastAPI:
 
     @app.middleware("http")
     async def protect_local_session(request: Request, call_next):
+        semi_auth_path = request.url.path.startswith("/api/semi-auth/")
+        if semi_auth_path and request.method == "OPTIONS":
+            headers = semi_auth_headers(request.headers.get("origin"))
+            if not headers and request.headers.get("origin"):
+                return JSONResponse({"detail": "不允许跨站请求。"}, status_code=403)
+            return JSONResponse({}, headers=headers)
         if settings.mode == "server" and request.url.path != "/healthz":
             supplied = request.headers.get("x-agent-proxy-key", "")
             if not hmac.compare_digest(supplied.encode(), settings.proxy_key.encode()):
                 return JSONResponse({"detail": "需要受信的公司登录会话。"}, status_code=403)
-            try:
-                request.state.actor = str(uuid.UUID(request.headers.get("x-agent-subject", "")))
-            except ValueError:
-                return JSONResponse({"detail": "登录身份无效，请重新登录。"}, status_code=403)
-        if request.url.path.startswith("/api/"):
+            if not semi_auth_path:
+                try:
+                    request.state.actor = str(uuid.UUID(request.headers.get("x-agent-subject", "")))
+                except ValueError:
+                    return JSONResponse({"detail": "登录身份无效，请重新登录。"}, status_code=403)
+        if request.url.path.startswith("/api/") and not semi_auth_path:
             token = request.headers.get("x-agent-session", "")
             if not hmac.compare_digest(token.encode(), session_token.encode()):
                 return JSONResponse({"detail": "请从工作台访问或刷新页面。"}, status_code=403)
@@ -135,7 +173,18 @@ def create_app(settings: Settings, analyzer=analyze, planner=plan) -> FastAPI:
                 expected
             ):
                 return JSONResponse({"detail": "请求格式不受支持。"}, status_code=415)
+        if semi_auth_path:
+            origin = request.headers.get("origin")
+            if origin and not semi_auth_headers(origin):
+                return JSONResponse({"detail": "不允许跨站请求。"}, status_code=403)
+            if request.method == "POST" and not request.headers.get("content-type", "").startswith(
+                "application/json"
+            ):
+                return JSONResponse({"detail": "请求格式不受支持。"}, status_code=415)
         response = await call_next(request)
+        if semi_auth_path:
+            for key, value in semi_auth_headers(request.headers.get("origin")).items():
+                response.headers[key] = value
         response.headers["Cache-Control"] = "no-store"
         response.headers["X-Content-Type-Options"] = "nosniff"
         response.headers["Content-Security-Policy"] = (
@@ -153,6 +202,13 @@ def create_app(settings: Settings, analyzer=analyze, planner=plan) -> FastAPI:
     async def handle_catalog_error(request, exc):
         return JSONResponse({"detail": str(exc)}, status_code=400)
 
+    @app.exception_handler(SemiAuthError)
+    async def handle_semi_auth_error(request, exc):
+        return JSONResponse(
+            {"ok": False, "code": exc.code, "detail": exc.message},
+            status_code=exc.status_code,
+        )
+
     @app.get("/", response_class=HTMLResponse)
     def index():
         return WEB.joinpath("index.html").read_text(encoding="utf-8").replace(
@@ -164,6 +220,22 @@ def create_app(settings: Settings, analyzer=analyze, planner=plan) -> FastAPI:
     @app.get("/api/config")
     def config():
         return settings.public()
+
+    @app.post("/api/semi-auth/request-code")
+    def semi_auth_request_code(body: SemiAuthEmailRequest, request: Request):
+        return semi_auth.request_code(body.email, request.client.host if request.client else "")
+
+    @app.post("/api/semi-auth/verify-code")
+    def semi_auth_verify_code(body: SemiAuthVerifyRequest):
+        return semi_auth.verify_code(body.email, body.code)
+
+    @app.get("/api/semi-auth/session")
+    def semi_auth_session(request: Request):
+        auth = request.headers.get("authorization", "")
+        scheme, _, token = auth.partition(" ")
+        if scheme.lower() != "bearer" or not token:
+            raise SemiAuthError(401, "missing_session", "Session token is required.")
+        return semi_auth.session(token)
 
     @app.post("/api/scan")
     def scan(body: ScanRequest, request: Request):

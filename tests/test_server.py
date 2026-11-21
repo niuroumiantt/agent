@@ -145,6 +145,7 @@ def test_semi_auth_sends_code_and_issues_session(tmp_path, monkeypatch):
     monkeypatch.setenv("SEMI_AUTH_SMTP_FROM", "Semi <no-reply@semifly.ai>")
     monkeypatch.setenv("SEMI_AUTH_CODE_PEPPER", "synthetic-code-pepper")
     monkeypatch.setenv("SEMI_AUTH_SESSION_SECRET", "synthetic-session-secret")
+    monkeypatch.setenv("SEMI_AUTH_PASSWORD_FILE", str(tmp_path / "semi-auth-users.json"))
     app, settings, _, _ = setup_server(tmp_path)
     app.state.store.close()
     # Replace the captured sender by monkeypatching SMTP itself at the module boundary.
@@ -183,6 +184,36 @@ def test_semi_auth_sends_code_and_issues_session(tmp_path, monkeypatch):
         )
         assert verified.status_code == 200
         token = verified.json()["session"]["token"]
+        assert verified.json()["password_set"] is False
+        assert client.post(
+            "/api/semi-auth/password-status",
+            json={"email": "user@example.com"},
+            headers=headers,
+        ).json()["has_password"] is False
+        too_short = client.post(
+            "/api/semi-auth/set-password",
+            json={"password": "short"},
+            headers={**headers, "Authorization": f"Bearer {token}"},
+        )
+        assert too_short.status_code == 422
+        set_password = client.post(
+            "/api/semi-auth/set-password",
+            json={"password": "correct horse battery staple"},
+            headers={**headers, "Authorization": f"Bearer {token}"},
+        )
+        assert set_password.status_code == 200
+        assert client.post(
+            "/api/semi-auth/login-password",
+            json={"email": "user@example.com", "password": "wrong password"},
+            headers=headers,
+        ).status_code == 401
+        password_login = client.post(
+            "/api/semi-auth/login-password",
+            json={"email": "user@example.com", "password": "correct horse battery staple"},
+            headers=headers,
+        )
+        assert password_login.status_code == 200
+        assert password_login.json()["session"]["email"] == "user@example.com"
         session = client.get(
             "/api/semi-auth/session",
             headers={**headers, "Authorization": f"Bearer {token}"},
